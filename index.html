@@ -3,36 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Boardgame List</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Boardgame List</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .game-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .game-list li {
+      background: white;
+      border-radius: 10px;
+      width: 160px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .game-list img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    h2 {
+      font-size: 14px;
+      margin: 8px 0 0;
+    }
+  </style>
 </head>
+
 <body>
-  <header>
-    <h1>ボードゲームリスト</h1>
-  </header>
 
-  <main>
-    <ul class="game-list">
-      <li>
-        <img src="images/game1.jpg" alt="ゲーム1">
-        <h2>カタン</h2>
-        <p>資源を集めて島を開拓する人気ゲーム。</p>
-      </li>
-      <li>
-        <img src="images/game2.jpg" alt="ゲーム2">
-        <h2>カルカソンヌ</h2>
-        <p>タイルを置いて都市や道を作る戦略ゲーム。</p>
-      </li>
-      <li>
-        <img src="images/game3.jpg" alt="ゲーム3">
-        <h2>アズール</h2>
-        <p>美しいタイルを集めて模様を作るパズル系ゲーム。</p>
-      </li>
-    </ul>
-  </main>
+<h1>ボードゲームリスト</h1>
 
-  <footer>
-    <p>© 2026 KENのボードゲームリスト</p>
-  </footer>
+<ul class="game-list">
+
+<li><img><h2>The Academy</h2></li>
+<li><img><h2>Anansi</h2></li>
+<li><img><h2>Animanize</h2></li>
+<li><img><h2>Avenue</h2></li>
+<li><img><h2>Einfalls-Pinsel</h2></li>
+<li><img><h2>Eleven</h2></li>
+<li><img><h2>Insider</h2></li>
+<li><img><h2>Inside Job</h2></li>
+<li><img><h2>Indulgence</h2></li>
+<li><img><h2>Vivaldi</h2></li>
+<li><img><h2>Wizard Junior</h2></li>
+<li><img><h2>Willi</h2></li>
+<li><img><h2>Volfyirion</h2></li>
+<li><img><h2>Volfyirion Guilds</h2></li>
+<li><img><h2>Epic Card Game</h2></li>
+<li><img><h2>Odd socks</h2></li>
+<li><img><h2>Odin</h2></li>
+<li><img><h2>Caesar & Cleopatra</h2></li>
+<li><img><h2>Relationship Tightrope</h2></li>
+<li><img><h2>Canasta</h2></li>
+<li><img><h2>Canal Grande</h2></li>
+<li><img><h2>Cabo</h2></li>
+<li><img><h2>Cardcassonne</h2></li>
+<li><img><h2>Chimera</h2></li>
+<li><img><h2>Cat in the box</h2></li>
+<li><img><h2>Quest</h2></li>
+<li><img><h2>Clash of Deck</h2></li>
+
+</ul>
+
+<script>
+document.querySelectorAll(".game-list li").forEach(li => {
+  const name = li.querySelector("h2").innerText;
+
+  const fileName = name
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/&/g, "")
+    .replace(/'/g, "")
+    .replace(/!/g, "")
+    .replace(/:/g, "")
+    .replace(/,/g, "")
+    .replace(/[^a-z0-9\-]/g, "");
+
+  li.querySelector("img").src = "images/" + fileName + ".jpg";
+});
+</script>
+
 </body>
 </html>
