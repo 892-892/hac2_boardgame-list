@@ -55,6 +55,7 @@
 
 <ul class="game-list">
 
+<!-- ↓ここにあなたの大量リストそのまま入れてOK -->
 <li><img><h2>The Academy</h2></li>
 <li><img><h2>Anansi</h2></li>
 <li><img><h2>Animanize</h2></li>
@@ -89,17 +90,8 @@
 document.querySelectorAll(".game-list li").forEach(li => {
   const name = li.querySelector("h2").innerText;
 
-  const fileName = name
-    .toLowerCase()
-    .replace(/ /g, "-")
-    .replace(/&/g, "")
-    .replace(/'/g, "")
-    .replace(/!/g, "")
-    .replace(/:/g, "")
-    .replace(/,/g, "")
-    .replace(/[^a-z0-9\-]/g, "");
-
-  li.querySelector("img").src = "images/" + fileName + ".jpg";
+  // ★そのままの名前で画像を読み込む
+  li.querySelector("img").src = "images/" + name + ".jpg";
 });
 </script>
 
