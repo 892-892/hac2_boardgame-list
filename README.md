@@ -1,0 +1,1 @@
+# hac2_boardgame-list
