@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="ja"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;title&gt;ボードゲームリスト&lt;/title&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">body {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: #f5f5f5;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-align: center;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">h1 {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 30px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* カードを横並びにする */</p>
+<p class="p1">.cards {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>flex-wrap: wrap;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>gap: 20px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* 各カード */</p>
+<p class="p1">.card {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 220px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>box-shadow: 0 4px 10px rgba(0,0,0,0.15);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition: transform 0.2s;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.card:hover {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transform: translateY(-5px);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.card img {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>height: auto;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.card-content {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-align: left;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.card-content h3 {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin: 5px 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 18px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.card-content p {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin: 3px 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 14px;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.card-content a {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-top: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: #007bff;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-decoration: none;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.card-content a:hover {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-decoration: underline;</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;h1&gt;ボードゲームリスト&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="cards"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;img src="https://cf.geekdo-images.com/original/img/5MZc8l5Q5oI6tFv_F30dH3rj5-s=/0x0/pic12345.jpg" alt="カタン"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;カタン&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;人数: 3-4人&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;時間: 60分&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;ベスト人数: 4人&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;重さ: 2.5&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="https://boardgamegeek.com/boardgame/13" target="_blank"&gt;BGGページ&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;img src="https://cf.geekdo-images.com/original/img/4nXci3dp0u9K8GFvPbCJkLs6iX0=/0x0/pic98765.jpg" alt="カルカソンヌ"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;カルカソンヌ&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;人数: 2-5人&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;時間: 45分&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;ベスト人数: 3-4人&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;重さ: 2.0&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="https://boardgamegeek.com/boardgame/822" target="_blank"&gt;BGGページ&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;img src="https://cf.geekdo-images.com/original/img/abcd1234.jpg" alt="ドミニオン"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;ドミニオン&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;人数: 2-4人&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;時間: 30分&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;ベスト人数: 3人&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;重さ: 2.4&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="https://boardgamegeek.com/boardgame/36218" target="_blank"&gt;BGGページ&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;img src="https://cf.geekdo-images.com/original/img/efgh5678.jpg" alt="パンデミック"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;パンデミック&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;人数: 2-4人&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;時間: 45分&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;ベスト人数: 4人&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;重さ: 2.4&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="https://boardgamegeek.com/boardgame/30549" target="_blank"&gt;BGGページ&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;img src="https://cf.geekdo-images.com/original/img/ijkl9012.jpg" alt="テラフォーミング・マーズ"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;テラフォーミング・マーズ&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;人数: 1-5人&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;時間: 120分&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;ベスト人数: 4人&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;重さ: 3.3&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="https://boardgamegeek.com/boardgame/167791" target="_blank"&gt;BGGページ&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
