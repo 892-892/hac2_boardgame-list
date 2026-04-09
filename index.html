@@ -1,310 +1,53 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boardgame List</title>
-
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-    }
-
-    .game-list {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      padding: 0;
-      justify-content: center;
-    }
-
-    .game-list li {
-      background: white;
-      border-radius: 10px;
-      width: 160px;
-      padding: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    .game-list img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    h2 {
-      font-size: 14px;
-      margin: 8px 0 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイ・ボードゲームコレクション</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <header>
+        <h1>My Board Game Collection</h1>
+    </header>
 
-<h1>ボードゲームリスト</h1>
+    <main id="game-list" class="grid-container">
+        </main>
 
-<ul class="game-list">
+    <script>
+        // CSVファイルを読み込んで画面に表示するプログラム
+        async function loadGames() {
+            const response = await fetch('data.csv');
+            const data = await response.text();
+            const rows = data.split('\n').slice(1); // 1行目（ヘッダー）を飛ばす
 
-<!-- ↓ここにあなたの大量リストそのまま入れてOK -->
-<li><img><h2>The Academy</h2></li>
-<li><img><h2>Anansi</h2></li>
-<li><img><h2>Animanize</h2></li>
-<li><img><h2>Avenue</h2></li>
-<li><img><h2>Einfalls-Pinsel</h2></li>
-<li><img><h2>Eleven</h2></li>
-<li><img><h2>Insider</h2></li>
-<li><img><h2>Inside Job</h2></li>
-<li><img><h2>Indulgence</h2></li>
-<li><img><h2>Vivaldi</h2></li>
-<li><img><h2>Wizard Junior</h2></li>
-<li><img><h2>Willi</h2></li>
-<li><img><h2>Volfyirion</h2></li>
-<li><img><h2>Volfyirion Guilds</h2></li>
-<li><img><h2>Epic Card Game</h2></li>
-<li><img><h2>Odd socks</h2></li>
-<li><img><h2>Odin</h2></li>
-<li><img><h2>Caesar & Cleopatra</h2></li>
-<li><img><h2>Relationship Tightrope</h2></li>
-<li><img><h2>Canasta</h2></li>
-<li><img><h2>Canal Grande</h2></li>
-<li><img><h2>がはくずかん (Gahakuzukan)</h2></li>
-<li><img><h2>Cabo</h2></li>
-<li><img><h2>Cardcassonne</h2></li>
-<li><img><h2>Chimera</h2></li>
-<li><img><h2>Cat in the box</h2></li>
-<li><img><h2>Quest</h2></li>
-<li><img><h2>Gudetama: The Tricky Egg Card Game</h2></li>
-<li><img><h2>Clash of Deck</h2></li>
-<li><img><h2></h2></li>
-<li><img><h2>12 Days of Christmas</h2></li>
-<li><img><h2>THE GREEN FIVURA</h2></li>
-<li><img><h2>Fives</h2></li>
-<li><img><h2>Krazy Wordz</h2></li>
-<li><img><h2>Great Plains</h2></li>
-<li><img><h2>Ghosts of Christmas</h2></li>
-<li><img><h2>Die Bombe</h2></li>
-<li><img><h2>Shark Alarm!!!</h2></li>
-<li><img><h2>6 Forces</h2></li>
-<li><img><h2>Six Making</h2></li>
-<li><img><h2>Schadenfreude</h2></li>
-<li><img><h2>Shut The Books</h2></li>
-<li><img><h2>No Loose Ends</h2></li>
-<li><img><h2>Xiangqi</h2></li>
-<li><img><h2>Stick 'Em</h2></li>
-<li><img><h2>Stich für Stich</h2></li>
-<li><img><h2>Beim Jupiter: Göttliche Sticheleien</h2></li>
-<li><img><h2>Schraumen</h2></li>
-<li><img><h2>Schotten Totten</h2></li>
-<li><img><h2>Schotten Totten 2</h2></li>
-<li><img><h2>Jolly & Roger</h2></li>
-<li><img><h2>Sea Salt & Paper</h2></li>
-<li><img><h2>Sea Salt & Paper: Extra Salt</h2></li>
-<li><img><h2>Things in Rings</h2></li>
-<li><img><h2>Scan</h2></li>
-<li><img><h2>Streams</h2></li>
-<li><img><h2>Sluff Off!</h2></li>
-<li><img><h2>I'm the CEO!</h2></li>
-<li><img><h2>Seven Segment Trix</h2></li>
-<li><img><h2>Null & Nichtig</h2></li>
-<li><img><h2>Schlafmütze</h2></li>
-<li><img><h2>Frank's Zoo</h2></li>
-<li><img><h2>Time Bomb</h2></li>
-<li><img><h2>Break the Code</h2></li>
-<li><img><h2>Duck</h2></li>
-<li><img><h2>David & Goliath</h2></li>
-<li><img><h2>Double</h2></li>
-<li><img><h2>Chickwood Forest</h2></li>
-<li><img><h2>To Unlimited, and Beyond</h2></li>
-<li><img><h2>Twin Palms</h2></li>
-<li><img><h2>Tiefe Taschen</h2></li>
-<li><img><h2>Decrypto</h2></li>
-<li><img><h2>Decrypto: Expansion #01 – Laserdrive</h2></li>
-<li><img><h2>Dubbe</h2></li>
-<li><img><h2>DOGS</h2></li>
-<li><img><h2>Tournament at Avalon</h2></li>
-<li><img><h2>Dragon Quest: The Silver Tarot</h2></li>
-<li><img><h2>Dragon Master</h2></li>
-<li><img><h2>Trump, Tricks, Game!</h2></li>
-<li><img><h2>Tricky Time Crisis</h2></li>
-<li><img><h2>Stich-Meister</h2></li>
-<li><img><h2>Nine Tiles</h2></li>
-<li><img><h2>MEOW</h2></li>
-<li><img><h2>Nokosu Dice</h2></li>
-<li><img><h2>Bargain Hunter</h2></li>
-<li><img><h2>High Society</h2></li>
-<li><img><h2>High Society   Japanese edition</h2></li>
-<li><img><h2>What the Heck?</h2></li>
-<li><img><h2>Match!</h2></li>
-<li><img><h2>Patterns</h2></li>
-<li><img><h2>Hattrick</h2></li>
-<li><img><h2>Battle Line</h2></li>
-<li><img><h2>Half-Pint Heroes</h2></li>
-<li><img><h2>Half-Pint Heroes: Happy Hour</h2></li>
-<li><img><h2>Pala</h2></li>
-<li><img><h2>Hii Fuu!!</h2></li>
-<li><img><h2>Houston, We Have a Dolphin!</h2></li>
-<li><img><h2>Hidden Leaders</h2></li>
-<li><img><h2>Fantasy Realms</h2></li>
-<li><img><h2>Phantom Ink</h2></li>
-<li><img><h2>Fishing</h2></li>
-<li><img><h2>Voodoo Prince</h2></li>
-<li><img><h2>Foppen</h2></li>
-<li><img><h2>Volle Scholle</h2></li>
-<li><img><h2>Turn the Tide</h2></li>
-<li><img><h2>Black Swan</h2></li>
-<li><img><h2>Flash Word</h2></li>
-<li><img><h2>Tarot</h2></li>
-<li><img><h2>Jalape-NO!</h2></li>
-<li><img><h2>Mogelei</h2></li>
-<li><img><h2>Bacon</h2></li>
-<li><img><h2>henkentangocho</h2></li>
-<li><img><h2>Best of Neapolitan</h2></li>
-<li><img><h2>Hot Dog</h2></li>
-<li><img><h2>Potato Man</h2></li>
-<li><img><h2>Mindbug: First Contact</h2></li>
-<li><img><h2>Mindbug x King of Tokyo</h2></li>
-<li><img><h2>Master Word</h2></li>
-<li><img><h2>Mandala</h2></li>
-<li><img><h2>MammuZ</h2></li>
-<li><img><h2>Miura</h2></li>
-<li><img><h2>Mü & more: Revised Edition</h2></li>
-<li><img><h2>Mogul</h2></li>
-<li><img><h2>Medici vs Strozzi</h2></li>
-<li><img><h2>Mopsen</h2></li>
-<li><img><h2>Cliffhanger</h2></li>
-<li><img><h2>Rights a.k.a. Startups</h2></li>
-<li><img><h2>L.A.M.A. Party Edition</h2></li>
-<li><img><h2>Don't L.L.A.M.A. Dice</h2></li>
-<li><img><h2>ReCURRRing</h2></li>
-<li><img><h2>LUZ</h2></li>
-<li><img><h2>Regicide</h2></li>
-<li><img><h2>The Resistance: Avalon</h2></li>
-<li><img><h2>Rebel Princess</h2></li>
-<li><img><h2>Renfield</h2></li>
-<li><img><h2>Robotrick</h2></li>
-<li><img><h2>Word Basket</h2></li>
-<li><img><h2>ワードン (Wordon)</h2></li>
-<li><img><h2>9 Lives</h2></li>
-<li><img><h2>12 Chip Trick</h2></li>
-<li><img><h2>Monster Trick</h2></li>
-<li><img><h2>Tempel des Schreckens</h2></li>
-<li><img><h2>Pick-a-Pepper</h2></li>
-<li><img><h2>Zahltag</h2></li>
-<li><img><h2>Five Cucumbers</h2></li>
-<li><img><h2>Triumvirate</h2></li>
-<li><img><h2>Dealt!</h2></li>
-<li><img><h2>Tatsu</h2></li>
-<li><img><h2>District Noir</h2></li>
-<li><img><h2>Plotters, Inc</h2></li>
-<li><img><h2>Plotters, Inc-german</h2></li>
-<li><img><h2>Pluckin' Pairs</h2></li>
-<li><img><h2>Beggars and Thieves</h2></li>
-<li><img><h2>Seven Prophecies</h2></li>
-<li><img><h2>Auf falscher Fährte</h2></li>
-<li><img><h2>Rustling Leaves</h2></li>
-<li><img><h2>Seas of Strife</h2></li>
-<li><img><h2>Nicht die Bohne!</h2></li>
-<li><img><h2>Volltreffer</h2></li>
-<li><img><h2>Aber Hallo!</h2></li>
-<li><img><h2>Yokai Septet</h2></li>
-<li><img><h2>落水邸物語 (Origin of Failing Water)</h2></li>
-<li><img><h2>Slaughter the Dragon, Ha</h2></li>
-<li><img><h2>Android: Netrunner</h2></li>
-<li><img><h2>Agricola: All Creatures Big and Small – The Big Box</h2></li>
-<li><img><h2>Alchemist</h2></li>
-<li><img><h2>Iwari: Deluxe Edition</h2></li>
-<li><img><h2>A War of Whispers</h2></li>
-<li><img><h2>Ethnos</h2></li>
-<li><img><h2>Imperial Settlers: Empires of the North</h2></li>
-<li><img><h2>Imperial Settlers: Empires of the North – Japanese Islands</h2></li>
-<li><img><h2>Karesansui</h2></li>
-<li><img><h2>Crusaders: Thy Will Be Done</h2></li>
-<li><img><h2>Crusaders: Thy Will Be Done – Divine Influence</h2></li>
-<li><img><h2>Coimbra</h2></li>
-<li><img><h2>Gold West</h2></li>
-<li><img><h2>The Estates</h2></li>
-<li><img><h2>Super Motherload</h2></li>
-<li><img><h2>Senators</h2></li>
-<li><img><h2>Dinosaur Island: Rawr 'n Write</h2></li>
-<li><img><h2>Deus</h2></li>
-<li><img><h2>Deus: Egypt</h2></li>
-<li><img><h2>Terra Nova</h2></li>
-<li><img><h2>Neta-Tanka: Deluxe Edition</h2></li>
-<li><img><h2>Pioneer Days</h2></li>
-<li><img><h2>Hadara</h2></li>
-<li><img><h2>Hadara: Nobles & Inventions</h2></li>
-<li><img><h2>Habitats</h2></li>
-<li><img><h2>Royal Palace</h2></li>
-<li><img><h2>Black Forest</h2></li>
-<li><img><h2>Blood Bound</h2></li>
-<li><img><h2>Mission: Red Planet</h2></li>
-<li><img><h2>Mille Fiori</h2></li>
-<li><img><h2>Mille Fiori: The Masterpieces</h2></li>
-<li><img><h2>Metropolys</h2></li>
-<li><img><h2>Viscounts of the West Kingdom</h2></li>
-<li><img><h2>Viscounts of the West Kingdom: Gates of Gold</h2></li>
-<li><img><h2>Viscounts of the West Kingdom: Keeper of Keys</h2></li>
-<li><img><h2>Witch's Brew</h2></li>
-<li><img><h2> Witch's Brew: The 6th Player & The Amulets & The Magical Abilities</h2></li>
-<li><img><h2>Union Stockyards</h2></li>
-<li><img><h2>Lost Ruins of Arnak</h2></li>
-<li><img><h2>Lost Ruins of Arnak: The Missing Expedition</h2></li>
-<li><img><h2>Lost Ruins of Arnak: Expedition Leaders</h2></li>
-<li><img><h2>Egizia: Shifting Sands</h2></li>
-<li><img><h2>El Grande</h2></li>
-<li><img><h2>The Rich and the Good</h2></li>
-<li><img><h2>Orléans</h2></li>
-<li><img><h2>Orléans: Trade & Intrigue</h2></li>
-<li><img><h2>Grand Austria Hotel</h2></li>
-<li><img><h2>Grand Austria Hotel: Let's Waltz!</h2></li>
-<li><img><h2>Santa Maria</h2></li>
-<li><img><h2>Darwin's Journey</h2></li>
-<li><img><h2>Darwin's Journey: Animal Companion</h2></li>
-<li><img><h2>Teotihuacan: City of Gods</h2></li>
-<li><img><h2>Teotihuacan: Expansion Period</h2></li>
-<li><img><h2>Teotihuacan: Shadow of Xitle</h2></li>
-<li><img><h2>Teotihuacan: Late Preclassic Period</h2></li>
-<li><img><h2>Dune: Imperium – Uprising</h2></li>
-<li><img><h2>Terramara</h2></li>
-<li><img><h2>Nusfjord: Big Box</h2></li>
-<li><img><h2>Franchise</h2></li>
-<li><img><h2>The Castles of Burgundy</h2></li>
-<li><img><h2>Maracaibo</h2></li>
-<li><img><h2>The Voyages of Marco Polo</h2></li>
-<li><img><h2>The Voyages of Marco Polo: Agents of Venice</h2></li>
-<li><img><h2>Le Havre</h2></li>
-<li><img><h2>Leonardo da Vinci's Codex Leicester</h2></li>
-<li><img><h2>The Prodigals Club</h2></li>
-<li><img><h2>Feya's Swamp</h2></li>
-<li><img><h2>The Tricktaker's Guide To The Galaxy</h2></li>
-<li><img><h2>National Economy</h2></li>
-<li><img><h2>Second Chance</h2></li>
-<li><img><h2>Her mit den Kröten!</h2></li>
-<li><img><h2>Context</h2></li>
-<li><img><h2>Longhorn</h2></li>
-<li><img><h2>Henhouse</h2></li>
-<li><img><h2>3 Tricky Pigs</h2></li>
+            const listContainer = document.getElementById('game-list');
 
-</ul>
+            rows.forEach(row => {
+                const cols = row.split(',');
+                if (cols.length < 7) return; // データが足りない行は無視
 
-<script>
-document.querySelectorAll(".game-list li").forEach(li => {
-  const name = li.querySelector("h2").innerText;
+                // CSVの各列を割り当て
+                const [name, url, players, time, weight, id, image] = cols;
 
-  // ★そのままの名前で画像を読み込む
-  li.querySelector("img").src = "images/" + name + ".jpg";
-});
-</script>
+                // カードのHTMLを作成
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <a href="${url}" target="_blank">
+                        <img src="images/${image.trim()}" alt="${name}" onerror="this.src='https://via.placeholder.com/200x200?text=No+Image'">
+                        <div class="card-content">
+                            <h3>${name}</h3>
+                            <p>👥 ${players} | ⏱️ ${time}</p>
+                            <p>⚖️ 重さ: ${weight}</p>
+                        </div>
+                    </a>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
 
+        loadGames();
+    </script>
 </body>
 </html>
