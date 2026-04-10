@@ -211,7 +211,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
     <h1 class="text-2xl md:text-[28px] font-semibold tracking-tight">🎲 コレクション編集</h1>
     <p class="text-sm text-neutral-600 mt-1">ゲームを追加・編集してJSONを書き出し</p>
     </div>
-    <button onclick="window.location.href='index.html'" class="text-[12px] text-neutral-600 hover:text-neutral-900 border border-neutral-200 rounded-lg px-3 py-1.5 whitespace-nowrap bg-white">← 一覧に戻る</button>
+    <a href="index.html" class="text-[12px] text-neutral-600 hover:text-neutral-900 border border-neutral-200 rounded-lg px-3 py-1.5 whitespace-nowrap bg-white inline-block">← 一覧に戻る</a>
   </header>
 
   <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
@@ -260,7 +260,7 @@ const pwErr = document.getElementById('pwErr');
 
 function unlock(){
   if(pw.value.trim() === PASS){
-    lock.remove();
+    lock.style.display="none"; document.body.style.overflow="auto";
   }else{
     pwErr.textContent='パスワードが違います';
     pw.select();
