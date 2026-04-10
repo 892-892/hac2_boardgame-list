@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -2944,14 +2943,22 @@ function render(){
       </div>
       <div class="p-3">
         <h3 class="font-medium text-[13px] leading-snug line2 min-h-[2.5rem]">${g.name}</h3>
-        <div class="mt-2 flex items-center gap-2 text-[11px] text-slate-500">
-          <span>${g.players||'-'}</span>
-          <span>•</span>
-          <span>${g.time||'-'}</span>
-          <span>•</span>
-          <span>★${g.weight||'-'}</span>
+        <div class="mt-2">
+          <div class="grid grid-cols-3 divide-x divide-slate-300 text-center">
+            <div>
+              <div class="text-[9px] text-slate-400 leading-none">人数</div>
+              <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.players||'-'}</div>
+            </div>
+            <div>
+              <div class="text-[9px] text-slate-400 leading-none">時間</div>
+              <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.time||'-'}</div>
+            </div>
+            <div>
+              <div class="text-[9px] text-slate-400 leading-none">重さ</div>
+              <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.weight||'-'}</div>
+            </div>
+          </div>
         </div>
-        <div class="mt-1 text-[10px] text-slate-400">ID: ${g.id}</div>
       </div>
     </a>
   `).join('');
