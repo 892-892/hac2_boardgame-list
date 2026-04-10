@@ -222,7 +222,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
         <div><label class="text-xs text-neutral-600">ゲーム名</label><input id="name" required class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
         <div><label class="text-xs text-neutral-600">URL</label><input id="url" type="url" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
         <div class="grid grid-cols-2 gap-3">
-          <div><label class="text-xs text-neutral-600">プレイ人数</label><input id="players" placeholder="2-4" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+          <div><label class="text-xs text-neutral-600">プレイ人数（自動）</label><input id="players" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="最小・最大から自動"></div>
           <div><label class="text-xs text-neutral-600">時間</label><input id="time" placeholder="30-60分" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
         </div>
         <div class="grid grid-cols-3 gap-3">
@@ -243,6 +243,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
         <h2 class="text-sm font-medium">ゲーム一覧 (<span id="count">0</span>件)</h2>
         <div class="flex gap-2">
           <button id="export" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">JSON書き出し</button>
+          <button id="copyLast" class="text-xs bg-emerald-600 text-white rounded-lg px-3 py-1.5">コードコピー</button>
           <button id="reset" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">初期化</button>
         </div>
       </div>
@@ -2891,6 +2892,40 @@ function save(){
   render();
 }
 
+let lastAddedGame = null;
+
+function updatePlayersDisplay(){
+  const pmin = parseInt(document.getElementById('pmin').value)||0;
+  const pmax = parseInt(document.getElementById('pmax').value)||0;
+  let players = '';
+  if(pmin && pmax){
+    players = pmin === pmax ? String(pmin) : `${pmin}-${pmax}`;
+  } else if(pmin){
+    players = String(pmin);
+  } else if(pmax){
+    players = String(pmax);
+  }
+  document.getElementById('players').value = players;
+}
+
+document.getElementById('pmin').addEventListener('input', updatePlayersDisplay);
+document.getElementById('pmax').addEventListener('input', updatePlayersDisplay);
+
+document.getElementById('copyLast').addEventListener('click', ()=>{
+  if(!lastAddedGame){
+    alert('まだゲームを追加していません');
+    return;
+  }
+  const g = lastAddedGame;
+  const code = `  { id: ${g.id}, name: "${g.name}", url: "${g.url}", players: "${g.players}", time: "${g.time}", pmin: ${g.pmin}, pmax: ${g.pmax}, weight: ${g.weight}, img: "${g.img}" },`;
+  navigator.clipboard.writeText(code).then(()=>{
+    const btn = document.getElementById('copyLast');
+    const orig = btn.textContent;
+    btn.textContent = 'コピー完了!';
+    setTimeout(()=> btn.textContent = orig, 2000);
+  }).catch(()=>{ prompt('コピーしてください:', code); });
+});
+
 function render(){
   count.textContent = games.length;
   list.innerHTML = games.map((g,i)=>`
@@ -2935,11 +2970,15 @@ form.addEventListener('submit', e=>{
     weight: parseInt(document.getElementById('weight').value)||0,
     img: document.getElementById('img').value
   };
+  // Store for copying
+  window.lastAddedGame = g;
+  
   if(editingIdx >= 0){
     games[editingIdx] = g;
     editingIdx = -1;
   }else{
     games.push(g);
+  lastAddedGame = g;
   }
   save();
   form.reset();
