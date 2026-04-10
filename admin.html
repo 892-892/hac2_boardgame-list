@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>コレクション編集</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  * { -webkit-font-smoothing: antialiased; }
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #e5e5e5; border-radius: 3px; }
+</style>
+</head>
+<body class="bg-white text-neutral-900">
+<div class="max-w-[1280px] mx-auto px-4 py-6 md:py-10">
+  <header class="mb-6 md:mb-8">
+    <h1 class="text-2xl md:text-[28px] font-semibold tracking-tight">🎲 コレクション編集</h1>
+    <p class="text-sm text-neutral-600 mt-1">ゲームを追加・編集してJSONを書き出し</p>
+    <p class="text-[12px] text-neutral-500 mt-3">使い方: 1. フォームで追加/編集 2. JSON書き出し 3. index.htmlのdataSrc部分を置換</p>
+  </header>
+
+  <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+    <!-- Left: Form -->
+    <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
+      <h2 class="text-sm font-medium mb-4">ゲーム情報</h2>
+      <form id="gameForm" class="space-y-4" onsubmit="return false;">
+        <div>
+          <label class="block text-[12px] text-neutral-600 mb-1">名前</label>
+          <input id="f_name" type="text" required class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+        </div>
+        <div>
+          <label class="block text-[12px] text-neutral-600 mb-1">URL</label>
+          <input id="f_url" type="url" required placeholder="https://boardgamegeek.com/..." class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[12px] text-neutral-600 mb-1">プレイ人数</label>
+            <input id="f_players" type="text" required placeholder="3~4 または 2" class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+          </div>
+          <div>
+            <label class="block text-[12px] text-neutral-600 mb-1">プレイ時間</label>
+            <input id="f_time" type="text" required placeholder="30分" class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block text-[12px] text-neutral-600 mb-1">重さ</label>
+            <select id="f_weight" required class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[12px] text-neutral-600 mb-1">ID</label>
+            <input id="f_id" type="number" required min="1" step="1" class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+          </div>
+          <div>
+            <label class="block text-[12px] text-neutral-600 mb-1">画像ファイル名</label>
+            <input id="f_img" type="text" required class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+          </div>
+        </div>
+
+        <div class="pt-2 grid grid-cols-2 gap-2">
+          <button id="btnAdd" class="bg-neutral-900 text-white text-sm rounded-xl py-2.5 hover:bg-black">追加</button>
+          <button id="btnUpdate" class="border border-neutral-200 text-sm rounded-xl py-2.5 hover:bg-neutral-50 disabled:opacity-40" disabled>選択中を更新</button>
+          <button id="btnDelete" class="border border-neutral-200 text-sm rounded-xl py-2.5 hover:bg-neutral-50 disabled:opacity-40" disabled>選択中を削除</button>
+          <button id="btnClear" type="button" class="border border-neutral-200 text-sm rounded-xl py-2.5 hover:bg-neutral-50">フォームをクリア</button>
+        </div>
+        <p id="selectedInfo" class="text-[11px] text-neutral-500 mt-1 h-4"></p>
+      </form>
+    </section>
+
+    <!-- Right: List -->
+    <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
+      <div class="flex items-center gap-3 mb-3">
+        <input id="search" type="text" placeholder="検索..." class="flex-1 border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+        <span id="count" class="text-[12px] text-neutral-500 whitespace-nowrap">0件</span>
+      </div>
+      <div id="list" class="divide-y divide-neutral-100 border border-neutral-200 rounded-xl max-h-[70vh] overflow-auto scrollbar-thin"></div>
+    </section>
+  </main>
+
+  <!-- Bottom: Export -->
+  <section class="mt-10 border border-neutral-200 rounded-xl p-4 md:p-6">
+    <h2 class="text-sm font-medium mb-3">データ入出力</h2>
+    <div class="flex flex-wrap gap-2 mb-3">
+      <button id="btnLoad" class="text-sm border border-neutral-200 rounded-xl px-3 py-2 hover:bg-neutral-50">現在のデータを読み込み</button>
+      <button id="btnExport" class="text-sm border border-neutral-200 rounded-xl px-3 py-2 hover:bg-neutral-50">JSONを書き出し</button>
+      <button id="btnCopy" class="text-sm border border-neutral-200 rounded-xl px-3 py-2 hover:bg-neutral-50">コピー</button>
+      <button id="btnDownload" class="text-sm border border-neutral-200 rounded-xl px-3 py-2 hover:bg-neutral-50">JSONファイルダウンロード</button>
+      <button id="btnBase64" class="text-sm bg-neutral-900 text-white rounded-xl px-3 py-2 hover:bg-black">index.htmlに埋め込み用base64生成</button>
+    </div>
+    <textarea id="output" class="w-full h-56 border border-neutral-200 rounded-xl p-3 text-[12px] font-mono focus:outline-none focus:ring-2 focus:ring-neutral-900/10" placeholder="ここにJSONまたはbase64が出力されます"></textarea>
+    <p class="text-[11px] text-neutral-500 mt-2">※ 画像は images/{ID}.jpg を参照します。IDと同名のjpgを準備してください。</p>
+  </section>
+</div>
+
+<div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-neutral-900 text-white text-sm px-4 py-2 rounded-xl opacity-0 pointer-events-none transition-opacity"></div>
+
+<script>
+const initialGames = [
+  {name:"カタン",url:"https://boardgamegeek.com/boardgame/13/catan",players:"3~4",pmin:3,pmax:4,time:"60分",weight:2,id:13,img:"13.jpg"},
+  {name:"ドミニオン",url:"https://boardgamegeek.com/boardgame/36218/dominion",players:"2~4",pmin:2,pmax:4,time:"30分",weight:2,id:36218,img:"36218.jpg"},
+  {name:"カルカソンヌ",url:"https://boardgamegeek.com/boardgame/822/carcassonne",players:"2~5",pmin:2,pmax:5,time:"45分",weight:2,id:822,img:"822.jpg"},
+  {name:"アズール",url:"https://boardgamegeek.com/boardgame/230802/azul",players:"2~4",pmin:2,pmax:4,time:"30分",weight:2,id:230802,img:"230802.jpg"},
+  {name:"スプレンダー",url:"https://boardgamegeek.com/boardgame/148228/splendor",players:"2~4",pmin:2,pmax:4,time:"30分",weight:2,id:148228,img:"148228.jpg"},
+  {name:"ウイングスパン",url:"https://boardgamegeek.com/boardgame/266192/wingspan",players:"1~5",pmin:1,pmax:5,time:"70分",weight:3,id:266192,img:"266192.jpg"},
+  {name:"テラフォーミング・マーズ",url:"https://boardgamegeek.com/boardgame/167791/terraforming-mars",players:"1~5",pmin:1,pmax:5,time:"120分",weight:3,id:167791,img:"167791.jpg"},
+  {name:"パンデミック",url:"https://boardgamegeek.com/boardgame/30549/pandemic",players:"2~4",pmin:2,pmax:4,time:"45分",weight:2,id:30549,img:"30549.jpg"},
+  {name:"7ワンダーズ",url:"https://boardgamegeek.com/boardgame/68448/7-wonders",players:"3~7",pmin:3,pmax:7,time:"30分",weight:2,id:68448,img:"68448.jpg"},
+  {name:"ラブレター",url:"https://boardgamegeek.com/boardgame/129622/love-letter",players:"2~4",pmin:2,pmax:4,time:"20分",weight:1,id:129622,img:"129622.jpg"}
+  // 注意: ここに既存の237件の全データを貼り付けてください。上記はサンプルです。
+];
+
+let games = [];
+let selectedId = null;
+
+const $ = id => document.getElementById(id);
+const f_name = $('f_name'), f_url = $('f_url'), f_players = $('f_players'), f_time = $('f_time'), f_weight = $('f_weight'), f_id = $('f_id'), f_img = $('f_img');
+const btnAdd = $('btnAdd'), btnUpdate = $('btnUpdate'), btnDelete = $('btnDelete'), btnClear = $('btnClear');
+const listEl = $('list'), searchEl = $('search'), countEl = $('count'), selectedInfo = $('selectedInfo');
+const output = $('output');
+
+function toast(msg){
+  const t = $('toast');
+  t.textContent = msg;
+  t.style.opacity = '1';
+  setTimeout(()=> t.style.opacity = '0', 1800);
+}
+
+function parsePlayers(s){
+  s = (s||'').replace(/[〜～−－]/g,'~').replace(/-/g,'~');
+  const m = s.match(/(\d+)\s*~\s*(\d+)/);
+  if(m) return {pmin:+m[1], pmax:+m[2]};
+  const n = s.match(/(\d+)/);
+  if(n) return {pmin:+n[1], pmax:+n[1]};
+  return {pmin:1,pmax:1};
+}
+
+function save(){
+  localStorage.setItem('bg_games', JSON.stringify(games));
+}
+
+function loadInitial(){
+  const stored = localStorage.getItem('bg_games');
+  if(stored){
+    try{ games = JSON.parse(stored); } catch{ games = initialGames.slice(); }
+  }else{
+    games = initialGames.slice();
+  }
+  games.sort((a,b)=> a.id - b.id);
+  render();
+}
+
+function render(){
+  const q = searchEl.value.trim().toLowerCase();
+  const filtered = q ? games.filter(g => g.name.toLowerCase().includes(q) || String(g.id).includes(q)) : games;
+  countEl.textContent = `${filtered.length}件 / 全${games.length}件`;
+  listEl.innerHTML = '';
+  filtered.forEach(g=>{
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'w-full text-left flex gap-3 p-2.5 hover:bg-neutral-50 focus:bg-neutral-50 outline-none';
+    item.dataset.id = g.id;
+    if(selectedId === g.id) item.classList.add('bg-neutral-50');
+    item.innerHTML = `
+      <img src="images/${g.id}.jpg" alt="" class="w-12 h-12 object-cover rounded-lg border border-neutral-200 bg-neutral-100 shrink-0" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f5f5f5%22/><text x=%2250%25%22 y=%2255%25%22 font-size=%2210%22 text-anchor=%22middle%22 fill=%22%23999%22>no</text></svg>'">
+      <div class="min-w-0 flex-1">
+        <div class="text-sm truncate">${escapeHtml(g.name)}</div>
+        <div class="text-[11px] text-neutral-500 mt-0.5">${escapeHtml(g.players)} ・ ${escapeHtml(g.time)} ・ 重さ${g.weight} ・ ID:${g.id}</div>
+      </div>
+    `;
+    item.addEventListener('click', ()=> selectGame(g.id));
+    listEl.appendChild(item);
+  });
+}
+
+function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+function selectGame(id){
+  const g = games.find(x=> x.id === id);
+  if(!g) return;
+  selectedId = id;
+  f_name.value = g.name;
+  f_url.value = g.url;
+  f_players.value = g.players;
+  f_time.value = g.time;
+  f_weight.value = g.weight;
+  f_id.value = g.id;
+  f_img.value = g.img;
+  f_img.dataset.auto = '1';
+  btnUpdate.disabled = false;
+  btnDelete.disabled = false;
+  selectedInfo.textContent = `選択中: ${g.name} (ID:${g.id})`;
+  render();
+}
+
+function clearForm(){
+  selectedId = null;
+  f_name.value = '';
+  f_url.value = '';
+  f_players.value = '';
+  f_time.value = '';
+  f_weight.value = '2';
+  f_id.value = '';
+  f_img.value = '';
+  f_img.dataset.auto = '1';
+  btnUpdate.disabled = true;
+  btnDelete.disabled = true;
+  selectedInfo.textContent = '';
+  render();
+  // suggest next id
+  const maxId = games.reduce((m,g)=> Math.max(m, g.id||0), 0);
+  if(maxId) f_id.value = maxId + 1;
+  if(f_id.value) f_img.value = f_id.value + '.jpg';
+}
+
+function getFormData(){
+  const id = Number(f_id.value);
+  const {pmin,pmax} = parsePlayers(f_players.value);
+  return {
+    name: f_name.value.trim(),
+    url: f_url.value.trim(),
+    players: f_players.value.trim(),
+    pmin, pmax,
+    time: f_time.value.trim(),
+    weight: Number(f_weight.value),
+    id,
+    img: f_img.value.trim() || (id + '.jpg')
+  };
+}
+
+function validate(d){
+  if(!d.name) return '名前を入力してください';
+  if(!d.url) return 'URLを入力してください';
+  if(!d.players) return 'プレイ人数を入力してください';
+  if(!d.time) return 'プレイ時間を入力してください';
+  if(!d.id || d.id < 1) return 'IDを正しく入力してください';
+  return null;
+}
+
+btnAdd.addEventListener('click', ()=>{
+  const d = getFormData();
+  const err = validate(d);
+  if(err){ toast(err); return; }
+  if(games.some(g=> g.id === d.id)){ toast('同じIDが既に存在します'); return; }
+  games.push(d);
+  games.sort((a,b)=> a.id - b.id);
+  save();
+  render();
+  toast('追加しました');
+  selectGame(d.id);
+});
+
+btnUpdate.addEventListener('click', ()=>{
+  if(selectedId === null) return;
+  const d = getFormData();
+  const err = validate(d);
+  if(err){ toast(err); return; }
+  if(d.id !== selectedId && games.some(g=> g.id === d.id)){ toast('変更後のIDが重複しています'); return; }
+  const idx = games.findIndex(g=> g.id === selectedId);
+  if(idx >= 0){
+    games[idx] = d;
+    selectedId = d.id;
+    games.sort((a,b)=> a.id - b.id);
+    save();
+    render();
+    toast('更新しました');
+    selectGame(d.id);
+  }
+});
+
+btnDelete.addEventListener('click', ()=>{
+  if(selectedId === null) return;
+  if(!confirm('削除しますか？')) return;
+  games = games.filter(g=> g.id !== selectedId);
+  save();
+  toast('削除しました');
+  clearForm();
+  render();
+});
+
+btnClear.addEventListener('click', clearForm);
+
+searchEl.addEventListener('input', render);
+
+f_id.addEventListener('input', ()=>{
+  if(f_img.dataset.auto !== '0'){
+    f_img.value = f_id.value ? f_id.value + '.jpg' : '';
+    f_img.dataset.auto = '1';
+  }
+});
+f_img.addEventListener('input', ()=>{ f_img.dataset.auto = '0'; });
+
+$('btnLoad').addEventListener('click', ()=>{
+  if(confirm('localStorageのデータを読み込みます。現在の編集内容は破棄されます。')){
+    loadInitial();
+    toast('読み込みました');
+    clearForm();
+  }
+});
+
+$('btnExport').addEventListener('click', ()=>{
+  const json = JSON.stringify(games, null, 2);
+  output.value = json;
+  toast('JSONを生成しました');
+});
+
+$('btnCopy').addEventListener('click', async ()=>{
+  try{
+    await navigator.clipboard.writeText(output.value);
+    toast('コピーしました');
+  }catch{ toast('コピー失敗'); }
+});
+
+$('btnDownload').addEventListener('click', ()=>{
+  const blob = new Blob([output.value || JSON.stringify(games,null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'games.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('ダウンロード開始');
+});
+
+$('btnBase64').addEventListener('click', ()=>{
+  const json = JSON.stringify(games);
+  // UTF-8 safe base64
+  const b64 = btoa(unescape(encodeURIComponent(json)));
+  output.value = b64;
+  toast('base64生成完了');
+});
+
+// init
+loadInitial();
+clearForm();
+</script>
+</body>
+</html>
