@@ -189,7 +189,7 @@
 <script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>892の所持ボドゲ</title>
+<title>892-BoardGameList/title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; }
@@ -203,7 +203,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
       <a href="admin.html" class="text-[12px] text-slate-500 hover:text-slate-900 border border-slate-200 rounded-lg px-2.5 py-1.5 bg-white">管理</a>
     </div>
     <h1 class="text-[28px] md:text-4xl font-extrabold tracking-tight">所持ボドゲ一覧</h1>
-    <p class="mt-2 text-sm text-slate-600">人数とかプレイ時間が正確じゃない場合もあるぞ</p>
+    <p class="mt-2 text-sm text-slate-600">時間とか人数とかあってなかったらごめん</p>
   </header>
 
   <div class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-900/5 p-4 md:p-5 mb-6">
@@ -215,10 +215,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
       </select>
       <select id="time" class="rounded-xl border border-slate-200 px-3 py-2.5 text-sm bg-white">
         <option value="">時間: すべて</option>
-        <option value="30">〜30分</option>
-        <option value="60">〜60分</option>
-        <option value="90">〜90分</option>
-        <option value="120">〜120分</option>
+        <option value="0-30">〜30分</option>
+        <option value="30-90">30〜90分</option>
+        <option value="90+">90分〜</option>
       </select>
       <select id="weight" class="rounded-xl border border-slate-200 px-3 py-2.5 text-sm bg-white">
         <option value="">重さ: すべて</option>
@@ -2862,8 +2861,13 @@ const count = document.getElementById('count');
 
 function parseTime(t){
   if(!t) return 999;
-  const m = String(t).match(/\d+/);
-  return m ? parseInt(m[0]) : 999;
+  const str = String(t);
+  // 「30-60分」「30〜60分」「30~60分」みたいな範囲表記から最大値を取得
+  const range = str.match(/(\d+)\s*[-〜~]\s*(\d+)/);
+  if(range) return parseInt(range[2]);
+  // 単体の数値
+  const single = str.match(/(\d+)/);
+  return single ? parseInt(single[1]) : 999;
 }
 
 function render(){
@@ -2876,8 +2880,14 @@ function render(){
     list = list.filter(g => (g.pmin||0) <= n && (g.pmax||99) >= n);
   }
   if(time.value){
-    const t = parseInt(time.value);
-    list = list.filter(g => parseTime(g.time) <= t);
+    const range = time.value;
+    list = list.filter(g => {
+      const t = parseTime(g.time);
+      if(range === '0-30') return t <= 30;
+      if(range === '30-90') return t > 30 && t <= 90;
+      if(range === '90+') return t > 90;
+      return true;
+    });
   }
   if(weight.value){
     const w = parseInt(weight.value);
