@@ -517,6 +517,30 @@ $('btnBase64').addEventListener('click', ()=>{
   toast('base64生成完了');
 });
 
+// lock
+const PASS = '1234'; // 簡単にしました
+const lock = document.getElementById('lock');
+const pw = document.getElementById('pw');
+const pwBtn = document.getElementById('pwBtn');
+const pwErr = document.getElementById('pwErr');
+
+function unlock(){
+  console.log('input:', pw.value, 'expected:', PASS);
+  if(pw.value.trim() === PASS){
+    sessionStorage.setItem('bg_admin_ok','1');
+    lock.remove(); // completely remove
+  }else{
+    pwErr.textContent='パスワードが違います: ' + pw.value;
+    pw.select();
+  }
+}
+pwBtn.addEventListener('click', unlock);
+pw.addEventListener('keydown', e=>{ if(e.key==='Enter') unlock(); });
+
+if(sessionStorage.getItem('bg_admin_ok')==='1'){
+  lock.remove();
+}
+
 // init
 if (location.search.includes('reset')) {
   localStorage.removeItem('bg_games');
