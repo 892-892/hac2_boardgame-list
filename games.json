@@ -2606,7 +2606,7 @@
     "id": 100001,
     "img": "100001.jpg"
   },
-{
+  {
     "id": 426043,
     "name": "デンジャー",
     "url": "https://boardgamegeek.com/boardgame/426043/danger-the-high-voltage-game",
@@ -2627,12 +2627,17 @@
     "pmax": 4,
     "weight": 4,
     "img": "392492.jpg"
-  },  
-  { id: 430921, name: "クワトロトリックテイキング", 
-       url: "https://boardgamegeek.com/boardgame/430921/quattro-trick-taking", 
-   players: "3-4", 
-   time: "30-60分", 
-   pmin: 3, pmax: 4, weight: 2, img: "430921.jpg" 
+  },
+  {
+    "id": 430921,
+    "name": "クワトロトリックテイキング",
+    "url": "https://boardgamegeek.com/boardgame/430921/quattro-trick-taking",
+    "players": "3-4",
+    "time": "30-60分",
+    "pmin": 3,
+    "pmax": 4,
+    "weight": 2,
+    "img": "430921.jpg"
   },
   {
     "id": 380938,
@@ -2645,7 +2650,26 @@
     "weight": 3,
     "img": "380938.jpg"
   },
-    { id: 164698, name: "フレッシュフィッシュ", url: "https://boardgamegeek.com/boardgame/164698/fresh-fish", players: "2-5", time: "45分", pmin: 2, pmax: 5, weight: 3, img: "164698.jpg" },
-    { id: 392134, name: "美少女戦士セーラームーン・カードゲーム：マスカレイドバトル", url: "https://boardgamegeek.com/boardgame/392134/sailor-moon-card-game-masquerade-battle", players: "3-7", time: "20-30分", pmin: 3, pmax: 7, weight: 2, img: "392134.jpg" },
-];
+  {
+    "id": 164698,
+    "name": "フレッシュフィッシュ",
+    "url": "https://boardgamegeek.com/boardgame/164698/fresh-fish",
+    "players": "2-5",
+    "time": "45分",
+    "pmin": 2,
+    "pmax": 5,
+    "weight": 3,
+    "img": "164698.jpg"
+  },
+  {
+    "id": 392134,
+    "name": "美少女戦士セーラームーン・カードゲーム：マスカレイドバトル",
+    "url": "https://boardgamegeek.com/boardgame/392134/sailor-moon-card-game-masquerade-battle",
+    "players": "3-7",
+    "time": "20-30分",
+    "pmin": 3,
+    "pmax": 7,
+    "weight": 2,
+    "img": "392134.jpg"
+  }
 ]
