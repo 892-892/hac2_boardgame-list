@@ -228,6 +228,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
         <div class="grid grid-cols-3 gap-3">
           <div><label class="text-xs text-neutral-600">最小人数</label><input id="pmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
           <div><label class="text-xs text-neutral-600">最大人数</label><input id="pmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="text-xs text-neutral-600">Ã¦ÂÂÃ¥Â°ÂÃ¦ÂÂÃ©ÂÂ(Ã¥ÂÂ)</label><input id="tmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+          <div><label class="text-xs text-neutral-600">Ã¦ÂÂÃ¥Â¤Â§Ã¦ÂÂÃ©ÂÂ(Ã¥ÂÂ)</label><input id="tmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+        </div>
           <div><label class="text-xs text-neutral-600">重さ(1-5)</label><input id="weight" type="number" min="1" max="5" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
         </div>
         <div><label class="text-xs text-neutral-600">画像ファイル名</label><input id="img" placeholder="12345.jpg" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
@@ -244,7 +248,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
         <div class="flex gap-2">
           <button id="export" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">JSON書き出し</button>
           <button id="copyLast" class="text-xs bg-emerald-600 text-white rounded-lg px-3 py-1.5">コードコピー</button>
-          <button id="reset" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">初期化</button>
+          <button id="copyLast" class="text-xs bg-emerald-600 text-white rounded-lg px-3 py-1.5">Ã£ÂÂ³Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ³Ã£ÂÂÃ£ÂÂ¼</button>
+          <button id="refreshList" class="text-xs bg-blue-600 text-white rounded-lg px-3 py-1.5">Ã¤Â¸ÂÃ¨Â¦Â§Ã¦ÂÂ´Ã¦ÂÂ°</button>
+          <button id="reset" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">Ã¥ÂÂÃ¦ÂÂÃ¥ÂÂ</button>
         </div>
       </div>
       <div id="list" class="space-y-2 max-h-[600px] overflow-y-auto"></div>
@@ -2908,6 +2914,20 @@ function updatePlayersDisplay(){
   document.getElementById('players').value = players;
 }
 
+function updateTimeDisplay(){
+  const tmin = parseInt(document.getElementById('tmin').value)||0;
+  const tmax = parseInt(document.getElementById('tmax').value)||0;
+  let time = '';
+  if(tmin && tmax){
+    time = tmin === tmax ? `${tmin}最小時間` : `${tmin}-${tmax}最大時間`;
+  } else if(tmin){
+    time = `${tmin}最小時間`;
+  } else if(tmax){
+    time = `${tmax}最大時間`;
+  }
+  document.getElementById('time').value = time;
+}
+
 document.getElementById('pmin').addEventListener('input', updatePlayersDisplay);
 document.getElementById('pmax').addEventListener('input', updatePlayersDisplay);
 
@@ -3009,7 +3029,7 @@ document.getElementById('refreshList').addEventListener('click', ()=>{
   render();
   const btn = document.getElementById('refreshList');
   const original = btn.textContent;
-  btn.textContent = 'æ´æ°å®äº';
+  btn.textContent = '更新';
   btn.classList.add('bg-green-600');
   btn.classList.remove('bg-blue-600');
   setTimeout(()=>{
