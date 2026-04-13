@@ -219,7 +219,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
       <h2 class="text-sm font-medium mb-4">ゲーム情報</h2>
       <form id="form" class="space-y-3">
         <input type="hidden" id="id">
-        <div><label class="text-xs text-neutral-600">ゲーム名</label><input id="name" required class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+        <div><label class="text-xs text-neutral-600">ゲーム名</label><input id="name" required class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600"></div>
         <div><label class="text-xs text-neutral-600">URL</label><input id="url" type="url" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
         <div class="grid grid-cols-2 gap-3">
           <div><label class="text-xs text-neutral-600">プレイ人数（自動）</label><input id="players" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="最小・最大から自動"></div>
@@ -228,11 +228,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
         <div class="grid grid-cols-3 gap-3">
           <div><label class="text-xs text-neutral-600">最小人数</label><input id="pmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
           <div><label class="text-xs text-neutral-600">最大人数</label><input id="pmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-        <div class="grid grid-cols-2 gap-3">
-          <div><label class="text-xs text-neutral-600">Ã¦ÂÂÃ¥Â°ÂÃ¦ÂÂÃ©ÂÂ(Ã¥ÂÂ)</label><input id="tmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-          <div><label class="text-xs text-neutral-600">Ã¦ÂÂÃ¥Â¤Â§Ã¦ÂÂÃ©ÂÂ(Ã¥ÂÂ)</label><input id="tmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-        </div>
           <div><label class="text-xs text-neutral-600">重さ(1-5)</label><input id="weight" type="number" min="1" max="5" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="text-xs text-neutral-600">最小時間（分）</label><input id="tmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+          <div><label class="text-xs text-neutral-600">最大時間（分）</label><input id="tmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+        </div>
         </div>
         <div><label class="text-xs text-neutral-600">画像ファイル名</label><input id="img" placeholder="12345.jpg" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
         <div class="flex gap-2 pt-2">
@@ -248,9 +248,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
         <div class="flex gap-2">
           <button id="export" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">JSON書き出し</button>
           <button id="copyLast" class="text-xs bg-emerald-600 text-white rounded-lg px-3 py-1.5">コードコピー</button>
-          <button id="copyLast" class="text-xs bg-emerald-600 text-white rounded-lg px-3 py-1.5">Ã£ÂÂ³Ã£ÂÂ¼Ã£ÂÂÃ£ÂÂ³Ã£ÂÂÃ£ÂÂ¼</button>
           <button id="refreshList" class="text-xs bg-blue-600 text-white rounded-lg px-3 py-1.5">Ã¤Â¸ÂÃ¨Â¦Â§Ã¦ÂÂ´Ã¦ÂÂ°</button>
-          <button id="reset" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">Ã¥ÂÂÃ¦ÂÂÃ¥ÂÂ</button>
+          <button id="reset" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">初期化</button>
         </div>
       </div>
       <div id="list" class="space-y-2 max-h-[600px] overflow-y-auto"></div>
@@ -2914,22 +2913,37 @@ function updatePlayersDisplay(){
   document.getElementById('players').value = players;
 }
 
+document.getElementById('pmin').addEventListener('input', updatePlayersDisplay);
+document.getElementById('pmax').addEventListener('input', updatePlayersDisplay);
+
 function updateTimeDisplay(){
   const tmin = parseInt(document.getElementById('tmin').value)||0;
   const tmax = parseInt(document.getElementById('tmax').value)||0;
   let time = '';
   if(tmin && tmax){
-    time = tmin === tmax ? `${tmin}最小時間` : `${tmin}-${tmax}最大時間`;
+    time = tmin === tmax ? `${tmin}Ã¥ÂÂ` : `${tmin}-${tmax}Ã¥ÂÂ`;
   } else if(tmin){
-    time = `${tmin}最小時間`;
+    time = `${tmin}Ã¥ÂÂ`;
   } else if(tmax){
-    time = `${tmax}最大時間`;
+    time = `${tmax}Ã¥ÂÂ`;
   }
   document.getElementById('time').value = time;
 }
+document.getElementById('tmin').addEventListener('input', updateTimeDisplay);
+document.getElementById('tmax').addEventListener('input', updateTimeDisplay);
 
-document.getElementById('pmin').addEventListener('input', updatePlayersDisplay);
-document.getElementById('pmax').addEventListener('input', updatePlayersDisplay);
+document.getElementById('url').addEventListener('blur', function(){
+  const url = this.value;
+  const match = url.match(/boardgamegeek\.com\/boardgame\/(\d+)/i);
+  if(match){
+    const id = match[1];
+    document.getElementById('id').value = id;
+    const imgInput = document.getElementById('img');
+    if(!imgInput.value.trim()){
+      imgInput.value = id + '.jpg';
+    }
+  }
+});
 
 document.getElementById('copyLast').addEventListener('click', ()=>{
   if(!lastAddedGame){
@@ -3028,23 +3042,9 @@ document.getElementById('reset').addEventListener('click', ()=>{
 document.getElementById('refreshList').addEventListener('click', ()=>{
   render();
   const btn = document.getElementById('refreshList');
-  const original = btn.textContent;
-  btn.textContent = '更新';
-  btn.classList.add('bg-green-600');
-  btn.classList.remove('bg-blue-600');
-  setTimeout(()=>{
-    btn.textContent = original;
-    btn.classList.remove('bg-green-600');
-    btn.classList.add('bg-blue-600');
-  }, 1000);
-});
-
-document.getElementById('refreshList').addEventListener('click', ()=>{
-  render();
-  const b = document.getElementById('refreshList');
-  const t = b.textContent;
-  b.textContent = 'æ´æ°å®äº';
-  setTimeout(()=> b.textContent = t, 800);
+  const orig = btn.textContent;
+  btn.textContent = '一覧更新';
+  setTimeout(()=>{ btn.textContent = orig; }, 800);
 });
 
 if(location.search.includes('reset')){
