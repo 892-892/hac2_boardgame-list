@@ -243,7 +243,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
     </section>
     
     <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
-      <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center justify-between mb-3">
         <h2 class="text-sm font-medium">ゲーム一覧 (<span id="count">0</span>件)</h2>
         <div class="flex gap-2">
           <button id="export" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">JSON書き出し</button>
@@ -251,6 +251,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
           <button id="refreshList" class="text-xs bg-blue-600 text-white rounded-lg px-3 py-1.5">一覧更新</button>
           <button id="reset" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">初期化</button>
         </div>
+      </div>
+      <div class="mb-3">
+        <input id="search" type="text" placeholder="ゲーム名で検索..." class="w-full border border-neutral-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
       </div>
       <div id="list" class="space-y-2 max-h-[600px] overflow-y-auto"></div>
     </section>
@@ -2923,9 +2926,9 @@ function updateTimeDisplay(){
   if(tmin && tmax){
     time = tmin === tmax ? `${tmin}分` : `${tmin}-${tmax}分`;
   } else if(tmin){
-    time = `${tmin}Ã¥ÂÂ`;
+    time = `${tmin}分`;
   } else if(tmax){
-    time = `${tmax}Ã¥ÂÂ`;
+    time = `${tmax}分`;
   }
   document.getElementById('time').value = time;
 }
@@ -2961,8 +2964,15 @@ document.getElementById('copyLast').addEventListener('click', ()=>{
 });
 
 function render(){
-  count.textContent = games.length;
-  list.innerHTML = games.map((g,i)=>`
+  const searchTerm = document.getElementById('search')?.value.toLowerCase() || '';
+  const filteredGames = searchTerm 
+    ? games.filter(g => g.name.toLowerCase().includes(searchTerm))
+    : games;
+  
+  count.textContent = filteredGames.length + (searchTerm ? ` / ${games.length}` : '');
+  list.innerHTML = filteredGames.map((g,i)=>{
+    const originalIndex = games.indexOf(g);
+    return `
     <div class="flex items-center justify-between border border-neutral-100 rounded-lg p-2 hover:bg-neutral-50">
       <div class="flex-1 min-w-0">
         <div class="text-sm font-medium truncate">${g.name}</div>
@@ -2973,7 +2983,7 @@ function render(){
         <button onclick="del(${i})" class="text-[11px] border border-neutral-200 rounded px-2 py-1">削除</button>
       </div>
     </div>
-  `).join('');
+  `}).join('');
 }
 
 function edit(i){
@@ -3038,6 +3048,8 @@ document.getElementById('reset').addEventListener('click', ()=>{
     save();
   }
 });
+
+document.getElementById('search').addEventListener('input', render);
 
 document.getElementById('refreshList').addEventListener('click', ()=>{
   render();
