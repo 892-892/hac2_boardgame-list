@@ -3060,28 +3060,70 @@ document.getElementById('refreshList').addEventListener('click', async ()=>{
     btn.disabled = true;
     
     // index.htmlを取得
-    const response = await fetch('index.html');
+    const response = await fetch('index.html?v=' + Date.now());
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    
     const text = await response.text();
     
-    // initialGames配列を抽出
-    const match = text.match(/const initialGames = (\[[\s\S]*?\]);/);
-    if (match) {
-      const gamesData = JSON.parse(match[1]);
+    // initialGames配列を抽出 (より堅牢な方法)
+    const startMarker = 'const initialGames = [';
+    const startIdx = text.indexOf(startMarker);
+    if (startIdx === -1) throw new Error('initialGamesが見つかりません');
+    
+    const arrayStart = startIdx + startMarker.length - 1;
+    let bracketCount = 0;
+    let inString = false;
+    let escapeNext = false;
+    let endIdx = arrayStart;
+    
+    for (let i = arrayStart; i < text.length; i++) {
+      const char = text[i];
       
-      // localStorageを更新
-      localStorage.setItem('bg_games', JSON.stringify(gamesData));
-      games = gamesData.slice();
+      if (escapeNext) {
+        escapeNext = false;
+        continue;
+      }
       
-      render();
+      if (char === '\\') {
+        escapeNext = true;
+        continue;
+      }
       
-      btn.textContent = `更新完了 (${games.length}件)`;
-    } else {
-      throw new Error('ゲームデータが見つかりません');
+      if (char === '"' && !escapeNext) {
+        inString = !inString;
+        continue;
+      }
+      
+      if (!inString) {
+        if (char === '[') bracketCount++;
+        if (char === ']') {
+          bracketCount--;
+          if (bracketCount === 0) {
+            endIdx = i + 1;
+            break;
+          }
+        }
+      }
     }
+    
+    const arrayText = text.substring(arrayStart, endIdx);
+    
+    // JavaScriptの配列を評価（安全な方法）
+    const gamesData = (new Function('return ' + arrayText))();
+    
+    if (!Array.isArray(gamesData)) throw new Error('配列ではありません');
+    
+    // localStorageを更新
+    localStorage.setItem('bg_games', JSON.stringify(gamesData));
+    games = gamesData.slice();
+    
+    render();
+    
+    btn.textContent = `更新完了 (${games.length}件)`;
   } catch (error) {
     console.error('更新エラー:', error);
     btn.textContent = 'エラー';
-    alert('index.htmlからの読み込みに失敗しました: ' + error.message);
+    alert('index.htmlからの読み込みに失敗しました\n' + error.message + '\n\n詳細はコンソールを確認してください');
   } finally {
     setTimeout(()=>{ 
       btn.textContent = orig;
