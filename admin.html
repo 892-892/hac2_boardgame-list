@@ -191,76 +191,65 @@
   }
 })();</script>
 <script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>管理 - ボードゲームコレクション</title>
+<title>管理 - ボードゲーム</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
 </style>
 </head>
-<body class="bg-white text-neutral-900">
+<body class="bg-white">
 <div id="lock" class="fixed inset-0 bg-white z-50 flex items-center justify-center p-4">
-  <div class="w-full max-w-[320px] border border-neutral-200 rounded-2xl p-6">
+  <div class="w-full max-w-[320px] border rounded-2xl p-6">
     <h1 class="text-[15px] font-medium mb-1">管理ページ</h1>
-    <p class="text-[12px] text-neutral-600 mb-4">パスワードを入力してください</p>
-    <input id="pw" type="password" class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10" placeholder="••••••••">
-    <button id="pwBtn" class="mt-3 w-full bg-neutral-900 text-white text-sm rounded-xl py-2 hover:bg-black">入る</button>
+    <p class="text-[12px] text-neutral-600 mb-4">パスワードを入力</p>
+    <input id="pw" type="password" class="w-full border rounded-xl px-3 py-2 text-sm" placeholder="••••">
+    <button id="pwBtn" class="mt-3 w-full bg-black text-white text-sm rounded-xl py-2">入る</button>
     <p id="pwErr" class="text-[11px] text-red-600 mt-2 h-4"></p>
   </div>
 </div>
-<div class="max-w-[1280px] mx-auto px-4 py-6 md:py-10">
-  <header class="mb-6 md:mb-8 flex items-start justify-between">
+
+<div class="max-w-[1280px] mx-auto px-4 py-6">
+  <header class="mb-6 flex justify-between">
     <div>
-    <h1 class="text-2xl md:text-[28px] font-semibold tracking-tight">🎲 コレクション編集</h1>
-    <p class="text-sm text-neutral-600 mt-1">ゲームを追加・編集してJSONを書き出し</p>
+      <h1 class="text-2xl font-semibold">🎲 コレクション編集</h1>
+      <p class="text-sm text-neutral-600 mt-1">games.jsonを編集</p>
     </div>
-    <a href="index.html" class="text-[12px] text-neutral-600 hover:text-neutral-900 border border-neutral-200 rounded-lg px-3 py-1.5 whitespace-nowrap bg-white inline-block">← 一覧に戻る</a>
+    <a href="index.html" class="text-xs border rounded-lg px-3 py-1.5">← 一覧</a>
   </header>
 
-  <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
-    <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
+  <main class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <section class="border rounded-xl p-4">
       <h2 class="text-sm font-medium mb-4">ゲーム情報</h2>
       <form id="form" class="space-y-3">
         <input type="hidden" id="id">
-        <div><label class="text-xs text-neutral-600">ゲーム名</label><input id="name" required class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600"></div>
-        <div><label class="text-xs text-neutral-600">URL</label><input id="url" type="url" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+        <div><label class="text-xs">ゲーム名</label><input id="name" required class="mt-1 w-full border rounded-lg px-3 py-2 text-sm"></div>
+        <div><label class="text-xs">URL</label><input id="url" type="url" class="mt-1 w-full border rounded-lg px-3 py-2 text-sm"></div>
         <div class="grid grid-cols-2 gap-3">
-          <div><label class="text-xs text-neutral-600">プレイ人数（自動）</label><input id="players" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="最小・最大から自動"></div>
-          <div><label class="text-xs text-neutral-600">時間</label><input id="time" placeholder="30-60分" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+          <div><label class="text-xs">人数表記</label><input id="players" class="mt-1 w-full border rounded-lg px-3 py-2 text-sm" placeholder="3~4"></div>
+          <div><label class="text-xs">時間</label><input id="time" class="mt-1 w-full border rounded-lg px-3 py-2 text-sm" placeholder="30分"></div>
         </div>
         <div class="grid grid-cols-3 gap-3">
-          <div><label class="text-xs text-neutral-600">最小人数</label><input id="pmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-          <div><label class="text-xs text-neutral-600">最大人数</label><input id="pmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-          <div><label class="text-xs text-neutral-600">重さ(1-5)</label><input id="weight" type="number" min="1" max="5" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-        <div class="grid grid-cols-2 gap-3">
-          <div><label class="text-xs text-neutral-600">最小時間（分）</label><input id="tmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-          <div><label class="text-xs text-neutral-600">最大時間（分）</label><input id="tmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+          <div><label class="text-xs">最小人数</label><input id="pmin" type="number" class="mt-1 w-full border rounded-lg px-3 py-2 text-sm"></div>
+          <div><label class="text-xs">最大人数</label><input id="pmax" type="number" class="mt-1 w-full border rounded-lg px-3 py-2 text-sm"></div>
+          <div><label class="text-xs">重さ</label><input id="weight" type="number" min="1" max="5" class="mt-1 w-full border rounded-lg px-3 py-2 text-sm"></div>
         </div>
-        </div>
-        <div><label class="text-xs text-neutral-600">画像ファイル名</label><input id="img" placeholder="12345.jpg" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+        <div><label class="text-xs">画像</label><input id="img" class="mt-1 w-full border rounded-lg px-3 py-2 text-sm" placeholder="12345.jpg"></div>
         <div class="flex gap-2 pt-2">
-          <button type="submit" class="flex-1 bg-neutral-900 text-white text-sm rounded-lg py-2">保存</button>
-          <button type="button" id="clear" class="px-4 border border-neutral-200 rounded-lg text-sm">クリア</button>
+          <button type="submit" class="flex-1 bg-black text-white text-sm rounded-lg py-2">保存</button>
+          <button type="button" id="clear" class="px-4 border rounded-lg text-sm">クリア</button>
         </div>
       </form>
     </section>
     
-    <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
-      <div class="flex items-center justify-between mb-3">
-        <h2 class="text-sm font-medium">ゲーム一覧 (<span id="count">0</span>件)</h2>
-        <div class="flex gap-2">
-          <button id="export" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">JSON書き出し</button>
-          <button id="copyLast" class="text-xs bg-emerald-600 text-white rounded-lg px-3 py-1.5">コードコピー</button>
-          <button id="refreshList" class="text-xs bg-blue-600 text-white rounded-lg px-3 py-1.5">一覧更新</button>
-          <button id="reset" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">初期化</button>
-        </div>
+    <section class="border rounded-xl p-4">
+      <div class="flex justify-between mb-3">
+        <h2 class="text-sm font-medium">一覧 (<span id="count">0</span>件)</h2>
+        <button id="export" class="text-xs border rounded-lg px-3 py-1.5">JSON出力</button>
       </div>
-      <div class="mb-3">
-        <input id="search" type="text" placeholder="ゲーム名で検索..." class="w-full border border-neutral-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
-      </div>
-      <div id="list" class="space-y-2 max-h-[600px] overflow-y-auto"></div>
+      <input id="search" placeholder="検索" class="w-full border rounded-lg px-3 py-2 text-sm mb-3">
+      <div id="list" class="space-y-1 max-h-[600px] overflow-y-auto text-sm"></div>
     </section>
   </main>
 </div>
@@ -272,177 +261,66 @@ const pw = document.getElementById('pw');
 const pwBtn = document.getElementById('pwBtn');
 const pwErr = document.getElementById('pwErr');
 
-function unlock(){
-  if(pw.value.trim() === PASS){
-    lock.style.display="none"; document.body.style.overflow="auto";
-  }else{
-    pwErr.textContent='パスワードが違います';
-    pw.select();
+function unlock() {
+  console.log('Unlock attempt:', pw.value);
+  if (pw.value === PASS) {
+    lock.style.display = 'none';
+    loadGames();
+  } else {
+    pwErr.textContent = 'パスワードが違います';
   }
 }
-pwBtn.addEventListener('click', unlock);
-pw.addEventListener('keydown', e=>{ if(e.key==='Enter') unlock(); });
+
+pwBtn.onclick = unlock;
+pw.onkeydown = e => { if (e.key === 'Enter') unlock(); };
 
 let games = [];
-
-let games = [];
-
-async function loadGames() {
-  // 1. Try localStorage first (for unsaved edits)
-  const saved = localStorage.getItem('boardgames_admin');
-  const savedTime = localStorage.getItem('boardgames_admin_time');
-  
-  // 2. Fetch games.json
-  try {
-    const res = await fetch('games.json?v=' + Date.now(), {cache: 'no-store'});
-    const serverGames = await res.json();
-    
-    // 3. Use localStorage if it exists and is recent (within 1 hour)
-    if (saved && savedTime) {
-      const age = Date.now() - parseInt(savedTime);
-      if (age < 3600000) { // 1 hour
-        if (confirm('未保存の編集データがあります（' + Math.floor(age/60000) + '分前）。読み込みますか？')) {
-          games = JSON.parse(saved);
-          console.log('Loaded from localStorage:', games.length, 'games');
-          renderList();
-          updateCount();
-          return;
-        }
-      }
-    }
-    
-    // 4. Use server data
-    games = serverGames;
-    console.log('Loaded from games.json:', games.length, 'games');
-    
-  } catch (e) {
-    console.error('Failed to load games.json:', e);
-    games = saved ? JSON.parse(saved) : [];
-  }
-  
-  renderList();
-  updateCount();
-}
-
-function saveToLocal() {
-  localStorage.setItem('boardgames_admin', JSON.stringify(games));
-  localStorage.setItem('boardgames_admin_time', Date.now().toString());
-}
-
-loadGames();
 let editingIdx = -1;
 
-const form = document.getElementById('form');
-const list = document.getElementById('list');
-const count = document.getElementById('count');
-
-function save(){
-  localStorage.setItem('bg_games', JSON.stringify(games));
-  render();
+async function loadGames() {
+  try {
+    const res = await fetch('games.json?v=' + Date.now());
+    games = await res.json();
+    console.log('Loaded', games.length);
+    renderList();
+  } catch (e) {
+    alert('読み込み失敗: ' + e.message);
+  }
 }
 
-let lastAddedGame = null;
-
-function updatePlayersDisplay(){
-  const pmin = parseInt(document.getElementById('pmin').value)||0;
-  const pmax = parseInt(document.getElementById('pmax').value)||0;
-  let players = '';
-  if(pmin && pmax){
-    players = pmin === pmax ? String(pmin) : `${pmin}-${pmax}`;
-  } else if(pmin){
-    players = String(pmin);
-  } else if(pmax){
-    players = String(pmax);
-  }
-  document.getElementById('players').value = players;
-}
-
-document.getElementById('pmin').addEventListener('input', updatePlayersDisplay);
-document.getElementById('pmax').addEventListener('input', updatePlayersDisplay);
-
-function updateTimeDisplay(){
-  const tmin = parseInt(document.getElementById('tmin').value)||0;
-  const tmax = parseInt(document.getElementById('tmax').value)||0;
-  let time = '';
-  if(tmin && tmax){
-    time = tmin === tmax ? `${tmin}分` : `${tmin}-${tmax}分`;
-  } else if(tmin){
-    time = `${tmin}分`;
-  } else if(tmax){
-    time = `${tmax}分`;
-  }
-  document.getElementById('time').value = time;
-}
-document.getElementById('tmin').addEventListener('input', updateTimeDisplay);
-document.getElementById('tmax').addEventListener('input', updateTimeDisplay);
-
-document.getElementById('url').addEventListener('blur', function(){
-  const url = this.value;
-  const match = url.match(/boardgamegeek\.com\/boardgame\/(\d+)/i);
-  if(match){
-    const id = match[1];
-    document.getElementById('id').value = id;
-    const imgInput = document.getElementById('img');
-    if(!imgInput.value.trim()){
-      imgInput.value = id + '.jpg';
-    }
-  }
-});
-
-document.getElementById('copyLast').addEventListener('click', ()=>{
-  if(!lastAddedGame){
-    alert('まだゲームを追加していません');
-    return;
-  }
-  const g = lastAddedGame;
-  const code = `  { id: ${g.id}, name: "${g.name}", url: "${g.url}", players: "${g.players}", time: "${g.time}", pmin: ${g.pmin}, pmax: ${g.pmax}, weight: ${g.weight}, img: "${g.img}" },`;
-  navigator.clipboard.writeText(code).then(()=>{
-    const btn = document.getElementById('copyLast');
-    const orig = btn.textContent;
-    btn.textContent = 'コピー完了!';
-    setTimeout(()=> btn.textContent = orig, 2000);
-  }).catch(()=>{ prompt('コピーしてください:', code); });
-});
-
-function render(){
-  const searchTerm = document.getElementById('search')?.value.toLowerCase() || '';
-  const filteredGames = searchTerm 
-    ? games.filter(g => g.name.toLowerCase().includes(searchTerm))
-    : games;
+function renderList() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const list = document.getElementById('list');
+  const filtered = games.filter(g => !q || g.name.toLowerCase().includes(q));
   
-  count.textContent = filteredGames.length + (searchTerm ? ` / ${games.length}` : '');
-  list.innerHTML = filteredGames.map((g,i)=>{
-    const originalIndex = games.indexOf(g);
-    return `
-    <div class="flex items-center justify-between border border-neutral-100 rounded-lg p-2 hover:bg-neutral-50">
+  document.getElementById('count').textContent = games.length;
+  
+  list.innerHTML = filtered.map((g, i) => `
+    <div class="flex items-center gap-2 p-2 hover:bg-neutral-50 rounded cursor-pointer" onclick="edit(${games.indexOf(g)})">
+      <img src="images/${g.img}" class="w-10 h-10 object-cover rounded" onerror="this.src='https://placehold.co/40'">
       <div class="flex-1 min-w-0">
-        <div class="text-sm font-medium truncate">${g.name}</div>
-        <div class="text-[11px] text-neutral-500">${g.players} ${g.time} ★${g.weight} ID:${g.id}</div>
-      </div>
-      <div class="flex gap-1 ml-2">
-        <button onclick="edit(${i})" class="text-[11px] border border-neutral-200 rounded px-2 py-1">編集</button>
-        <button onclick="del(${i})" class="text-[11px] border border-neutral-200 rounded px-2 py-1">削除</button>
+        <div class="truncate">${g.name}</div>
+        <div class="text-xs text-neutral-500">${g.players} · ${g.time}</div>
       </div>
     </div>
-  `}).join('');
+  `).join('');
 }
 
-function edit(i){
-  editingIdx = i;
-  const g = games[i];
-  ['id','name','url','players','time','pmin','pmax','weight','img'].forEach(k=>{
-    document.getElementById(k).value = g[k]||'';
-  });
+function edit(idx) {
+  const g = games[idx];
+  editingIdx = idx;
+  document.getElementById('id').value = g.id || '';
+  document.getElementById('name').value = g.name || '';
+  document.getElementById('url').value = g.url || '';
+  document.getElementById('players').value = g.players || '';
+  document.getElementById('time').value = g.time || '';
+  document.getElementById('pmin').value = g.pmin || '';
+  document.getElementById('pmax').value = g.pmax || '';
+  document.getElementById('weight').value = g.weight || '';
+  document.getElementById('img').value = g.img || '';
 }
 
-function del(i){
-  if(confirm('削除しますか？')){
-    games.splice(i,1);
-    save();
-  }
-}
-
-form.addEventListener('submit', e=>{
+document.getElementById('form').onsubmit = e => {
   e.preventDefault();
   const g = {
     id: parseInt(document.getElementById('id').value) || Date.now(),
@@ -450,135 +328,40 @@ form.addEventListener('submit', e=>{
     url: document.getElementById('url').value,
     players: document.getElementById('players').value,
     time: document.getElementById('time').value,
-    pmin: parseInt(document.getElementById('pmin').value)||0,
-    pmax: parseInt(document.getElementById('pmax').value)||0,
-    weight: parseInt(document.getElementById('weight').value)||0,
+    pmin: parseInt(document.getElementById('pmin').value) || 0,
+    pmax: parseInt(document.getElementById('pmax').value) || 0,
+    weight: parseInt(document.getElementById('weight').value) || 1,
     img: document.getElementById('img').value
   };
-  // Store for copying
-  window.lastAddedGame = g;
   
-  if(editingIdx >= 0){
+  if (editingIdx >= 0) {
     games[editingIdx] = g;
-    editingIdx = -1;
-  }else{
+  } else {
     games.push(g);
-  lastAddedGame = g;
   }
-  save();
-  form.reset();
-});
-
-document.getElementById('clear').addEventListener('click', ()=>{
-  form.reset();
-  editingIdx = -1;
-});
-
-document.getElementById('export').addEventListener('click', ()=>{
-  const blob = new Blob([JSON.stringify(games,null,2)],{type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'games.json';
-  a.click();
-});
-
-document.getElementById('reset').addEventListener('click', ()=>{
-  if(confirm('初期データに戻しますか？')){
-    games = initialGames.slice();
-    save();
-  }
-});
-
-document.getElementById('search').addEventListener('input', render);
-
-document.getElementById('refreshList').addEventListener('click', async ()=>{
-  const btn = document.getElementById('refreshList');
-  const orig = btn.textContent;
   
-  try {
-    btn.textContent = '取得中...';
-    btn.disabled = true;
-    
-    // index.htmlを取得
-    const response = await fetch('index.html?v=' + Date.now());
-    if (!response.ok) throw new Error('HTTP ' + response.status);
-    
-    const text = await response.text();
-    
-    // initialGames配列を抽出 (より堅牢な方法)
-    const startMarker = 'const initialGames = [';
-    const startIdx = text.indexOf(startMarker);
-    if (startIdx === -1) throw new Error('initialGamesが見つかりません');
-    
-    const arrayStart = startIdx + startMarker.length - 1;
-    let bracketCount = 0;
-    let inString = false;
-    let escapeNext = false;
-    let endIdx = arrayStart;
-    
-    for (let i = arrayStart; i < text.length; i++) {
-      const char = text[i];
-      
-      if (escapeNext) {
-        escapeNext = false;
-        continue;
-      }
-      
-      if (char === '\\') {
-        escapeNext = true;
-        continue;
-      }
-      
-      if (char === '"' && !escapeNext) {
-        inString = !inString;
-        continue;
-      }
-      
-      if (!inString) {
-        if (char === '[') bracketCount++;
-        if (char === ']') {
-          bracketCount--;
-          if (bracketCount === 0) {
-            endIdx = i + 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    const arrayText = text.substring(arrayStart, endIdx);
-    
-    // JavaScriptの配列を評価（安全な方法）
-    const gamesData = (new Function('return ' + arrayText))();
-    
-    if (!Array.isArray(gamesData)) throw new Error('配列ではありません');
-    
-    // localStorageを更新
-    localStorage.setItem('bg_games', JSON.stringify(gamesData));
-    games = gamesData.slice();
-    
-    render();
-    
-    btn.textContent = `更新完了 (${games.length}件)`;
-  } catch (error) {
-    console.error('更新エラー:', error);
-    btn.textContent = 'エラー';
-    alert('index.htmlからの読み込みに失敗しました\n' + error.message + '\n\n詳細はコンソールを確認してください');
-  } finally {
-    setTimeout(()=>{ 
-      btn.textContent = orig;
-      btn.disabled = false;
-    }, 2000);
-  }
-});
+  renderList();
+  document.getElementById('form').reset();
+  editingIdx = -1;
+};
 
-if(location.search.includes('reset')){
-  localStorage.removeItem('bg_games');
-  games = initialGames.slice();
-}
+document.getElementById('clear').onclick = () => {
+  document.getElementById('form').reset();
+  editingIdx = -1;
+};
 
-render();
+document.getElementById('search').oninput = renderList;
+
+document.getElementById('export').onclick = () => {
+  const json = JSON.stringify(games, null, 2);
+  navigator.clipboard.writeText(json).then(() => {
+    alert(games.length + '件をコピーしました');
+  });
+  console.log(json);
+};
+
+// Auto-focus password
+pw.focus();
 </script>
 </body>
 </html>
