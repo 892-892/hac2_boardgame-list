@@ -2921,7 +2921,7 @@ function updateTimeDisplay(){
   const tmax = parseInt(document.getElementById('tmax').value)||0;
   let time = '';
   if(tmin && tmax){
-    time = tmin === tmax ? `${tmin}Ã¥ÂÂ` : `${tmin}-${tmax}Ã¥ÂÂ`;
+    time = tmin === tmax ? `${tmin}分` : `${tmin}-${tmax}分`;
   } else if(tmin){
     time = `${tmin}Ã¥ÂÂ`;
   } else if(tmax){
