@@ -3051,12 +3051,43 @@ document.getElementById('reset').addEventListener('click', ()=>{
 
 document.getElementById('search').addEventListener('input', render);
 
-document.getElementById('refreshList').addEventListener('click', ()=>{
-  render();
+document.getElementById('refreshList').addEventListener('click', async ()=>{
   const btn = document.getElementById('refreshList');
   const orig = btn.textContent;
-  btn.textContent = '更新完了';
-  setTimeout(()=>{ btn.textContent = orig; }, 800);
+  
+  try {
+    btn.textContent = '取得中...';
+    btn.disabled = true;
+    
+    // index.htmlを取得
+    const response = await fetch('index.html');
+    const text = await response.text();
+    
+    // initialGames配列を抽出
+    const match = text.match(/const initialGames = (\[[\s\S]*?\]);/);
+    if (match) {
+      const gamesData = JSON.parse(match[1]);
+      
+      // localStorageを更新
+      localStorage.setItem('bg_games', JSON.stringify(gamesData));
+      games = gamesData.slice();
+      
+      render();
+      
+      btn.textContent = `更新完了 (${games.length}件)`;
+    } else {
+      throw new Error('ゲームデータが見つかりません');
+    }
+  } catch (error) {
+    console.error('更新エラー:', error);
+    btn.textContent = 'エラー';
+    alert('index.htmlからの読み込みに失敗しました: ' + error.message);
+  } finally {
+    setTimeout(()=>{ 
+      btn.textContent = orig;
+      btn.disabled = false;
+    }, 2000);
+  }
 });
 
 if(location.search.includes('reset')){
