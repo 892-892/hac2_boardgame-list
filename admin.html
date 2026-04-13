@@ -285,32 +285,51 @@ pw.addEventListener('keydown', e=>{ if(e.key==='Enter') unlock(); });
 
 let games = [];
 
+let games = [];
+
 async function loadGames() {
-  const res = await fetch('games.json?v=' + Date.now());
-  games = await res.json();
-  localStorage.setItem('boardgames', JSON.stringify(games));
+  // 1. Try localStorage first (for unsaved edits)
+  const saved = localStorage.getItem('boardgames_admin');
+  const savedTime = localStorage.getItem('boardgames_admin_time');
+  
+  // 2. Fetch games.json
+  try {
+    const res = await fetch('games.json?v=' + Date.now(), {cache: 'no-store'});
+    const serverGames = await res.json();
+    
+    // 3. Use localStorage if it exists and is recent (within 1 hour)
+    if (saved && savedTime) {
+      const age = Date.now() - parseInt(savedTime);
+      if (age < 3600000) { // 1 hour
+        if (confirm('未保存の編集データがあります（' + Math.floor(age/60000) + '分前）。読み込みますか？')) {
+          games = JSON.parse(saved);
+          console.log('Loaded from localStorage:', games.length, 'games');
+          renderList();
+          updateCount();
+          return;
+        }
+      }
+    }
+    
+    // 4. Use server data
+    games = serverGames;
+    console.log('Loaded from games.json:', games.length, 'games');
+    
+  } catch (e) {
+    console.error('Failed to load games.json:', e);
+    games = saved ? JSON.parse(saved) : [];
+  }
+  
   renderList();
   updateCount();
 }
 
-loadGames();JSON.parse(localStorage.getItem('bg_games') || 'null') || [];
-
-// 初回読み込み時にgames.jsonを試す
-if (games.length === 0) {
-  fetch('games.json?v=' + Date.now())
-    .then(r => r.ok ? r.json() : Promise.reject('games.json not found'))
-    .then(data => {
-      games = data;
-      localStorage.setItem('bg_games', JSON.stringify(games));
-      render();
-      console.log('Loaded', games.length, 'games from games.json');
-    })
-    .catch(err => {
-      console.log('Using embedded initialGames:', err);
-      games = initialGames.slice();
-      render();
-    });
+function saveToLocal() {
+  localStorage.setItem('boardgames_admin', JSON.stringify(games));
+  localStorage.setItem('boardgames_admin_time', Date.now().toString());
 }
+
+loadGames();
 let editingIdx = -1;
 
 const form = document.getElementById('form');
