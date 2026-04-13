@@ -223,16 +223,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
         <div><label class="text-xs text-neutral-600">URL</label><input id="url" type="url" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
         <div class="grid grid-cols-2 gap-3">
           <div><label class="text-xs text-neutral-600">プレイ人数（自動）</label><input id="players" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="最小・最大から自動"></div>
-          <div><label class="text-xs text-neutral-600">時間（自動）</label><input id="time" readonly placeholder="30-60分" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600"></div>
+          <div><label class="text-xs text-neutral-600">時間</label><input id="time" placeholder="30-60分" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
         </div>
         <div class="grid grid-cols-3 gap-3">
           <div><label class="text-xs text-neutral-600">最小人数</label><input id="pmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
           <div><label class="text-xs text-neutral-600">最大人数</label><input id="pmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
           <div><label class="text-xs text-neutral-600">重さ(1-5)</label><input id="weight" type="number" min="1" max="5" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-        </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div><label class="text-xs text-neutral-600">最小時間(分)</label><input id="tmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-          <div><label class="text-xs text-neutral-600">最大時間(分)</label><input id="tmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
         </div>
         <div><label class="text-xs text-neutral-600">画像ファイル名</label><input id="img" placeholder="12345.jpg" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
         <div class="flex gap-2 pt-2">
@@ -2912,50 +2908,8 @@ function updatePlayersDisplay(){
   document.getElementById('players').value = players;
 }
 
-function updateTimeDisplay(){
-  const tmin = parseInt(document.getElementById('tmin').value)||0;
-  const tmax = parseInt(document.getElementById('tmax').value)||0;
-  let time = '';
-  if(tmin && tmax){
-    time = tmin === tmax ? `${tmin}分` : `${tmin}-${tmax}分`;
-  } else if(tmin){
-    time = `${tmin}分`;
-  } else if(tmax){
-    time = `${tmax}分`;
-  }
-  document.getElementById('time').value = time;
-}
-
 document.getElementById('pmin').addEventListener('input', updatePlayersDisplay);
 document.getElementById('pmax').addEventListener('input', updatePlayersDisplay);
-document.getElementById('tmin').addEventListener('input', updateTimeDisplay);
-document.getElementById('tmax').addEventListener('input', updateTimeDisplay);
-
-document.getElementById('url').addEventListener('blur', function(){
-  const url = this.value;
-  const match = url.match(/boardgamegeek\.com\/boardgame\/(\d+)/i);
-  if(match){
-    const id = match[1];
-    document.getElementById('id').value = id;
-    const imgInput = document.getElementById('img');
-    if(!imgInput.value.trim()){
-      imgInput.value = id + '.jpg';
-    }
-  }
-});
-
-document.getElementById('url').addEventListener('change', function(){
-  const url = this.value;
-  const match = url.match(/boardgamegeek\.com\/boardgame\/(\d+)/i);
-  if(match){
-    const id = match[1];
-    document.getElementById('id').value = id;
-    const imgInput = document.getElementById('img');
-    if(!imgInput.value.trim()){
-      imgInput.value = id + '.jpg';
-    }
-  }
-});
 
 document.getElementById('copyLast').addEventListener('click', ()=>{
   if(!lastAddedGame){
@@ -3049,6 +3003,28 @@ document.getElementById('reset').addEventListener('click', ()=>{
     games = initialGames.slice();
     save();
   }
+});
+
+document.getElementById('refreshList').addEventListener('click', ()=>{
+  render();
+  const btn = document.getElementById('refreshList');
+  const original = btn.textContent;
+  btn.textContent = 'æ´æ°å®äº';
+  btn.classList.add('bg-green-600');
+  btn.classList.remove('bg-blue-600');
+  setTimeout(()=>{
+    btn.textContent = original;
+    btn.classList.remove('bg-green-600');
+    btn.classList.add('bg-blue-600');
+  }, 1000);
+});
+
+document.getElementById('refreshList').addEventListener('click', ()=>{
+  render();
+  const b = document.getElementById('refreshList');
+  const t = b.textContent;
+  b.textContent = 'æ´æ°å®äº';
+  setTimeout(()=> b.textContent = t, 800);
 });
 
 if(location.search.includes('reset')){
