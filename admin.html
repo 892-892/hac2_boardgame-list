@@ -248,7 +248,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
         <div class="flex gap-2">
           <button id="export" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">JSON書き出し</button>
           <button id="copyLast" class="text-xs bg-emerald-600 text-white rounded-lg px-3 py-1.5">コードコピー</button>
-          <button id="refreshList" class="text-xs bg-blue-600 text-white rounded-lg px-3 py-1.5">Ã¤Â¸ÂÃ¨Â¦Â§Ã¦ÂÂ´Ã¦ÂÂ°</button>
+          <button id="refreshList" class="text-xs bg-blue-600 text-white rounded-lg px-3 py-1.5">一覧更新</button>
           <button id="reset" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">初期化</button>
         </div>
       </div>
@@ -3043,7 +3043,7 @@ document.getElementById('refreshList').addEventListener('click', ()=>{
   render();
   const btn = document.getElementById('refreshList');
   const orig = btn.textContent;
-  btn.textContent = '一覧更新';
+  btn.textContent = '更新完了';
   setTimeout(()=>{ btn.textContent = orig; }, 800);
 });
 
