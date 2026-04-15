@@ -7,6 +7,10 @@
 (function() {
   'use strict';
 
+  // Idempotency: skip if already initialized (e.g., server-side injection
+  // followed by client-side inject-javascript via the Bloks webview component).
+  if (window.playablesSDK) return;
+
   var HANDLER_NAME = 'playablesGameEventHandler';
   var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
   var RAF_FRAME_THRESHOLD = 3;
@@ -188,369 +192,313 @@
 })();</script>
 <script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>管理 - ボードゲームコレクション</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; }
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
 </style>
 </head>
 <body class="bg-white text-neutral-900">
+<!-- パスワードロック -->
 <div id="lock" class="fixed inset-0 bg-white z-50 flex items-center justify-center p-4">
   <div class="w-full max-w-[320px] border border-neutral-200 rounded-2xl p-6">
     <h1 class="text-[15px] font-medium mb-1">管理ページ</h1>
     <p class="text-[12px] text-neutral-600 mb-4">パスワードを入力してください</p>
-    <input id="pw" type="password" class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10" placeholder="••••••••">
+    <input id="pw" type="password" class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10" placeholder="••••••••" autofocus>
     <button id="pwBtn" class="mt-3 w-full bg-neutral-900 text-white text-sm rounded-xl py-2 hover:bg-black">入る</button>
     <p id="pwErr" class="text-[11px] text-red-600 mt-2 h-4"></p>
   </div>
 </div>
+
 <div class="max-w-[1280px] mx-auto px-4 py-6 md:py-10">
   <header class="mb-6 md:mb-8 flex items-start justify-between">
     <div>
-    <h1 class="text-2xl md:text-[28px] font-semibold tracking-tight">🎲 コレクション編集</h1>
-    <p class="text-sm text-neutral-600 mt-1">ゲームを追加・編集してJSONを書き出し</p>
+      <h1 class="text-2xl md:text-[28px] font-semibold tracking-tight">🎲 コレクション編集</h1>
+      <p class="text-sm text-neutral-600 mt-1">ゲームを追加・編集してJSONを書き出し</p>
     </div>
-    <a href="index.html" class="text-[12px] text-neutral-600 hover:text-neutral-900 border border-neutral-200 rounded-lg px-3 py-1.5 whitespace-nowrap bg-white inline-block">← 一覧に戻る</a>
+    <a href="index.html" class="text-[12px] text-neutral-600 hover:text-neutral-900 border border-neutral-200 rounded-lg px-3 py-1.5 whitespace-nowrap bg-white">← 一覧に戻る</a>
   </header>
 
   <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+    <!-- 左：フォーム -->
     <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
       <h2 class="text-sm font-medium mb-4">ゲーム情報</h2>
       <form id="form" class="space-y-3">
         <input type="hidden" id="id">
-        <div><label class="text-xs text-neutral-600">ゲーム名</label><input id="name" required class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600"></div>
-        <div><label class="text-xs text-neutral-600">URL</label><input id="url" type="url" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+        
+        <div>
+          <label class="text-[12px] text-neutral-600">ゲーム名</label>
+          <input id="name" required class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+        </div>
+        
+        <div>
+          <label class="text-[12px] text-neutral-600">URL</label>
+          <input id="url" type="url" placeholder="https://boardgamegeek.com/..." class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+        </div>
+
         <div class="grid grid-cols-2 gap-3">
-          <div><label class="text-xs text-neutral-600">プレイ人数（自動）</label><input id="players" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="最小・最大から自動"></div>
-          <div><label class="text-xs text-neutral-600">時間</label><input id="time" placeholder="30-60分" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+          <div>
+            <label class="text-[12px] text-neutral-600">プレイ人数（自動）</label>
+            <input id="players" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="最小・最大から自動">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">プレイ時間</label>
+            <input id="time" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="自動">
+          </div>
         </div>
-        <div class="grid grid-cols-3 gap-3">
-          <div><label class="text-xs text-neutral-600">最小人数</label><input id="pmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-          <div><label class="text-xs text-neutral-600">最大人数</label><input id="pmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-          <div><label class="text-xs text-neutral-600">重さ(1-5)</label><input id="weight" type="number" min="1" max="5" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+
         <div class="grid grid-cols-2 gap-3">
-          <div><label class="text-xs text-neutral-600">最小時間（分）</label><input id="tmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
-          <div><label class="text-xs text-neutral-600">最大時間（分）</label><input id="tmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+          <div>
+            <label class="text-[12px] text-neutral-600">最小人数</label>
+            <input id="pmin" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">最大人数</label>
+            <input id="pmax" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
         </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[12px] text-neutral-600">最小時間（分）</label>
+            <input id="tmin" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">最大時間（分）</label>
+            <input id="tmax" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
         </div>
-        <div><label class="text-xs text-neutral-600">画像ファイル名</label><input id="img" placeholder="12345.jpg" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[12px] text-neutral-600">重さ(1-5)</label>
+            <input id="weight" type="number" min="1" max="5" step="0.1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">画像ファイル名</label>
+            <input id="img" placeholder="12345.jpg" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+        </div>
+
         <div class="flex gap-2 pt-2">
-          <button type="submit" class="flex-1 bg-neutral-900 text-white text-sm rounded-lg py-2">保存</button>
-          <button type="button" id="clear" class="px-4 border border-neutral-200 rounded-lg text-sm">クリア</button>
+          <button type="submit" class="flex-1 bg-neutral-900 text-white text-sm rounded-lg py-2 hover:bg-black">保存</button>
+          <button type="button" id="clearBtn" class="px-4 border border-neutral-200 rounded-lg text-sm hover:bg-neutral-50">クリア</button>
+          <button type="button" id="deleteBtn" class="px-4 border border-red-200 text-red-600 rounded-lg text-sm hover:bg-red-50 hidden">削除</button>
         </div>
       </form>
     </section>
-    
+
+    <!-- 右：一覧 -->
     <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
-      <div class="flex items-center justify-between mb-3">
-        <h2 class="text-sm font-medium">ゲーム一覧 (<span id="count">0</span>件)</h2>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-medium">ゲーム一覧 <span class="text-neutral-500">(<span id="count">0</span>件)</span></h2>
         <div class="flex gap-2">
-          <button id="export" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">JSON書き出し</button>
-          <button id="copyLast" class="text-xs bg-emerald-600 text-white rounded-lg px-3 py-1.5">コードコピー</button>
-          <button id="refreshList" class="text-xs bg-blue-600 text-white rounded-lg px-3 py-1.5">一覧更新</button>
-          <button id="reset" class="text-xs border border-neutral-200 rounded-lg px-3 py-1.5">初期化</button>
+          <button id="exportBtn" class="text-[12px] bg-emerald-600 text-white rounded-lg px-3 py-1.5 hover:bg-emerald-700">JSONコピー</button>
         </div>
       </div>
-      <div class="mb-3">
-        <input id="search" type="text" placeholder="ゲーム名で検索..." class="w-full border border-neutral-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
-      </div>
-      <div id="list" class="space-y-2 max-h-[600px] overflow-y-auto"></div>
+      
+      <input id="search" placeholder="ゲーム名で検索..." class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+      
+      <div id="list" class="space-y-1 max-h-[600px] overflow-y-auto -mx-2 px-2"></div>
     </section>
   </main>
 </div>
 
 <script>
-const PASS = '1111';
-const lock = document.getElementById('lock');
-const pw = document.getElementById('pw');
-const pwBtn = document.getElementById('pwBtn');
-const pwErr = document.getElementById('pwErr');
-
-function unlock(){
-  if(pw.value.trim() === PASS){
-    lock.style.display="none"; document.body.style.overflow="auto";
-  }else{
-    pwErr.textContent='パスワードが違います';
-    pw.select();
-  }
-}
-pwBtn.addEventListener('click', unlock);
-pw.addEventListener('keydown', e=>{ if(e.key==='Enter') unlock(); });
-
-// initialGames removed - now loading from games.json
-let games = [];
-
-// games.jsonから読み込み
-async function loadGames() {
-  try {
-    const res = await fetch('games.json?v=' + Date.now(), {cache: 'no-store'});
-    if (res.ok) {
-      games = await res.json();
-      console.log('✓ Loaded', games.length, 'games from games.json');
+(function() {
+  const PASS = '1111';
+  const lock = document.getElementById('lock');
+  const pw = document.getElementById('pw');
+  const pwBtn = document.getElementById('pwBtn');
+  const pwErr = document.getElementById('pwErr');
+  
+  function unlock() {
+    if (pw.value === PASS) {
+      lock.style.display = 'none';
+      loadGames();
     } else {
-      throw new Error('games.json not found');
-    }
-  } catch (e) {
-    console.error('Failed to load games.json:', e);
-    // フォールバック: localStorage
-    const saved = localStorage.getItem('bg_games');
-    games = saved ? JSON.parse(saved) : [];
-  }
-  renderList();
-  updateCount();
-}
-
-loadGames();
-let editingIdx = -1;
-
-const form = document.getElementById('form');
-const list = document.getElementById('list');
-const count = document.getElementById('count');
-
-function save(){
-  localStorage.setItem('bg_games', JSON.stringify(games));
-  render();
-}
-
-let lastAddedGame = null;
-
-function updatePlayersDisplay(){
-  const pmin = parseInt(document.getElementById('pmin').value)||0;
-  const pmax = parseInt(document.getElementById('pmax').value)||0;
-  let players = '';
-  if(pmin && pmax){
-    players = pmin === pmax ? String(pmin) : `${pmin}-${pmax}`;
-  } else if(pmin){
-    players = String(pmin);
-  } else if(pmax){
-    players = String(pmax);
-  }
-  document.getElementById('players').value = players;
-}
-
-document.getElementById('pmin').addEventListener('input', updatePlayersDisplay);
-document.getElementById('pmax').addEventListener('input', updatePlayersDisplay);
-
-function updateTimeDisplay(){
-  const tmin = parseInt(document.getElementById('tmin').value)||0;
-  const tmax = parseInt(document.getElementById('tmax').value)||0;
-  let time = '';
-  if(tmin && tmax){
-    time = tmin === tmax ? `${tmin}分` : `${tmin}-${tmax}分`;
-  } else if(tmin){
-    time = `${tmin}分`;
-  } else if(tmax){
-    time = `${tmax}分`;
-  }
-  document.getElementById('time').value = time;
-}
-document.getElementById('tmin').addEventListener('input', updateTimeDisplay);
-document.getElementById('tmax').addEventListener('input', updateTimeDisplay);
-
-document.getElementById('url').addEventListener('blur', function(){
-  const url = this.value;
-  const match = url.match(/boardgamegeek\.com\/boardgame\/(\d+)/i);
-  if(match){
-    const id = match[1];
-    document.getElementById('id').value = id;
-    const imgInput = document.getElementById('img');
-    if(!imgInput.value.trim()){
-      imgInput.value = id + '.jpg';
+      pwErr.textContent = 'パスワードが違います';
+      pw.select();
     }
   }
-});
-
-document.getElementById('copyLast').addEventListener('click', ()=>{
-  if(!lastAddedGame){
-    alert('まだゲームを追加していません');
-    return;
-  }
-  const g = lastAddedGame;
-  const code = `  { id: ${g.id}, name: "${g.name}", url: "${g.url}", players: "${g.players}", time: "${g.time}", pmin: ${g.pmin}, pmax: ${g.pmax}, weight: ${g.weight}, img: "${g.img}" },`;
-  navigator.clipboard.writeText(code).then(()=>{
-    const btn = document.getElementById('copyLast');
-    const orig = btn.textContent;
-    btn.textContent = 'コピー完了!';
-    setTimeout(()=> btn.textContent = orig, 2000);
-  }).catch(()=>{ prompt('コピーしてください:', code); });
-});
-
-function render(){
-  const searchTerm = document.getElementById('search')?.value.toLowerCase() || '';
-  const filteredGames = searchTerm 
-    ? games.filter(g => g.name.toLowerCase().includes(searchTerm))
-    : games;
   
-  count.textContent = filteredGames.length + (searchTerm ? ` / ${games.length}` : '');
-  list.innerHTML = filteredGames.map((g,i)=>{
-    const originalIndex = games.indexOf(g);
-    return `
-    <div class="flex items-center justify-between border border-neutral-100 rounded-lg p-2 hover:bg-neutral-50">
-      <div class="flex-1 min-w-0">
-        <div class="text-sm font-medium truncate">${g.name}</div>
-        <div class="text-[11px] text-neutral-500">${g.players} ${g.time} ★${g.weight} ID:${g.id}</div>
-      </div>
-      <div class="flex gap-1 ml-2">
-        <button onclick="edit(${i})" class="text-[11px] border border-neutral-200 rounded px-2 py-1">編集</button>
-        <button onclick="del(${i})" class="text-[11px] border border-neutral-200 rounded px-2 py-1">削除</button>
-      </div>
-    </div>
-  `}).join('');
-}
-
-function edit(i){
-  editingIdx = i;
-  const g = games[i];
-  ['id','name','url','players','time','pmin','pmax','weight','img'].forEach(k=>{
-    document.getElementById(k).value = g[k]||'';
-  });
-}
-
-function del(i){
-  if(confirm('削除しますか？')){
-    games.splice(i,1);
-    save();
+  pwBtn.addEventListener('click', unlock);
+  pw.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+  
+  let games = [];
+  let editingIdx = -1;
+  
+  async function loadGames() {
+    try {
+      const res = await fetch('games.json?v=' + Date.now(), {cache: 'no-store'});
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      games = await res.json();
+      console.log('Loaded', games.length, 'games');
+    } catch (e) {
+      console.error('Failed:', e);
+      alert('games.jsonの読み込みに失敗しました\n' + e.message + '\n\n同じフォルダにgames.jsonがあるか確認してください');
+      games = [];
+    }
+    renderList();
+    updateCount();
   }
-}
-
-form.addEventListener('submit', e=>{
-  e.preventDefault();
-  const g = {
-    id: parseInt(document.getElementById('id').value) || Date.now(),
-    name: document.getElementById('name').value,
-    url: document.getElementById('url').value,
-    players: document.getElementById('players').value,
-    time: document.getElementById('time').value,
-    pmin: parseInt(document.getElementById('pmin').value)||0,
-    pmax: parseInt(document.getElementById('pmax').value)||0,
-    weight: parseInt(document.getElementById('weight').value)||0,
-    img: document.getElementById('img').value
+  
+  function $(id) { return document.getElementById(id); }
+  
+  function updateCount() {
+    $('count').textContent = games.length;
+  }
+  
+  // 自動更新：人数
+  function updatePlayers() {
+    const min = parseInt($('pmin').value) || 0;
+    const max = parseInt($('pmax').value) || 0;
+    let val = '';
+    if (min && max) val = min === max ? String(min) : min + '～' + max;
+    else if (min) val = String(min);
+    else if (max) val = String(max);
+    $('players').value = val;
+  }
+  
+  // 自動更新：時間
+  function updateTime() {
+    const min = parseInt($('tmin').value) || 0;
+    const max = parseInt($('tmax').value) || 0;
+    let val = '';
+    if (min && max) val = min === max ? min + '分' : min + '-' + max + '分';
+    else if (min) val = min + '分';
+    else if (max) val = max + '分';
+    $('time').value = val;
+  }
+  
+  // 自動更新：URL → 画像
+  function updateFromURL() {
+    const url = $('url').value;
+    if (!url) return;
+    
+    // boardgamegeek.com/boardgame/12345 を探す
+    const m = url.match(/boardgamegeek\.com\/boardgame\/(\d+)/i);
+    if (m) {
+      const id = m[1];
+      $('id').value = id;
+      if (!$('img').value) {
+        $('img').value = id + '.jpg';
+      }
+      console.log('BGG ID:', id);
+    }
+  }
+  
+  $('pmin').addEventListener('input', updatePlayers);
+  $('pmax').addEventListener('input', updatePlayers);
+  $('tmin').addEventListener('input', updateTime);
+  $('tmax').addEventListener('input', updateTime);
+  $('url').addEventListener('blur', updateFromURL);
+  $('url').addEventListener('change', updateFromURL);
+  
+  function renderList() {
+    const q = $('search').value.toLowerCase();
+    const list = $('list');
+    const filtered = q ? games.filter(g => g.name.toLowerCase().includes(q)) : games;
+    
+    list.innerHTML = filtered.map(g => {
+      const idx = games.indexOf(g);
+      return `<div class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-neutral-50 cursor-pointer" onclick="editGame(${idx})">
+        <img src="images/${g.img}" class="w-10 h-10 rounded object-cover bg-neutral-100" onerror="this.style.opacity='0.3'">
+        <div class="flex-1 min-w-0">
+          <div class="text-[13px] truncate">${g.name}</div>
+          <div class="text-[11px] text-neutral-500">${g.players || ''} · ${g.time || ''}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  
+  window.editGame = function(idx) {
+    const g = games[idx];
+    editingIdx = idx;
+    $('id').value = g.id || '';
+    $('name').value = g.name || '';
+    $('url').value = g.url || '';
+    $('players').value = g.players || '';
+    $('time').value = g.time || '';
+    $('pmin').value = g.pmin || '';
+    $('pmax').value = g.pmax || '';
+    $('weight').value = g.weight || '';
+    $('img').value = g.img || '';
+    
+    // 時間を分解
+    if (g.time) {
+      const nums = g.time.match(/\d+/g);
+      if (nums) {
+        $('tmin').value = nums[0] || '';
+        $('tmax').value = nums[1] || nums[0] || '';
+      }
+    }
+    
+    $('deleteBtn').classList.remove('hidden');
+    $('name').focus();
   };
-  // Store for copying
-  window.lastAddedGame = g;
   
-  if(editingIdx >= 0){
-    games[editingIdx] = g;
+  $('form').addEventListener('submit', e => {
+    e.preventDefault();
+    const g = {
+      id: parseInt($('id').value) || Date.now(),
+      name: $('name').value.trim(),
+      url: $('url').value.trim(),
+      players: $('players').value.trim(),
+      time: $('time').value.trim(),
+      pmin: parseInt($('pmin').value) || 0,
+      pmax: parseInt($('pmax').value) || 0,
+      weight: parseFloat($('weight').value) || 1,
+      img: $('img').value.trim()
+    };
+    
+    if (!g.name) return alert('ゲーム名を入力してください');
+    
+    if (editingIdx >= 0) games[editingIdx] = g;
+    else games.push(g);
+    
+    games.sort((a,b) => a.name.localeCompare(b.name, 'ja'));
+    renderList();
+    updateCount();
+    e.target.reset();
     editingIdx = -1;
-  }else{
-    games.push(g);
-  lastAddedGame = g;
-  }
-  save();
-  form.reset();
-});
-
-document.getElementById('clear').addEventListener('click', ()=>{
-  form.reset();
-  editingIdx = -1;
-});
-
-document.getElementById('export').addEventListener('click', ()=>{
-  const blob = new Blob([JSON.stringify(games,null,2)],{type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'games.json';
-  a.click();
-});
-
-document.getElementById('reset').addEventListener('click', ()=>{
-  if(confirm('初期データに戻しますか？')){
-    games = initialGames.slice();
-    save();
-  }
-});
-
-document.getElementById('search').addEventListener('input', render);
-
-document.getElementById('refreshList').addEventListener('click', async ()=>{
-  const btn = document.getElementById('refreshList');
-  const orig = btn.textContent;
+    $('deleteBtn').classList.add('hidden');
+    $('players').value = '';
+    $('time').value = '';
+  });
   
-  try {
-    btn.textContent = '取得中...';
-    btn.disabled = true;
-    
-    // index.htmlを取得
-    const response = await fetch('index.html?v=' + Date.now());
-    if (!response.ok) throw new Error('HTTP ' + response.status);
-    
-    const text = await response.text();
-    
-    // initialGames配列を抽出 (より堅牢な方法)
-    const startMarker = 'const initialGames = [';
-    const startIdx = text.indexOf(startMarker);
-    if (startIdx === -1) throw new Error('initialGamesが見つかりません');
-    
-    const arrayStart = startIdx + startMarker.length - 1;
-    let bracketCount = 0;
-    let inString = false;
-    let escapeNext = false;
-    let endIdx = arrayStart;
-    
-    for (let i = arrayStart; i < text.length; i++) {
-      const char = text[i];
-      
-      if (escapeNext) {
-        escapeNext = false;
-        continue;
-      }
-      
-      if (char === '\\') {
-        escapeNext = true;
-        continue;
-      }
-      
-      if (char === '"' && !escapeNext) {
-        inString = !inString;
-        continue;
-      }
-      
-      if (!inString) {
-        if (char === '[') bracketCount++;
-        if (char === ']') {
-          bracketCount--;
-          if (bracketCount === 0) {
-            endIdx = i + 1;
-            break;
-          }
-        }
-      }
+  $('clearBtn').addEventListener('click', () => {
+    $('form').reset();
+    editingIdx = -1;
+    $('deleteBtn').classList.add('hidden');
+    $('players').value = '';
+    $('time').value = '';
+  });
+  
+  $('deleteBtn').addEventListener('click', () => {
+    if (editingIdx >= 0 && confirm('削除しますか？')) {
+      games.splice(editingIdx, 1);
+      renderList();
+      updateCount();
+      $('form').reset();
+      editingIdx = -1;
+      $('deleteBtn').classList.add('hidden');
     }
-    
-    const arrayText = text.substring(arrayStart, endIdx);
-    
-    // JavaScriptの配列を評価（安全な方法）
-    const gamesData = (new Function('return ' + arrayText))();
-    
-    if (!Array.isArray(gamesData)) throw new Error('配列ではありません');
-    
-    // localStorageを更新
-    localStorage.setItem('bg_games', JSON.stringify(gamesData));
-    games = gamesData.slice();
-    
-    render();
-    
-    btn.textContent = `更新完了 (${games.length}件)`;
-  } catch (error) {
-    console.error('更新エラー:', error);
-    btn.textContent = 'エラー';
-    alert('index.htmlからの読み込みに失敗しました\n' + error.message + '\n\n詳細はコンソールを確認してください');
-  } finally {
-    setTimeout(()=>{ 
-      btn.textContent = orig;
-      btn.disabled = false;
-    }, 2000);
-  }
-});
-
-if(location.search.includes('reset')){
-  localStorage.removeItem('bg_games');
-  games = initialGames.slice();
-}
-
-render();
+  });
+  
+  $('search').addEventListener('input', renderList);
+  
+  $('exportBtn').addEventListener('click', () => {
+    const json = JSON.stringify(games, null, 2);
+    navigator.clipboard.writeText(json).then(() => {
+      const btn = $('exportBtn');
+      const t = btn.textContent;
+      btn.textContent = 'コピー完了!';
+      setTimeout(() => btn.textContent = t, 1500);
+    });
+  });
+})();
 </script>
 </body>
 </html>
