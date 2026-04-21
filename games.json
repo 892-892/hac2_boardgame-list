@@ -715,6 +715,17 @@
     "img": "245638.jpg"
   },
   {
+    "id": 245638,
+    "name": "コインブラ",
+    "url": "https://boardgamegeek.com/boardgame/245638/coimbra",
+    "players": "2～4",
+    "time": "60-90分",
+    "pmin": 2,
+    "pmax": 4,
+    "weight": 3,
+    "img": "245638.jpg"
+  },
+  {
     "name": "ゴーストオブクリスマス",
     "url": "https://boardgamegeek.com/boardgame/281619/ghosts-of-christmas",
     "players": "3~4",
@@ -834,6 +845,17 @@
     "weight": 2,
     "id": 149910,
     "img": "149910.jpg"
+  },
+  {
+    "id": 32382,
+    "name": "ジプシーキング",
+    "url": "https://boardgamegeek.com/boardgame/32382/gipsy-king",
+    "players": "2～5",
+    "time": "30分",
+    "pmin": 2,
+    "pmax": 5,
+    "weight": 3,
+    "img": "32382.jpg"
   },
   {
     "name": "シャーデンフロイデ",
