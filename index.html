@@ -24,12 +24,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kak
     <p class="text-sm text-slate-500 mt-1">ジャンルラベル付き</p>
   </header>
 
-  <!-- フィルター -->
   <div class="bg-white rounded-xl p-4 mb-6">
     <input id="q" placeholder="検索..." class="border px-3 py-2 rounded w-full">
   </div>
 
-  <!-- グリッド -->
   <div id="grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
 
 </div>
@@ -58,7 +56,7 @@ function render() {
   grid.innerHTML = filtered.map(g => `
     <div class="bg-white rounded-xl overflow-hidden shadow">
 
-      <!-- 画像 + ジャンルラベル -->
+      <!-- ★ここだけ差分（relative追加 + ラベル） -->
       <div class="relative">
         <img src="images/${g.img}" class="w-full aspect-[3/4] object-cover">
 
@@ -69,7 +67,6 @@ function render() {
         ` : ""}
       </div>
 
-      <!-- テキスト -->
       <div class="p-2">
         <div class="text-xs font-bold line2">${g.name}</div>
         <div class="text-[10px] text-slate-500 mt-1">
