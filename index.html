@@ -310,30 +310,28 @@ grid.innerHTML = list.map(g => `
     <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
       <img src="images/${g.img}" alt="${g.name}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
     </div>
-      <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
-        <img src="images/${g.img}" alt="${g.name}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
-      </div>
-      <div class="p-3">
-        <h3 class="font-medium text-[13px] leading-snug line2 min-h-[2.5rem]">${g.name}</h3>
-        <div class="mt-2">
-          <div class="grid grid-cols-3 divide-x divide-slate-300 text-center">
-            <div>
-              <div class="text-[9px] text-slate-400 leading-none">人数</div>
-              <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.players||'-'}</div>
-            </div>
-            <div>
-              <div class="text-[9px] text-slate-400 leading-none">時間</div>
-              <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.time||'-'}</div>
-            </div>
-            <div>
-              <div class="text-[9px] text-slate-400 leading-none">重さ</div>
-              <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.weight||'-'}</div>
-            </div>
+
+    <div class="p-3">
+      <h3 class="font-medium text-[13px] leading-snug line2 min-h-[2.5rem]">${g.name}</h3>
+      <div class="mt-2">
+        <div class="grid grid-cols-3 divide-x divide-slate-300 text-center">
+          <div>
+            <div class="text-[9px] text-slate-400 leading-none">人数</div>
+            <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.players||'-'}</div>
+          </div>
+          <div>
+            <div class="text-[9px] text-slate-400 leading-none">時間</div>
+            <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.time||'-'}</div>
+          </div>
+          <div>
+            <div class="text-[9px] text-slate-400 leading-none">重さ</div>
+            <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.weight||'-'}</div>
           </div>
         </div>
       </div>
-    </a>
-  `).join('');
+    </div>
+  </a>
+`).join('');
 }
 
 [q,players,time,weight,sort].forEach(el => el.addEventListener('input', render));
