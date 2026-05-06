@@ -416,8 +416,19 @@ window.editGame = function(idx) {
 
   $('pmin').value = g.pmin || '';
   $('pmax').value = g.pmax || '';
+  
+const nums = (g.time || '').match(/\d+/g);
+
+if (nums && nums.length >= 2) {
+  $('tmin').value = nums[0];
+  $('tmax').value = nums[1];
+} else if (nums && nums.length === 1) {
+  $('tmin').value = nums[0];
+  $('tmax').value = nums[0];
+} else {
   $('tmin').value = '';
   $('tmax').value = '';
+}
 
   $('weight').value = g.weight || '';
   $('img').value = g.img || '';
