@@ -302,7 +302,14 @@ function render(){
   count.textContent = `表示中: ${list.length}件`;
   
   grid.innerHTML = list.map(g => `
-    <a href="${g.url}" target="_blank" class="group block bg-white rounded-2xl shadow-sm ring-1 ring-slate-900/5 overflow-hidden hover:shadow-md transition">
+grid.innerHTML = list.map(g => `
+  <a href="${g.url}" target="_blank" class="group block bg-white rounded-2xl shadow-sm ring-1 ring-slate-900/5 overflow-hidden hover:shadow-md transition relative">
+
+    ${g.genre ? `<div class="absolute top-2 right-2 text-[10px] px-2 py-0.5 bg-black/80 text-white rounded">${g.genre}</div>` : ``}
+
+    <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
+      <img src="images/${g.img}" alt="${g.name}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
+    </div>
       <div class="aspect-[4/3] bg-slate-100 overflow-hidden">
         <img src="images/${g.img}" alt="${g.name}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
       </div>
