@@ -1,39 +1,154 @@
-grid.innerHTML = list.map(g => `
-  <a href="${g.url}" target="_blank" class="group block bg-white rounded-2xl shadow-sm ring-1 ring-slate-900/5 overflow-hidden hover:shadow-md transition relative">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Playables SDK -->
+<script>
+(function() {
+  'use strict';
 
-    <div class="aspect-[4/3] bg-slate-100 overflow-hidden relative">
-      <img src="images/${g.img}" alt="${g.name}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
+  var HANDLER_NAME = 'playablesGameEventHandler';
+  var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
+  var RAF_FRAME_THRESHOLD = 3;
 
-      ${(g.genres && g.genres.length)
-        ? `<div class="absolute bottom-2 right-2 flex flex-wrap gap-1 justify-end max-w-[80%]">
-            ${g.genres.map(tag => `
-              <span class="text-[10px] px-2 py-0.5 bg-black/80 text-white rounded whitespace-nowrap">
-                ${tag}
-              </span>
-            `).join('')}
-           </div>`
-        : ``}
+  var gameReadySent = false;
+  var firstInteractionSent = false;
+  var errorSent = false;
+  var frameCount = 0;
+  var originalRAF = window.requestAnimationFrame;
+
+  function hasIOSBridge() {
+    return !!(window.webkit &&
+              window.webkit.messageHandlers &&
+              window.webkit.messageHandlers[HANDLER_NAME]);
+  }
+
+  function hasAndroidBridge() {
+    return !!(window[ANDROID_BRIDGE_NAME] &&
+              typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
+  }
+
+  function isInIframe() {
+    return !!(window.parent && window.parent !== window);
+  }
+
+  function sendEvent(eventName, payload) {
+    var message = {
+      type: eventName,
+      payload: payload || {},
+      timestamp: Date.now()
+    };
+
+    if (hasIOSBridge()) {
+      try { window.webkit.messageHandlers[HANDLER_NAME].postMessage(message); } catch (e) {}
+      return;
+    }
+
+    if (hasAndroidBridge()) {
+      try {
+        var p = payload || {};
+        p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
+        window[ANDROID_BRIDGE_NAME].postEvent(eventName, JSON.stringify(p));
+      } catch (e) {}
+      return;
+    }
+
+    if (isInIframe()) {
+      try { window.parent.postMessage(message, '*'); } catch (e) {}
+    }
+  }
+
+  function onFrame() {
+    if (gameReadySent) return;
+    frameCount++;
+    if (frameCount >= RAF_FRAME_THRESHOLD) {
+      gameReadySent = true;
+      sendEvent('game_ready', { frame_count: frameCount });
+      return;
+    }
+    originalRAF.call(window, onFrame);
+  }
+
+  if (originalRAF) {
+    originalRAF.call(window, onFrame);
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>892-BoardGameList</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; }
+.line2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+
+<div class="max-w-7xl mx-auto px-4 pb-16">
+  <header class="py-8 text-center relative">
+    <div class="absolute right-0 top-8">
+      <a href="admin.html" class="text-xs text-slate-500 border border-slate-200 rounded px-2 py-1 bg-white">管理</a>
     </div>
+    <h1 class="text-3xl font-bold">所持ボドゲ一覧</h1>
+  </header>
 
-    <div class="p-3">
-      <h3 class="font-medium text-[13px] leading-snug line2 min-h-[2.5rem]">${g.name}</h3>
-      <div class="mt-2">
-        <div class="grid grid-cols-3 divide-x divide-slate-300 text-center">
-          <div>
-            <div class="text-[9px] text-slate-400 leading-none">人数</div>
-            <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.players||'-'}</div>
-          </div>
-          <div>
-            <div class="text-[9px] text-slate-400 leading-none">時間</div>
-            <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.time||'-'}</div>
-          </div>
-          <div>
-            <div class="text-[9px] text-slate-400 leading-none">重さ</div>
-            <div class="text-[11px] font-medium text-slate-700 mt-0.5">${g.weight||'-'}</div>
-          </div>
-        </div>
+  <div class="mb-4">
+    <input id="q" placeholder="検索" class="border p-2 w-full">
+  </div>
+
+  <div id="grid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+</div>
+
+<script>
+let games = [];
+
+async function loadGames(){
+  const res = await fetch('games.json');
+  games = await res.json();
+  render();
+}
+
+const q = document.getElementById('q');
+const grid = document.getElementById('grid');
+
+function render(){
+  let list = games.slice();
+  const query = q.value.toLowerCase();
+  if(query) list = list.filter(g => g.name.toLowerCase().includes(query));
+
+  grid.innerHTML = list.map(g => `
+    <a href="${g.url}" target="_blank" class="group block bg-white rounded-2xl shadow overflow-hidden relative">
+
+      <div class="aspect-[4/3] bg-slate-100 overflow-hidden relative">
+        <img src="images/${g.img}" class="w-full h-full object-cover">
+
+        ${(g.genres && g.genres.length)
+          ? `<div class="absolute bottom-2 right-2 flex flex-wrap gap-1 justify-end max-w-[80%]">
+              ${g.genres.map(tag => `
+                <span class="text-[10px] px-2 py-0.5 bg-black/80 text-white rounded">
+                  ${tag}
+                </span>
+              `).join('')}
+            </div>`
+          : ``}
       </div>
-    </div>
 
-  </a>
-`).join('');
+      <div class="p-2">
+        <div class="text-sm line2">${g.name}</div>
+        <div class="text-xs text-gray-500">${g.players||''} ${g.time||''}</div>
+      </div>
+
+    </a>
+  `).join('');
+}
+
+q.addEventListener('input', render);
+
+loadGames();
+</script>
+
+</body>
+</html>
