@@ -1,186 +1,209 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Playables SDK -->
 <script>// Playables SDK v1.0.0
-(function(){'use strict';if(window.playablesSDK)return;})();</script>
-<script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
+(function(){'use strict';if(window.playablesSDK)return;var h='playablesGameEventHandler',a='_MetaPlayablesBridge',r=3,g=false,f=0,o=window.requestAnimationFrame;function s(n,p){var m={type:n,payload:p||{},timestamp:Date.now()};if(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers[h]){window.webkit.messageHandlers[h].postMessage(message);return}if(window[a]&&typeof window[a].postEvent==='function'){var d=p||{};d.__secureToken=window.__fbAndroidBridgeAuthToken||'';window[a].postEvent(n,JSON.stringify(d));return}if(window.parent&&window.parent!==window){window.parent.postMessage(m,'*');}}if(o){window.requestAnimationFrame=function(c){if(!g){return o.call(window,function(t){f++;if(f>=r&&!g){g=true;s('game_ready',{frame_count:f,detected_at:Date.now()})}c(t)})}return o.call(window,c)}}window.playablesSDK={complete:function(s){s('game_ended',{score:s,completed:true})},error:function(m){s('error',{message:m||'Error',auto_captured:false})},sendEvent:s};if(o){o.call(window,function(){if(!g&&f>=r){g=true;s('game_ready',{frame_count:f,detected_at:Date.now()})}})}})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>管理 - ボードゲームコレクション</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
-</style>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}</style>
 </head>
-
 <body class="bg-white text-neutral-900">
 
+<div id="lock" class="fixed inset-0 bg-white z-50 flex items-center justify-center p-4">
+  <div class="w-full max-w-[320px] border border-neutral-200 rounded-2xl p-6">
+    <h1 class="text-[15px] font-medium mb-1">管理ページ</h1>
+    <p class="text-[12px] text-neutral-600 mb-4">パスワードを入力してください</p>
+    <input id="pw" type="password" class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none" placeholder="••••••••" autofocus>
+    <button id="pwBtn" class="mt-3 w-full bg-neutral-900 text-white text-sm rounded-xl py-2">入る</button>
+    <p id="pwErr" class="text-[11px] text-red-600 mt-2 h-4"></p>
+  </div>
+</div>
+
 <div class="max-w-[1280px] mx-auto px-4 py-6 md:py-10">
+  <header class="mb-6 flex items-start justify-between">
+    <div>
+      <h1 class="text-2xl font-semibold tracking-tight">🎲 コレクション編集</h1>
+      <p class="text-sm text-neutral-600 mt-1">ゲームを追加・編集してJSONを書き出し</p>
+    </div>
+    <a href="index.html" class="text-[12px] text-neutral-600 border border-neutral-200 rounded-lg px-3 py-1.5 bg-white">← 一覧に戻る</a>
+  </header>
 
-  <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
-
-    <!-- 左：フォーム -->
+  <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
     <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
-
+      <h2 class="text-sm font-medium mb-4">ゲーム情報</h2>
       <form id="form" class="space-y-3">
-
         <input type="hidden" id="id">
-
-        <input id="name" required placeholder="ゲーム名"
-          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
-
-        <input id="url" placeholder="URL"
-          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
-
-        <input id="players" readonly placeholder="人数"
-          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100">
-
-        <input id="time" readonly placeholder="時間"
-          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100">
-
-        <input id="pmin" type="number" placeholder="最小人数"
-          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
-
-        <input id="pmax" type="number" placeholder="最大人数"
-          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
-
-        <input id="tmin" type="number" placeholder="最小時間"
-          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
-
-        <input id="tmax" type="number" placeholder="最大時間"
-          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
-
-        <input id="weight" type="number" placeholder="重さ"
-          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
-
-        <input id="img" placeholder="画像"
-          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
-
-        <!-- ★ジャンル（複数行） -->
         <div>
-          <label class="text-[12px] text-neutral-600">ジャンル（1行ずつ）</label>
-          <textarea id="genre" rows="4"
-            class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"
-            placeholder="戦略\nパーティ\n協力"></textarea>
+          <label class="text-[12px] text-neutral-600">ゲーム名</label>
+          <input id="name" required class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
         </div>
-
-        <div class="flex gap-2">
-          <button type="submit" class="flex-1 bg-black text-white py-2 rounded">保存</button>
-          <button type="button" id="clearBtn" class="px-4 border rounded">クリア</button>
+        <div>
+          <label class="text-[12px] text-neutral-600">URL</label>
+          <input id="url" type="url" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
         </div>
-
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[12px] text-neutral-600">最小人数</label>
+            <input id="pmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">最大人数</label>
+            <input id="pmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[12px] text-neutral-600">最小時間</label>
+            <input id="tmin" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">最大時間</label>
+            <input id="tmax" type="number" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[12px] text-neutral-600">重さ(1-5)</label>
+            <input id="weight" type="number" step="0.1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">画像ファイル名</label>
+            <input id="img" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+        </div>
+        <div>
+          <label class="text-[12px] text-neutral-600">ジャンル（1行に1つずつ入力）</label>
+          <textarea id="genre" rows="3" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none" placeholder="協力ゲーム&#13;&#10;カードゲーム"></textarea>
+        </div>
+        <div class="flex gap-2 pt-2">
+          <button type="submit" class="flex-1 bg-neutral-900 text-white text-sm rounded-lg py-2">保存</button>
+          <button type="button" id="clearBtn" class="px-4 border border-neutral-200 rounded-lg text-sm">クリア</button>
+          <button type="button" id="deleteBtn" class="px-4 border border-red-200 text-red-600 rounded-lg text-sm hidden">削除</button>
+        </div>
+        <input type="hidden" id="players"><input type="hidden" id="time">
       </form>
     </section>
 
-    <!-- 右：一覧 -->
     <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
-      <div id="list"></div>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-medium">ゲーム一覧 (<span id="count">0</span>件)</h2>
+        <button id="exportBtn" class="text-[12px] bg-emerald-600 text-white rounded-lg px-3 py-1.5">JSONコピー</button>
+      </div>
+      <input id="search" placeholder="検索..." class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm mb-3">
+      <div id="list" class="space-y-1 max-h-[600px] overflow-y-auto"></div>
     </section>
-
   </main>
 </div>
 
 <script>
 (function() {
-
+  const PASS = '1111';
+  const $ = id => document.getElementById(id);
   let games = [];
   let editingIdx = -1;
 
-  function $(id){ return document.getElementById(id); }
+  function unlock() {
+    if ($('pw').value === PASS) { $('lock').style.display = 'none'; loadGames(); }
+    else { $('pwErr').textContent = 'パスワードが違います'; }
+  }
+  $('pwBtn').addEventListener('click', unlock);
+  $('pw').addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
 
-  function updatePlayers(){
-    const min = parseInt($('pmin').value)||0;
-    const max = parseInt($('pmax').value)||0;
-    let val = '';
-    if(min && max) val = min===max ? min : min+'～'+max;
-    $('players').value = val;
+  async function loadGames() {
+    try {
+      const res = await fetch('games.json?v=' + Date.now(), {cache: 'no-store'});
+      games = res.ok ? await res.json() : [];
+    } catch (e) { games = []; }
+    renderList();
+    updateCount();
   }
 
-  function updateTime(){
-    const min = parseInt($('tmin').value)||0;
-    const max = parseInt($('tmax').value)||0;
-    let val = '';
-    if(min && max) val = min===max ? min+'分' : min+'-'+max+'分';
-    $('time').value = val;
+  function updateCount() { $('count').textContent = games.length; }
+
+  function getPlayersVal() {
+    const min = parseInt($('pmin').value) || 0, max = parseInt($('pmax').value) || 0;
+    if (min && max) return min === max ? String(min) : min + '～' + max;
+    return min || max || '';
   }
 
-  $('pmin').oninput = updatePlayers;
-  $('pmax').oninput = updatePlayers;
-  $('tmin').oninput = updateTime;
-  $('tmax').oninput = updateTime;
-
-  function renderList(){
-    $('list').innerHTML = games.map((g,i)=>`
-      <div class="p-2 border-b cursor-pointer" onclick="editGame(${i})">
-        ${g.name}
-      </div>
-    `).join('');
+  function getTimeVal() {
+    const min = parseInt($('tmin').value) || 0, max = parseInt($('tmax').value) || 0;
+    if (min && max) return min === max ? min + '分' : min + '-' + max + '分';
+    return min ? min + '分' : (max ? max + '分' : '');
   }
 
-  window.editGame = function(idx){
+  $('url').addEventListener('blur', () => {
+    const m = $('url').value.match(/boardgamegeek\.com\/boardgame\/(\d+)/i);
+    if (m && !$('img').value) { $('img').value = m[1] + '.jpg'; $('id').value = m[1]; }
+  });
+
+  function renderList() {
+    const q = $('search').value.toLowerCase();
+    const filtered = q ? games.filter(g => g.name.toLowerCase().includes(q)) : games;
+    $('list').innerHTML = filtered.map(g => {
+      const idx = games.indexOf(g);
+      const tags = (g.genre && g.genre.length) ? ` · ${g.genre.join('/')}` : '';
+      return `<div class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-neutral-50 cursor-pointer" onclick="editGame(${idx})">
+        <img src="images/${g.img}" class="w-10 h-10 rounded object-cover bg-neutral-100" onerror="this.style.opacity='0.3'">
+        <div class="flex-1 min-w-0">
+          <div class="text-[13px] truncate">${g.name}</div>
+          <div class="text-[11px] text-neutral-500">${g.players || ''} · ${g.time || ''}${tags}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  window.editGame = function(idx) {
     const g = games[idx];
     editingIdx = idx;
-
-    $('id').value = g.id||'';
-    $('name').value = g.name||'';
-    $('url').value = g.url||'';
-    $('players').value = g.players||'';
-    $('time').value = g.time||'';
-    $('pmin').value = g.pmin||'';
-    $('pmax').value = g.pmax||'';
-    $('weight').value = g.weight||'';
-    $('img').value = g.img||'';
-
-    // ★配列 → 改行
-    $('genre').value = (g.genre || []).join('\n');
+    $('id').value = g.id || '';
+    $('name').value = g.name || '';
+    $('url').value = g.url || '';
+    $('pmin').value = g.pmin || '';
+    $('pmax').value = g.pmax || '';
+    $('weight').value = g.weight || '';
+    $('img').value = g.img || '';
+    $('genre').value = Array.isArray(g.genre) ? g.genre.join('\n') : '';
+    if (g.time) {
+      const nums = g.time.match(/\d+/g);
+      if (nums) { $('tmin').value = nums[0] || ''; $('tmax').value = nums[1] || nums[0] || ''; }
+    }
+    $('deleteBtn').classList.remove('hidden');
   };
 
-  $('form').addEventListener('submit', e=>{
+  $('form').addEventListener('submit', e => {
     e.preventDefault();
-
+    const genreArray = $('genre').value.split('\n').map(s => s.trim()).filter(s => s !== '');
     const g = {
-      id: parseInt($('id').value)||Date.now(),
+      id: parseInt($('id').value) || Date.now(),
       name: $('name').value.trim(),
       url: $('url').value.trim(),
-      players: $('players').value.trim(),
-      time: $('time').value.trim(),
-      pmin: parseInt($('pmin').value)||0,
-      pmax: parseInt($('pmax').value)||0,
-      weight: parseFloat($('weight').value)||1,
+      players: getPlayersVal(),
+      time: getTimeVal(),
+      pmin: parseInt($('pmin').value) || 0,
+      pmax: parseInt($('pmax').value) || 0,
+      weight: parseFloat($('weight').value) || 1,
       img: $('img').value.trim(),
-
-      // ★改行 → 配列
-      genre: $('genre').value
-        .split('\n')
-        .map(v=>v.trim())
-        .filter(v=>v)
+      genre: genreArray
     };
-
-    if(!g.name) return alert('ゲーム名を入力してください');
-
-    if(editingIdx>=0) games[editingIdx]=g;
-    else games.push(g);
-
-    renderList();
-
-    e.target.reset();
-    editingIdx = -1;
-    $('players').value='';
-    $('time').value='';
-    $('genre').value='';
+    if (editingIdx >= 0) games[editingIdx] = g; else games.push(g);
+    games.sort((a,b) => a.name.localeCompare(b.name, 'ja'));
+    renderList(); updateCount();
+    $('form').reset(); editingIdx = -1;
+    $('deleteBtn').classList.add('hidden');
   });
 
-  $('clearBtn').addEventListener('click', ()=>{
-    $('form').reset();
-    editingIdx=-1;
-    $('players').value='';
-    $('time').value='';
-    $('genre').value='';
+  $('clearBtn').addEventListener('click', () => { $('form').reset(); editingIdx = -1; $('deleteBtn').classList.add('hidden'); });
+  $('deleteBtn').addEventListener('click', () => { if (confirm('削除？')) { games.splice(editingIdx, 1); renderList(); updateCount(); $('form').reset(); editingIdx = -1; $('deleteBtn').classList.add('hidden'); } });
+  $('search').addEventListener('input', renderList);
+  $('exportBtn').addEventListener('click', () => {
+    navigator.clipboard.writeText(JSON.stringify(games, null, 2)).then(() => {
+      const b = $('exportBtn'); b.textContent = '完了'; setTimeout(() => b.textContent = 'JSONコピー', 1000);
+    });
   });
-
 })();
 </script>
-
 </body>
 </html>
