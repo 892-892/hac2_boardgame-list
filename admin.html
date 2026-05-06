@@ -1,155 +1,143 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Playables SDK（そのまま維持） -->
-<script>// 省略（あなたの元コードそのまま）</script>
-
+<!-- Playables SDK -->
+<script>// Playables SDK v1.0.0
+(function(){'use strict';if(window.playablesSDK)return;})();</script>
+<script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>管理 - ボードゲームコレクション</title>
 <script src="https://cdn.tailwindcss.com"></script>
-
 <style>
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
 </style>
 </head>
-
 <body class="bg-white text-neutral-900">
 
-<!-- パスワードロック（そのまま） -->
-<div id="lock" class="fixed inset-0 bg-white z-50 flex items-center justify-center p-4">
-  <!-- そのまま -->
-</div>
-
 <div class="max-w-[1280px] mx-auto px-4 py-6 md:py-10">
+  <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
 
-<header class="mb-6 md:mb-8 flex items-start justify-between">
-  <div>
-    <h1 class="text-2xl md:text-[28px] font-semibold tracking-tight">🎲 コレクション編集</h1>
-    <p class="text-sm text-neutral-600 mt-1">ゲームを追加・編集してJSONを書き出し</p>
-  </div>
-  <a href="index.html" class="text-[12px] text-neutral-600 border border-neutral-200 rounded-lg px-3 py-1.5 bg-white">← 一覧に戻る</a>
-</header>
+    <!-- 左 -->
+    <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
+      <form id="form" class="space-y-3">
 
-<main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+        <input type="hidden" id="id">
 
-<!-- 左 -->
-<section class="border border-neutral-200 rounded-xl p-4 md:p-6">
-<form id="form" class="space-y-3">
+        <input id="name" required class="w-full border px-3 py-2 text-sm">
+        <input id="url" class="w-full border px-3 py-2 text-sm">
 
-<input type="hidden" id="id">
+        <input id="players" readonly class="w-full border px-3 py-2 text-sm">
+        <input id="time" readonly class="w-full border px-3 py-2 text-sm">
 
-<!-- そのまま項目 -->
-<input id="name" class="w-full border rounded p-2">
-<input id="url" class="w-full border rounded p-2">
+        <input id="pmin" type="number" class="w-full border px-3 py-2 text-sm">
+        <input id="pmax" type="number" class="w-full border px-3 py-2 text-sm">
 
-<input id="pmin" type="number" class="w-full border rounded p-2">
-<input id="pmax" type="number" class="w-full border rounded p-2">
+        <input id="tmin" type="number" class="w-full border px-3 py-2 text-sm">
+        <input id="tmax" type="number" class="w-full border px-3 py-2 text-sm">
 
-<input id="tmin" type="number" class="w-full border rounded p-2">
-<input id="tmax" type="number" class="w-full border rounded p-2">
+        <input id="weight" type="number" class="w-full border px-3 py-2 text-sm">
+        <input id="img" class="w-full border px-3 py-2 text-sm">
 
-<input id="weight" type="number" class="w-full border rounded p-2">
-<input id="img" class="w-full border rounded p-2">
+        <!-- ★ここだけ追加（複数行ジャンル） -->
+        <div>
+          <label class="text-[12px] text-neutral-600">ジャンル（1行ずつ）</label>
+          <textarea id="genre" rows="4"
+            class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"
+            placeholder="戦略\nパーティ\n協力"></textarea>
+        </div>
 
-<!-- ⭐ここだけ変更 -->
-<div>
-  <label class="text-[12px] text-neutral-600">ジャンル（1行に1つ）</label>
-  <textarea id="genre" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></textarea>
-</div>
+        <button type="submit">保存</button>
+      </form>
+    </section>
 
-<button class="w-full bg-black text-white py-2 rounded">保存</button>
+    <!-- 右 -->
+    <section>
+      <div id="list"></div>
+    </section>
 
-</form>
-</section>
-
-<!-- 右 -->
-<section class="border border-neutral-200 rounded-xl p-4 md:p-6">
-<div id="list"></div>
-</section>
-
-</main>
+  </main>
 </div>
 
 <script>
-let games = [];
-let editingIdx = -1;
+(function() {
 
-// 読み込み
-async function loadGames(){
-  try{
-    const res = await fetch('games.json?v='+Date.now());
-    games = await res.json();
-  }catch(e){
-    games = [];
+  let games = [];
+  let editingIdx = -1;
+
+  function $(id){return document.getElementById(id);}
+
+  function updatePlayers(){
+    const min = parseInt($('pmin').value)||0;
+    const max = parseInt($('pmax').value)||0;
+    $('players').value = min&&max ? (min===max?min:min+'～'+max) : '';
   }
-  renderList();
-}
 
-// 一覧
-function renderList(){
-  const list = document.getElementById('list');
-  list.innerHTML = games.map((g,i)=>`
-    <div onclick="editGame(${i})">${g.name}</div>
-  `).join('');
-}
+  function updateTime(){
+    const min = parseInt($('tmin').value)||0;
+    const max = parseInt($('tmax').value)||0;
+    $('time').value = min&&max ? min+'-'+max+'分' : '';
+  }
 
-// 編集
-window.editGame = function(i){
-  const g = games[i];
-  editingIdx = i;
+  $('pmin').oninput=updatePlayers;
+  $('pmax').oninput=updatePlayers;
+  $('tmin').oninput=updateTime;
+  $('tmax').oninput=updateTime;
 
-  name.value = g.name || '';
-  url.value = g.url || '';
-  pmin.value = g.pmin || '';
-  pmax.value = g.pmax || '';
-  tmin.value = g.tmin || '';
-  tmax.value = g.tmax || '';
-  weight.value = g.weight || '';
-  img.value = g.img || '';
+  function renderList(){
+    $('list').innerHTML = games.map((g,i)=>`
+      <div onclick="editGame(${i})">${g.name}</div>
+    `).join('');
+  }
 
-  // ⭐ 配列 → 改行
-  genre.value = (g.genre || []).join('\n');
-};
+  window.editGame = function(idx){
+    const g = games[idx];
+    editingIdx = idx;
 
-// 保存
-form.addEventListener('submit', e=>{
-  e.preventDefault();
+    $('id').value = g.id||'';
+    $('name').value = g.name||'';
+    $('url').value = g.url||'';
+    $('players').value = g.players||'';
+    $('time').value = g.time||'';
+    $('pmin').value = g.pmin||'';
+    $('pmax').value = g.pmax||'';
+    $('weight').value = g.weight||'';
+    $('img').value = g.img||'';
 
-  // ⭐ 改行 → 配列
-  const genres = genre.value
-    .split('\n')
-    .map(s=>s.trim())
-    .filter(Boolean);
-
-  const g = {
-    id: Date.now(),
-    name: name.value,
-    url: url.value,
-    pmin: parseInt(pmin.value)||0,
-    pmax: parseInt(pmax.value)||0,
-    tmin: parseInt(tmin.value)||0,
-    tmax: parseInt(tmax.value)||0,
-    weight: parseFloat(weight.value)||1,
-    img: img.value,
-    genre: genres
+    // ★ここ：配列 → 改行
+    $('genre').value = (g.genre||[]).join('\n');
   };
 
-  if(editingIdx>=0){
-    games[editingIdx]=g;
-  }else{
-    games.push(g);
-  }
+  $('form').addEventListener('submit', e=>{
+    e.preventDefault();
 
-  navigator.clipboard.writeText(JSON.stringify(games,null,2));
+    const g = {
+      id: parseInt($('id').value)||Date.now(),
+      name: $('name').value.trim(),
+      url: $('url').value.trim(),
+      players: $('players').value.trim(),
+      time: $('time').value.trim(),
+      pmin: parseInt($('pmin').value)||0,
+      pmax: parseInt($('pmax').value)||0,
+      weight: parseFloat($('weight').value)||1,
+      img: $('img').value.trim(),
 
-  form.reset();
-  editingIdx=-1;
+      // ★ここ：改行 → 配列
+      genre: $('genre').value
+        .split('\n')
+        .map(v=>v.trim())
+        .filter(v=>v)
+    };
 
-  renderList();
-});
+    if(editingIdx>=0) games[editingIdx]=g;
+    else games.push(g);
 
-loadGames();
+    renderList();
+    e.target.reset();
+    editingIdx=-1;
+  });
+
+})();
 </script>
 
 </body>
