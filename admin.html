@@ -13,33 +13,51 @@
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
 </style>
 </head>
+
 <body class="bg-white text-neutral-900">
 
 <div class="max-w-[1280px] mx-auto px-4 py-6 md:py-10">
+
   <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
 
-    <!-- 左 -->
+    <!-- 左：フォーム -->
     <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
+
       <form id="form" class="space-y-3">
 
         <input type="hidden" id="id">
 
-        <input id="name" required class="w-full border px-3 py-2 text-sm">
-        <input id="url" class="w-full border px-3 py-2 text-sm">
+        <input id="name" required placeholder="ゲーム名"
+          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
 
-        <input id="players" readonly class="w-full border px-3 py-2 text-sm">
-        <input id="time" readonly class="w-full border px-3 py-2 text-sm">
+        <input id="url" placeholder="URL"
+          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
 
-        <input id="pmin" type="number" class="w-full border px-3 py-2 text-sm">
-        <input id="pmax" type="number" class="w-full border px-3 py-2 text-sm">
+        <input id="players" readonly placeholder="人数"
+          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100">
 
-        <input id="tmin" type="number" class="w-full border px-3 py-2 text-sm">
-        <input id="tmax" type="number" class="w-full border px-3 py-2 text-sm">
+        <input id="time" readonly placeholder="時間"
+          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100">
 
-        <input id="weight" type="number" class="w-full border px-3 py-2 text-sm">
-        <input id="img" class="w-full border px-3 py-2 text-sm">
+        <input id="pmin" type="number" placeholder="最小人数"
+          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
 
-        <!-- ★ここだけ追加（複数行ジャンル） -->
+        <input id="pmax" type="number" placeholder="最大人数"
+          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+
+        <input id="tmin" type="number" placeholder="最小時間"
+          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+
+        <input id="tmax" type="number" placeholder="最大時間"
+          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+
+        <input id="weight" type="number" placeholder="重さ"
+          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+
+        <input id="img" placeholder="画像"
+          class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+
+        <!-- ★ジャンル（複数行） -->
         <div>
           <label class="text-[12px] text-neutral-600">ジャンル（1行ずつ）</label>
           <textarea id="genre" rows="4"
@@ -47,12 +65,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
             placeholder="戦略\nパーティ\n協力"></textarea>
         </div>
 
-        <button type="submit">保存</button>
+        <div class="flex gap-2">
+          <button type="submit" class="flex-1 bg-black text-white py-2 rounded">保存</button>
+          <button type="button" id="clearBtn" class="px-4 border rounded">クリア</button>
+        </div>
+
       </form>
     </section>
 
-    <!-- 右 -->
-    <section>
+    <!-- 右：一覧 -->
+    <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
       <div id="list"></div>
     </section>
 
@@ -65,28 +87,34 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
   let games = [];
   let editingIdx = -1;
 
-  function $(id){return document.getElementById(id);}
+  function $(id){ return document.getElementById(id); }
 
   function updatePlayers(){
     const min = parseInt($('pmin').value)||0;
     const max = parseInt($('pmax').value)||0;
-    $('players').value = min&&max ? (min===max?min:min+'～'+max) : '';
+    let val = '';
+    if(min && max) val = min===max ? min : min+'～'+max;
+    $('players').value = val;
   }
 
   function updateTime(){
     const min = parseInt($('tmin').value)||0;
     const max = parseInt($('tmax').value)||0;
-    $('time').value = min&&max ? min+'-'+max+'分' : '';
+    let val = '';
+    if(min && max) val = min===max ? min+'分' : min+'-'+max+'分';
+    $('time').value = val;
   }
 
-  $('pmin').oninput=updatePlayers;
-  $('pmax').oninput=updatePlayers;
-  $('tmin').oninput=updateTime;
-  $('tmax').oninput=updateTime;
+  $('pmin').oninput = updatePlayers;
+  $('pmax').oninput = updatePlayers;
+  $('tmin').oninput = updateTime;
+  $('tmax').oninput = updateTime;
 
   function renderList(){
     $('list').innerHTML = games.map((g,i)=>`
-      <div onclick="editGame(${i})">${g.name}</div>
+      <div class="p-2 border-b cursor-pointer" onclick="editGame(${i})">
+        ${g.name}
+      </div>
     `).join('');
   }
 
@@ -104,8 +132,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
     $('weight').value = g.weight||'';
     $('img').value = g.img||'';
 
-    // ★ここ：配列 → 改行
-    $('genre').value = (g.genre||[]).join('\n');
+    // ★配列 → 改行
+    $('genre').value = (g.genre || []).join('\n');
   };
 
   $('form').addEventListener('submit', e=>{
@@ -122,19 +150,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
       weight: parseFloat($('weight').value)||1,
       img: $('img').value.trim(),
 
-      // ★ここ：改行 → 配列
+      // ★改行 → 配列
       genre: $('genre').value
         .split('\n')
         .map(v=>v.trim())
         .filter(v=>v)
     };
 
+    if(!g.name) return alert('ゲーム名を入力してください');
+
     if(editingIdx>=0) games[editingIdx]=g;
     else games.push(g);
 
     renderList();
+
     e.target.reset();
+    editingIdx = -1;
+    $('players').value='';
+    $('time').value='';
+    $('genre').value='';
+  });
+
+  $('clearBtn').addEventListener('click', ()=>{
+    $('form').reset();
     editingIdx=-1;
+    $('players').value='';
+    $('time').value='';
+    $('genre').value='';
   });
 
 })();
