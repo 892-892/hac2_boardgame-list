@@ -1,92 +1,53 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<!-- Playables SDK -->
 <script>// Playables SDK v1.0.0
-// Game lifecycle bridge: rAF-based game-ready detection + event communication
 (function() {
   'use strict';
-
-  // Idempotency: skip if already initialized (e.g., server-side injection
-  // followed by client-side inject-javascript via the Bloks webview component).
   if (window.playablesSDK) return;
-
   var HANDLER_NAME = 'playablesGameEventHandler';
   var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
   var RAF_FRAME_THRESHOLD = 3;
-
   var gameReadySent = false;
   var firstInteractionSent = false;
   var errorSent = false;
   var frameCount = 0;
   var originalRAF = window.requestAnimationFrame;
 
-  // --- Transport Layer ---
-
   function hasIOSBridge() {
-    return !!(window.webkit &&
-              window.webkit.messageHandlers &&
-              window.webkit.messageHandlers[HANDLER_NAME]);
+    return !!(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers[HANDLER_NAME]);
   }
-
   function hasAndroidBridge() {
-    return !!(window[ANDROID_BRIDGE_NAME] &&
-              typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
+    return !!(window[ANDROID_BRIDGE_NAME] && typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
   }
-
   function isInIframe() {
     return !!(window.parent && window.parent !== window);
   }
-
   function sendEvent(eventName, payload) {
-    var message = {
-      type: eventName,
-      payload: payload || {},
-      timestamp: Date.now()
-    };
-
+    var message = { type: eventName, payload: payload || {}, timestamp: Date.now() };
     if (hasIOSBridge()) {
-      try {
-        window.webkit.messageHandlers[HANDLER_NAME].postMessage(message);
-      } catch (e) { /* ignore */ }
-      return;
+      try { window.webkit.messageHandlers[HANDLER_NAME].postMessage(message); } catch (e) {} return;
     }
-
     if (hasAndroidBridge()) {
-    try {
-      var p = payload || {};
-      p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
-      window[ANDROID_BRIDGE_NAME].postEvent(
-        eventName,
-        JSON.stringify(p)
-      );
-    } catch (e) { /* ignore */ }
-    return;
-  }
-
-    if (isInIframe()) {
       try {
-        window.parent.postMessage(message, '*');
-      } catch (e) { /* ignore */ }
-      return;
+        var p = payload || {};
+        p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
+        window[ANDROID_BRIDGE_NAME].postEvent(eventName, JSON.stringify(p));
+      } catch (e) {} return;
+    }
+    if (isInIframe()) {
+      try { window.parent.postMessage(message, '*'); } catch (e) {} return;
     }
   }
-
-  // --- rAF Game-Ready Detection ---
 
   function onFrame() {
     if (gameReadySent) return;
-
     frameCount++;
     if (frameCount >= RAF_FRAME_THRESHOLD) {
       gameReadySent = true;
-      sendEvent('game_ready', {
-        frame_count: frameCount,
-        detected_at: Date.now()
-      });
+      sendEvent('game_ready', { frame_count: frameCount, detected_at: Date.now() });
       return;
     }
-
     originalRAF.call(window, onFrame);
   }
 
@@ -97,10 +58,7 @@
           frameCount++;
           if (frameCount >= RAF_FRAME_THRESHOLD && !gameReadySent) {
             gameReadySent = true;
-            sendEvent('game_ready', {
-              frame_count: frameCount,
-              detected_at: Date.now()
-            });
+            sendEvent('game_ready', { frame_count: frameCount, detected_at: Date.now() });
           }
           callback(timestamp);
         });
@@ -109,21 +67,16 @@
     };
   }
 
-  // --- First User Interaction Detection ---
-
   function setupFirstInteractionDetection() {
     var events = ['touchstart', 'mousedown', 'keydown'];
-
     function onFirstInteraction() {
       if (firstInteractionSent) return;
       firstInteractionSent = true;
       sendEvent('user_interaction_start', null);
-
       for (var i = 0; i < events.length; i++) {
         document.removeEventListener(events[i], onFirstInteraction, true);
       }
     }
-
     for (var i = 0; i < events.length; i++) {
       document.addEventListener(events[i], onFirstInteraction, true);
     }
@@ -135,60 +88,22 @@
     setupFirstInteractionDetection();
   }
 
-  // --- Auto Error Capture ---
-
   window.addEventListener('error', function(event) {
     if (errorSent) return;
     errorSent = true;
-    sendEvent('error', {
-      message: event.message || 'Unknown error',
-      source: event.filename || '',
-      lineno: event.lineno || 0,
-      colno: event.colno || 0,
-      auto_captured: true
-    });
+    sendEvent('error', { message: event.message || 'Unknown error', source: event.filename || '', lineno: event.lineno || 0, colno: event.colno || 0, auto_captured: true });
   });
-
-  window.addEventListener('unhandledrejection', function(event) {
-    if (errorSent) return;
-    errorSent = true;
-    var reason = event.reason;
-    sendEvent('error', {
-      message: (reason instanceof Error) ? reason.message : String(reason),
-      type: 'unhandled_promise_rejection',
-      auto_captured: true
-    });
-  });
-
-  // --- Public API ---
 
   window.playablesSDK = {
-    complete: function(score) {
-      sendEvent('game_ended', {
-        score: score,
-        completed: true
-      });
-    },
-
+    complete: function(score) { sendEvent('game_ended', { score: score, completed: true }); },
     error: function(message) {
       if (errorSent) return;
       errorSent = true;
-      sendEvent('error', {
-        message: message || 'Unknown error',
-        auto_captured: false
-      });
+      sendEvent('error', { message: message || 'Unknown error', auto_captured: false });
     },
-
-    sendEvent: function(eventName, payload) {
-      if (!eventName || typeof eventName !== 'string') return;
-      sendEvent(eventName, payload);
-    }
+    sendEvent: function(eventName, payload) { if (!eventName || typeof eventName !== 'string') return; sendEvent(eventName, payload); }
   };
-
-  // Kick off rAF detection in case no game code calls rAF immediately
-  if (originalRAF) {
-    originalRAF.call(window, onFrame);
-  }
+  if (originalRAF) originalRAF.call(window, onFrame);
 })();</script>
 <script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
 <meta charset="utf-8">
@@ -197,10 +112,10 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
+.genre-item:checked + label { background-color: #171717; color: white; border-color: #171717; }
 </style>
 </head>
 <body class="bg-white text-neutral-900">
-<!-- パスワードロック -->
 <div id="lock" class="fixed inset-0 bg-white z-50 flex items-center justify-center p-4">
   <div class="w-full max-w-[320px] border border-neutral-200 rounded-2xl p-6">
     <h1 class="text-[15px] font-medium mb-1">管理ページ</h1>
@@ -221,33 +136,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
   </header>
 
   <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
-    <!-- 左：フォーム -->
     <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
       <h2 class="text-sm font-medium mb-4">ゲーム情報</h2>
       <form id="form" class="space-y-3">
         <input type="hidden" id="id">
-        
         <div>
           <label class="text-[12px] text-neutral-600">ゲーム名</label>
           <input id="name" required class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
         </div>
-        
         <div>
           <label class="text-[12px] text-neutral-600">URL</label>
           <input id="url" type="url" placeholder="https://boardgamegeek.com/..." class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
         </div>
-
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="text-[12px] text-neutral-600">プレイ人数（自動）</label>
-            <input id="players" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="最小・最大から自動">
+            <label class="text-[12px] text-neutral-600">人数表示（自動）</label>
+            <input id="players" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600">
           </div>
           <div>
-            <label class="text-[12px] text-neutral-600">プレイ時間</label>
-            <input id="time" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="自動">
+            <label class="text-[12px] text-neutral-600">時間表示（自動）</label>
+            <input id="time" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600">
           </div>
         </div>
-
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="text-[12px] text-neutral-600">最小人数</label>
@@ -258,32 +168,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
             <input id="pmax" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
           </div>
         </div>
-
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="text-[12px] text-neutral-600">最小時間（分）</label>
+            <label class="text-[12px] text-neutral-600">最小時間</label>
             <input id="tmin" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
           </div>
           <div>
-            <label class="text-[12px] text-neutral-600">最大時間（分）</label>
+            <label class="text-[12px] text-neutral-600">最大時間</label>
             <input id="tmax" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
           </div>
         </div>
-
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="text-[12px] text-neutral-600">重さ(1-5)</label>
             <input id="weight" type="number" min="1" max="5" step="0.1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
           </div>
           <div>
-            <label class="text-[12px] text-neutral-600">画像ファイル名</label>
+            <label class="text-[12px] text-neutral-600">画像名</label>
             <input id="img" placeholder="12345.jpg" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
           </div>
         </div>
 
         <div>
-          <label class="text-[12px] text-neutral-600">ジャンル（1行に1つ）</label>
-          <textarea id="genre" rows="3" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10" placeholder="タイル配置&#10;協力"></textarea>
+          <label class="text-[12px] text-neutral-600">ジャンル（複数選択可）</label>
+          <div id="genre-container" class="flex flex-wrap gap-1.5 mt-1.5">
+            </div>
         </div>
 
         <div class="flex gap-2 pt-2">
@@ -294,17 +203,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
       </form>
     </section>
 
-    <!-- 右：一覧 -->
     <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-sm font-medium">ゲーム一覧 <span class="text-neutral-500">(<span id="count">0</span>件)</span></h2>
-        <div class="flex gap-2">
-          <button id="exportBtn" class="text-[12px] bg-emerald-600 text-white rounded-lg px-3 py-1.5 hover:bg-emerald-700">JSONコピー</button>
-        </div>
+        <button id="exportBtn" class="text-[12px] bg-emerald-600 text-white rounded-lg px-3 py-1.5 hover:bg-emerald-700">JSONコピー</button>
       </div>
-      
       <input id="search" placeholder="ゲーム名で検索..." class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
-      
       <div id="list" class="space-y-1 max-h-[600px] overflow-y-auto -mx-2 px-2"></div>
     </section>
   </main>
@@ -313,6 +217,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
 <script>
 (function() {
   const PASS = '1111';
+  const MASTER_GENRES = ['戦略', 'ファミリー', 'パーティー', '協力', '対戦', 'カード', 'ダイス', 'タイル', '拡大再生産', 'ドラフト', 'ブラフ', '正体隠匿', '重量級', '中量級', '軽量級'];
+  
   const lock = document.getElementById('lock');
   const pw = document.getElementById('pw');
   const pwBtn = document.getElementById('pwBtn');
@@ -321,6 +227,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
   function unlock() {
     if (pw.value === PASS) {
       lock.style.display = 'none';
+      initGenres();
       loadGames();
     } else {
       pwErr.textContent = 'パスワードが違います';
@@ -333,16 +240,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
   
   let games = [];
   let editingIdx = -1;
+
+  function initGenres() {
+    const container = document.getElementById('genre-container');
+    container.innerHTML = MASTER_GENRES.map(g => `
+      <div class="inline-block">
+        <input type="checkbox" id="g-${g}" value="${g}" class="genre-item hidden">
+        <label for="g-${g}" class="cursor-pointer border border-neutral-200 rounded-full px-3 py-1 text-[11px] hover:border-neutral-400 block select-none transition-colors">${g}</label>
+      </div>
+    `).join('');
+  }
   
   async function loadGames() {
     try {
       const res = await fetch('games.json?v=' + Date.now(), {cache: 'no-store'});
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      if (!res.ok) throw new Error();
       games = await res.json();
-      console.log('Loaded', games.length, 'games');
     } catch (e) {
-      console.error('Failed:', e);
-      alert('games.jsonの読み込みに失敗しました\n' + e.message + '\n\n同じフォルダにgames.jsonがあるか確認してください');
+      console.warn('games.json not found, starting fresh');
       games = [];
     }
     renderList();
@@ -350,118 +265,85 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
   }
   
   function $(id) { return document.getElementById(id); }
+  function updateCount() { $('count').textContent = games.length; }
   
-  function updateCount() {
-    $('count').textContent = games.length;
-  }
-  
-  // 自動更新：人数
-  function updatePlayers() {
-    const min = parseInt($('pmin').value) || 0;
-    const max = parseInt($('pmax').value) || 0;
-    let val = '';
-    if (min && max) val = min === max ? String(min) : min + '～' + max;
-    else if (min) val = String(min);
-    else if (max) val = String(max);
-    $('players').value = val;
-  }
-  
-  // 自動更新：時間
-  function updateTime() {
-    const min = parseInt($('tmin').value) || 0;
-    const max = parseInt($('tmax').value) || 0;
-    let val = '';
-    if (min && max) val = min === max ? min + '分' : min + '-' + max + '分';
-    else if (min) val = min + '分';
-    else if (max) val = max + '分';
-    $('time').value = val;
-  }
-  
-  // 自動更新：URL → 画像
-  function updateFromURL() {
-    const url = $('url').value;
-    if (!url) return;
+  function updateAutoFields() {
+    const pmin = parseInt($('pmin').value) || 0;
+    const pmax = parseInt($('pmax').value) || 0;
+    $('players').value = (pmin && pmax) ? (pmin === pmax ? pmin + '人' : pmin + '〜' + pmax + '人') : '';
     
-    // boardgamegeek.com/boardgame/12345 を探す
-    const m = url.match(/boardgamegeek\.com\/boardgame\/(\d+)/i);
-    if (m) {
-      const id = m[1];
-      $('id').value = id;
-      if (!$('img').value) {
-        $('img').value = id + '.jpg';
-      }
-      console.log('BGG ID:', id);
-    }
+    const tmin = parseInt($('tmin').value) || 0;
+    const tmax = parseInt($('tmax').value) || 0;
+    $('time').value = (tmin && tmax) ? (tmin === tmax ? tmin + '分' : tmin + '〜' + tmax + '分') : '';
   }
-  
-  $('pmin').addEventListener('input', updatePlayers);
-  $('pmax').addEventListener('input', updatePlayers);
-  $('tmin').addEventListener('input', updateTime);
-  $('tmax').addEventListener('input', updateTime);
-  $('url').addEventListener('blur', updateFromURL);
-  $('url').addEventListener('change', updateFromURL);
-  
+
+  $('pmin').addEventListener('input', updateAutoFields);
+  $('pmax').addEventListener('input', updateAutoFields);
+  $('tmin').addEventListener('input', updateAutoFields);
+  $('tmax').addEventListener('input', updateAutoFields);
+  $('url').addEventListener('blur', () => {
+    const m = $('url').value.match(/boardgamegeek\.com\/boardgame\/(\d+)/i);
+    if (m) {
+      $('id').value = m[1];
+      if (!$('img').value) $('img').value = m[1] + '.jpg';
+    }
+  });
+
   function renderList() {
     const q = $('search').value.toLowerCase();
-    const list = $('list');
     const filtered = q ? games.filter(g => g.name.toLowerCase().includes(q)) : games;
-    
-    list.innerHTML = filtered.map(g => {
+    $('list').innerHTML = filtered.map(g => {
       const idx = games.indexOf(g);
-      const tags = (g.genre && g.genre.length > 0) ? ` · ${g.genre.join('/')}` : '';
       return `<div class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-neutral-50 cursor-pointer" onclick="editGame(${idx})">
         <img src="images/${g.img}" class="w-10 h-10 rounded object-cover bg-neutral-100" onerror="this.style.opacity='0.3'">
         <div class="flex-1 min-w-0">
-          <div class="text-[13px] truncate">${g.name}</div>
-          <div class="text-[11px] text-neutral-500">${g.players || ''} · ${g.time || ''}${tags}</div>
+          <div class="text-[13px] truncate font-medium">${g.name}</div>
+          <div class="text-[11px] text-neutral-500">${g.players || '-'} · ${g.time || '-'}</div>
         </div>
       </div>`;
     }).join('');
   }
-  
+
   window.editGame = function(idx) {
     const g = games[idx];
     editingIdx = idx;
     $('id').value = g.id || '';
     $('name').value = g.name || '';
     $('url').value = g.url || '';
-    $('players').value = g.players || '';
-    $('time').value = g.time || '';
     $('pmin').value = g.pmin || '';
     $('pmax').value = g.pmax || '';
     $('weight').value = g.weight || '';
     $('img').value = g.img || '';
-    $('genre').value = Array.isArray(g.genre) ? g.genre.join('\n') : (g.genre || '');
     
-    // 時間を分解
     if (g.time) {
-      const nums = g.time.match(/\d+/g);
-      if (nums) {
-        $('tmin').value = nums[0] || '';
-        $('tmax').value = nums[1] || nums[0] || '';
-      }
+      const ts = g.time.match(/\d+/g);
+      if (ts) { $('tmin').value = ts[0]; $('tmax').value = ts[1] || ts[0]; }
     }
     
+    const selected = g.genre || [];
+    document.querySelectorAll('.genre-item').forEach(cb => cb.checked = selected.includes(cb.value));
+    
+    updateAutoFields();
     $('deleteBtn').classList.remove('hidden');
     $('name').focus();
   };
-  
+
   $('form').addEventListener('submit', e => {
     e.preventDefault();
+    const selectedGenres = Array.from(document.querySelectorAll('.genre-item:checked')).map(cb => cb.value);
+    
     const g = {
       id: parseInt($('id').value) || Date.now(),
       name: $('name').value.trim(),
       url: $('url').value.trim(),
-      players: $('players').value.trim(),
-      time: $('time').value.trim(),
+      players: $('players').value,
+      time: $('time').value,
       pmin: parseInt($('pmin').value) || 0,
       pmax: parseInt($('pmax').value) || 0,
       weight: parseFloat($('weight').value) || 1,
       img: $('img').value.trim(),
-      genre: $('genre').value.split('\n').map(s => s.trim()).filter(s => s !== '')
+      genre: selectedGenres
     };
-    
-    if (!g.name) return alert('ゲーム名を入力してください');
     
     if (editingIdx >= 0) games[editingIdx] = g;
     else games.push(g);
@@ -469,43 +351,34 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
     games.sort((a,b) => a.name.localeCompare(b.name, 'ja'));
     renderList();
     updateCount();
-    e.target.reset();
-    editingIdx = -1;
-    $('deleteBtn').classList.add('hidden');
-    $('players').value = '';
-    $('time').value = '';
-    $('genre').value = '';
+    clearForm();
   });
-  
-  $('clearBtn').addEventListener('click', () => {
+
+  function clearForm() {
     $('form').reset();
+    document.querySelectorAll('.genre-item').forEach(cb => cb.checked = false);
     editingIdx = -1;
     $('deleteBtn').classList.add('hidden');
-    $('players').value = '';
-    $('time').value = '';
-    $('genre').value = '';
-  });
-  
+  }
+
+  $('clearBtn').addEventListener('click', clearForm);
   $('deleteBtn').addEventListener('click', () => {
     if (editingIdx >= 0 && confirm('削除しますか？')) {
       games.splice(editingIdx, 1);
       renderList();
       updateCount();
-      $('form').reset();
-      editingIdx = -1;
-      $('deleteBtn').classList.add('hidden');
+      clearForm();
     }
   });
   
   $('search').addEventListener('input', renderList);
-  
   $('exportBtn').addEventListener('click', () => {
     const json = JSON.stringify(games, null, 2);
     navigator.clipboard.writeText(json).then(() => {
-      const btn = $('exportBtn');
-      const t = btn.textContent;
-      btn.textContent = 'コピー完了!';
-      setTimeout(() => btn.textContent = t, 1500);
+      const b = $('exportBtn');
+      const t = b.textContent;
+      b.textContent = 'コピー完了!';
+      setTimeout(() => b.textContent = t, 1500);
     });
   });
 })();
