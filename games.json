@@ -4,7 +4,7 @@
     "name": "12チップトリック",
     "url": "https://boardgamegeek.com/boardgame/358669/12-chip-trick",
     "players": "2～4",
-    "time": "",
+    "time": "20分",
     "pmin": 2,
     "pmax": 4,
     "weight": 1,
@@ -18,7 +18,7 @@
     "name": "3-tricky-pigs",
     "url": "https://boardgamegeek.com/boardgame/441614/3-tricky-pigs",
     "players": "3～5",
-    "time": "",
+    "time": "30-60分",
     "pmin": 3,
     "pmax": 5,
     "weight": 1,
@@ -32,7 +32,7 @@
     "name": "9LIVES",
     "url": "https://boardgamegeek.com/boardgame/189190/9-lives",
     "players": "3～4",
-    "time": "",
+    "time": "20-30分",
     "pmin": 3,
     "pmax": 4,
     "weight": 2,
@@ -42,15 +42,18 @@
     ]
   },
   {
+    "id": 433967,
     "name": "DOGS",
     "url": "https://boardgamegeek.com/boardgame/433967/dogs",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "30分",
     "pmin": 2,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 433967,
-    "img": "433967.jpg"
+    "img": "433967.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
     "id": 386860,
@@ -61,29 +64,38 @@
     "pmin": 1,
     "pmax": 5,
     "weight": 1,
-    "img": "386860.jpg"
+    "img": "386860.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 374024,
     "name": "Fives",
     "url": "https://boardgamegeek.com/boardgame/374024/fives",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 1,
-    "id": 374024,
-    "img": "374024.jpg"
+    "img": "374024.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 379753,
     "name": "HENHOUSE",
     "url": "https://boardgamegeek.com/boardgame/379753/henhouse",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30-60分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30-60分",
     "weight": 1,
-    "id": 379753,
-    "img": "379753.jpg"
+    "img": "379753.jpg",
+    "genres": [
+      "ゴーアウト"
+    ]
   },
   {
     "id": 401784,
@@ -94,7 +106,10 @@
     "pmin": 2,
     "pmax": 5,
     "weight": 2,
-    "img": "401784.jpg"
+    "img": "401784.jpg",
+    "genres": [
+      "セットコレクション"
+    ]
   },
   {
     "id": 423307,
@@ -105,370 +120,475 @@
     "pmin": 3,
     "pmax": 5,
     "weight": 1.1,
-    "img": "423307.jpg"
+    "img": "423307.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
     "id": 380938,
     "name": "アーキオソサエティ",
     "url": "https://boardgamegeek.com/boardgame/380938/archeos-society",
-    "players": "2~6",
+    "players": "2～6",
     "time": "60分",
     "pmin": 2,
     "pmax": 6,
     "weight": 3,
-    "img": "380938.jpg"
+    "img": "380938.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 786252,
     "name": "アイム・ザ・CSO!",
     "url": "https://boardgamegeek.com/boardgameversion/786252/japanesse-edition",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 786252,
-    "img": "786252.jpg"
+    "img": "786252.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 394890,
     "name": "アカデミー",
     "url": "https://boardgamegeek.com/boardgame/394890/the-academy",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 394890,
-    "img": "394890.jpg"
+    "img": "394890.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 255262,
     "name": "アグリコラ 牧場の動物たち BIGBOX",
     "url": "https://boardgamegeek.com/boardgame/255262/agricola-all-creatures-big-and-small-the-big-box",
     "players": "2",
+    "time": "30分",
     "pmin": 2,
     "pmax": 2,
-    "time": "30分",
     "weight": 2,
-    "id": 255262,
-    "img": "255262.jpg"
+    "img": "255262.jpg",
+    "genres": [
+      "ワーカープレイスメント"
+    ]
   },
   {
+    "id": 317983,
     "name": "アナンシ",
     "url": "https://boardgamegeek.com/boardgame/317983/anansi",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 317983,
-    "img": "317983.jpg"
+    "img": "317983.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 354411,
     "name": "アニマナイズ",
     "url": "https://boardgamegeek.com/boardgame/354411/animanize",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 1,
-    "id": 354411,
-    "img": "354411.jpg"
+    "img": "354411.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 205045,
     "name": "アベニュー",
     "url": "https://boardgamegeek.com/boardgame/205045/avenue",
-    "players": "1~10",
+    "players": "1～10",
+    "time": "15分",
     "pmin": 1,
     "pmax": 10,
-    "time": "15分",
     "weight": 1,
-    "id": 205045,
-    "img": "205045.jpg"
+    "img": "205045.jpg",
+    "genres": [
+      "紙ペン"
+    ]
   },
   {
+    "id": 27385,
     "name": "アルケミスト",
     "url": "https://boardgamegeek.com/boardgame/27385/alchemist",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "50分",
     "pmin": 2,
     "pmax": 5,
-    "time": "50分",
     "weight": 3,
-    "id": 27385,
-    "img": "27385.jpg"
+    "img": "27385.jpg",
+    "genres": [
+      "へんなの"
+    ]
   },
   {
-    "name": "アルナックの失われし移籍：調査隊長",
-    "url": "https://boardgamegeek.com/boardgameexpansion/341254/lost-ruins-of-arnak-expedition-leaders",
-    "players": "1~4",
-    "pmin": 1,
-    "pmax": 4,
-    "time": "30-120分",
-    "weight": 4,
-    "id": 341254,
-    "img": "341254.jpg"
-  },
-  {
+    "id": 312484,
     "name": "アルナックの失われし遺跡",
     "url": "https://boardgamegeek.com/boardgame/312484/lost-ruins-of-arnak",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "30-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "30-120分",
     "weight": 4,
-    "id": 312484,
-    "img": "312484.jpg"
+    "img": "312484.jpg",
+    "genres": [
+      "ワーカープレイスメント",
+      "デッキ構築"
+    ]
   },
   {
+    "id": 382350,
     "name": "アルナックの失われし遺跡：消えた調査隊",
     "url": "https://boardgamegeek.com/boardgameexpansion/382350/lost-ruins-of-arnak-the-missing-expedition",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "30-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "30-120分",
     "weight": 4,
-    "id": 382350,
-    "img": "382350.jpg"
+    "img": "382350.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 341254,
+    "name": "アルナックの失われし遺跡：調査隊長",
+    "url": "https://boardgamegeek.com/boardgameexpansion/341254/lost-ruins-of-arnak-expedition-leaders",
+    "players": "1～4",
+    "time": "30-120分",
+    "pmin": 1,
+    "pmax": 4,
+    "weight": 4,
+    "img": "341254.jpg",
+    "genres": [
+      "拡張"
+    ]
+  },
+  {
+    "id": 124742,
     "name": "アンドロイドネットランナー",
     "url": "https://boardgamegeek.com/boardgame/124742/android-netrunner",
     "players": "2",
+    "time": "45分",
     "pmin": 2,
     "pmax": 2,
-    "time": "45分",
     "weight": 4,
-    "id": 124742,
-    "img": "124742.jpg"
+    "img": "124742.jpg",
+    "genres": [
+      "カードゲーム"
+    ]
   },
   {
+    "id": 14277,
     "name": "イラスト募集中",
     "url": "https://boardgamegeek.com/boardgame/14277/einfalls-pinsel",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 1,
-    "id": 14277,
-    "img": "14277.jpg"
+    "img": "14277.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 408250,
     "name": "イレブン",
     "url": "https://boardgamegeek.com/boardgame/408250/eleven",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "30分",
     "pmin": 2,
     "pmax": 6,
-    "time": "30分",
     "weight": 1,
-    "id": 408250,
-    "img": "408250.jpg"
+    "img": "408250.jpg",
+    "genres": [
+      "ハンドマネジメント"
+    ]
   },
   {
+    "id": 314530,
     "name": "イワリ：デラックスエディション",
     "url": "https://boardgamegeek.com/boardgame/314530/iwari-deluxe-edition",
-    "players": "1~6",
+    "players": "1～6",
+    "time": "45分",
     "pmin": 1,
     "pmax": 6,
-    "time": "45分",
     "weight": 3,
-    "id": 314530,
-    "img": "314530.jpg"
+    "img": "314530.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 206051,
     "name": "インサイダー・ゲーム",
     "url": "https://boardgamegeek.com/boardgame/206051/insider",
-    "players": "4~8",
+    "players": "4～8",
+    "time": "15分",
     "pmin": 4,
     "pmax": 8,
-    "time": "15分",
     "weight": 1,
-    "id": 206051,
-    "img": "206051.jpg"
+    "img": "206051.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 324914,
     "name": "インサイドジョブ",
     "url": "https://boardgamegeek.com/boardgame/324914/inside-job",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "30分",
     "pmin": 2,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 324914,
-    "img": "324914.jpg"
+    "img": "324914.jpg",
+    "genres": [
+      "トリックテイキング",
+      "正体隠匿"
+    ]
   },
   {
+    "id": 215308,
     "name": "インダルジェンス",
     "url": "https://boardgamegeek.com/boardgame/215308/indulgence",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "40-60分",
     "pmin": 3,
     "pmax": 4,
-    "time": "40-60分",
     "weight": 2,
-    "id": 215308,
-    "img": "215308.jpg"
+    "img": "215308.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 264656,
     "name": "ヴィヴァルディ",
     "url": "https://boardgamegeek.com/boardgame/264656/vivaldi",
     "players": "5",
+    "time": "20分",
     "pmin": 5,
     "pmax": 5,
-    "time": "20分",
     "weight": 2,
-    "id": 264656,
-    "img": "264656.jpg"
+    "img": "264656.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 25866,
     "name": "ウィザードジュニア",
     "url": "https://boardgamegeek.com/boardgame/25866/wizard-junior",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "20分",
     "pmin": 3,
     "pmax": 6,
-    "time": "20分",
     "weight": 1,
-    "id": 25866,
-    "img": "25866.jpg"
+    "img": "25866.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 2176,
     "name": "ウィリー",
     "url": "https://boardgamegeek.com/boardgame/2176/willi",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 1,
-    "id": 2176,
-    "img": "2176.jpg"
+    "img": "2176.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 253499,
     "name": "ウォー・オブ・ウィスパーズ",
     "url": "https://boardgamegeek.com/boardgame/253499/a-war-of-whispers",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "30-60分",
     "pmin": 2,
     "pmax": 4,
-    "time": "30-60分",
     "weight": 3,
-    "id": 253499,
-    "img": "253499.jpg"
+    "img": "253499.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 258074,
     "name": "ヴォルフィリオン",
     "url": "https://boardgamegeek.com/boardgame/258074/volfyirion",
     "players": "2",
+    "time": "15-30分",
     "pmin": 2,
     "pmax": 2,
-    "time": "15-30分",
     "weight": 2,
-    "id": 258074,
-    "img": "258074.jpg"
+    "img": "258074.jpg",
+    "genres": [
+      "カードゲーム"
+    ]
   },
   {
+    "id": 330973,
     "name": "ヴォルフィリオンギルド",
     "url": "https://boardgamegeek.com/boardgame/330973/volfyirion-guilds",
     "players": "2",
+    "time": "20-40分",
     "pmin": 2,
     "pmax": 2,
-    "time": "20-40分",
     "weight": 2,
-    "id": 330973,
-    "img": "330973.jpg"
+    "img": "330973.jpg",
+    "genres": [
+      "カードゲーム"
+    ]
   },
   {
+    "id": 267271,
     "name": "エジツィア シフティング サンズ",
     "url": "https://boardgamegeek.com/boardgame/267271/egizia-shifting-sands",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "90分",
     "pmin": 2,
     "pmax": 4,
-    "time": "90分",
     "weight": 3,
-    "id": 267271,
-    "img": "267271.jpg"
+    "img": "267271.jpg",
+    "genres": [
+      "ワーカームーブメント"
+    ]
   },
   {
+    "id": 249381,
     "name": "エステート",
     "url": "https://boardgamegeek.com/boardgame/249381/the-estates",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "45-60分",
     "pmin": 2,
     "pmax": 5,
-    "time": "45-60分",
     "weight": 3,
-    "id": 249381,
-    "img": "249381.jpg"
+    "img": "249381.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 206718,
     "name": "エスノス",
     "url": "https://boardgamegeek.com/boardgame/206718/ethnos",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "45-60分",
     "pmin": 2,
     "pmax": 6,
-    "time": "45-60分",
     "weight": 3,
-    "id": 206718,
-    "img": "206718.jpg"
+    "img": "206718.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 175621,
     "name": "エピックカードゲーム",
     "url": "https://boardgamegeek.com/boardgame/175621/epic-card-game",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "20-40分",
     "pmin": 2,
     "pmax": 4,
-    "time": "20-40分",
     "weight": 2,
-    "id": 175621,
-    "img": "175621.jpg"
+    "img": "175621.jpg",
+    "genres": [
+      "カードゲーム"
+    ]
   },
   {
+    "id": 93,
     "name": "エルグランデ",
     "url": "https://boardgamegeek.com/boardgame/93/el-grande",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "60-120分",
     "pmin": 2,
     "pmax": 5,
-    "time": "60-120分",
     "weight": 3,
-    "id": 93,
-    "img": "93.jpg"
+    "img": "93.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 270844,
     "name": "エンパイアオブザノース",
     "url": "https://boardgamegeek.com/boardgame/270844/imperial-settlers-empires-of-the-north",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "45-90分",
     "pmin": 1,
     "pmax": 4,
-    "time": "45-90分",
     "weight": 3,
-    "id": 270844,
-    "img": "270844.jpg"
+    "img": "270844.jpg",
+    "genres": [
+      "カードゲーム",
+      "リソースマネジメント"
+    ]
   },
   {
-    "name": "エンパイアオブザノース",
-    "url": "https://boardgamegeek.com/boardgameexpansion/287558/imperial-settlers-empires-of-the-north-japanese-is",
-    "players": "1~4",
-    "pmin": 1,
-    "pmax": 4,
-    "time": "45-90分",
-    "weight": 3,
     "id": 287558,
-    "img": "287558.jpg"
+    "name": "エンパイアオブザノース：日本",
+    "url": "https://boardgamegeek.com/boardgameexpansion/287558/imperial-settlers-empires-of-the-north-japanese-is",
+    "players": "1～4",
+    "time": "45-90分",
+    "pmin": 1,
+    "pmax": 4,
+    "weight": 3,
+    "img": "287558.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 406854,
     "name": "オーディン",
     "url": "https://boardgamegeek.com/boardgame/406854/odin",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "15分",
     "pmin": 2,
     "pmax": 6,
-    "time": "15分",
     "weight": 1,
-    "id": 406854,
-    "img": "406854.jpg"
+    "img": "406854.jpg",
+    "genres": [
+      "ゴーアウト"
+    ]
   },
   {
+    "id": 582187,
     "name": "オッドソックス",
     "url": "https://boardgamegeek.com/boardgameversion/582187/japanese-edition",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 582187,
-    "img": "582187.jpg"
+    "img": "582187.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
     "id": 454909,
@@ -479,117 +599,151 @@
     "pmin": 1,
     "pmax": 5,
     "weight": 2,
-    "img": "454909.jpg"
+    "img": "454909.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 164928,
     "name": "オルレアン",
     "url": "https://boardgamegeek.com/boardgame/164928/orleans",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "90分",
     "pmin": 2,
     "pmax": 5,
-    "time": "90分",
     "weight": 4,
-    "id": 164928,
-    "img": "164928.jpg"
+    "img": "164928.jpg",
+    "genres": [
+      "バックビルディング"
+    ]
   },
   {
+    "id": 204814,
     "name": "オルレアン：交易と陰謀",
     "url": "https://boardgamegeek.com/boardgameexpansion/204814/orleans-trade-and-intrigue",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "90分",
     "pmin": 2,
     "pmax": 5,
-    "time": "90分",
     "weight": 4,
-    "id": 204814,
-    "img": "204814.jpg"
+    "img": "204814.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 58798,
     "name": "カードカソンヌ",
     "url": "https://boardgamegeek.com/boardgame/58798/cardcassonne",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "30-45分",
     "pmin": 2,
     "pmax": 5,
-    "time": "30-45分",
     "weight": 2,
-    "id": 58798,
-    "img": "58798.jpg"
+    "img": "58798.jpg",
+    "genres": [
+      "ブラフ",
+      "へんなの"
+    ]
   },
   {
+    "id": 132,
     "name": "カエサル&クレオパトラ",
     "url": "https://boardgamegeek.com/boardgame/132/caesar-and-cleopatra",
     "players": "2",
+    "time": "60分",
     "pmin": 2,
     "pmax": 2,
-    "time": "60分",
     "weight": 2,
-    "id": 132,
-    "img": "132.jpg"
+    "img": "132.jpg",
+    "genres": [
+      "カードゲーム"
+    ]
   },
   {
+    "id": 12086,
     "name": "カエルをよこせ！",
     "url": "https://boardgamegeek.com/boardgame/12086/her-mit-den-kroten",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "50分",
     "pmin": 3,
     "pmax": 5,
-    "time": "50分",
     "weight": 1,
-    "id": 12086,
-    "img": "12086.jpg"
+    "img": "12086.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 368,
     "name": "カップル危機一髪",
     "url": "https://boardgamegeek.com/boardgame/368/relationship-tightrope",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 368,
-    "img": "368.jpg"
+    "img": "368.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 17104,
     "name": "カナスタ",
     "url": "https://boardgamegeek.com/boardgame/17104/canasta",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "45-60分",
     "pmin": 2,
     "pmax": 6,
-    "time": "45-60分",
     "weight": 2,
-    "id": 17104,
-    "img": "17104.jpg"
+    "img": "17104.jpg",
+    "genres": [
+      "トランプ"
+    ]
   },
   {
+    "id": 4401,
     "name": "カナルグランデ",
     "url": "https://boardgamegeek.com/boardgame/4401/canal-grande",
     "players": "2",
+    "time": "30分",
     "pmin": 2,
     "pmax": 2,
-    "time": "30分",
     "weight": 2,
-    "id": 4401,
-    "img": "4401.jpg"
+    "img": "4401.jpg",
+    "genres": [
+      "へんなの"
+    ]
   },
   {
+    "id": 377958,
     "name": "がはくずかん",
     "url": "https://boardgamegeek.com/boardgame/377958/gahakuzukan-gahakuzukan",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 1,
-    "id": 377958,
-    "img": "377958.jpg"
+    "img": "377958.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 73664,
     "name": "カボ",
     "url": "https://boardgamegeek.com/boardgame/73664/cabo",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "30分",
     "pmin": 2,
     "pmax": 5,
-    "time": "30分",
     "weight": 1,
-    "id": 73664,
-    "img": "73664.jpg"
+    "img": "73664.jpg",
+    "genres": [
+      "ハンドマネジメント"
+    ]
   },
   {
     "id": 199383,
@@ -600,183 +754,234 @@
     "pmin": 2,
     "pmax": 5,
     "weight": 4,
-    "img": "199383.jpg"
+    "img": "199383.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 156373,
     "name": "キメラ",
     "url": "https://boardgamegeek.com/boardgame/156373/chimera",
     "players": "3",
+    "time": "45分",
     "pmin": 3,
     "pmax": 3,
-    "time": "45分",
     "weight": 2,
-    "id": 156373,
-    "img": "156373.jpg"
+    "img": "156373.jpg",
+    "genres": [
+      "ゴーアウト"
+    ]
   },
   {
+    "id": 324345,
     "name": "キャットインザボックス",
     "url": "https://boardgamegeek.com/boardgame/324345/cat-in-the-box",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "20-40分",
     "pmin": 3,
     "pmax": 5,
-    "time": "20-40分",
     "weight": 2,
-    "id": 324345,
-    "img": "324345.jpg"
+    "img": "324345.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 316287,
     "name": "クエスト",
     "url": "https://boardgamegeek.com/boardgame/316287/quest",
-    "players": "3~10",
+    "players": "3～10",
+    "time": "30分",
     "pmin": 3,
     "pmax": 10,
-    "time": "30分",
     "weight": 2,
-    "id": 316287,
-    "img": "316287.jpg"
+    "img": "316287.jpg",
+    "genres": [
+      "正体隠匿"
+    ]
   },
   {
+    "id": 309862,
     "name": "ぐでたまトリックテイキング",
     "url": "https://boardgamegeek.com/boardgame/309862/gudetama-the-tricky-egg-card-game",
-    "players": "2~7",
+    "players": "2～7",
+    "time": "15-20分",
     "pmin": 2,
     "pmax": 7,
-    "time": "15-20分",
     "weight": 1,
-    "id": 309862,
-    "img": "309862.jpg"
+    "img": "309862.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 308500,
     "name": "クラッシュオブデッキ",
     "url": "https://boardgamegeek.com/boardgame/308500/clash-of-deck",
     "players": "2",
+    "time": "15-30分",
     "pmin": 2,
     "pmax": 2,
-    "time": "15-30分",
     "weight": 1,
-    "id": 308500,
-    "img": "308500.jpg"
+    "img": "308500.jpg",
+    "genres": [
+      "カードゲーム"
+    ]
   },
   {
+    "id": 182874,
     "name": "グランドオーストリアホテル",
     "url": "https://boardgamegeek.com/boardgame/182874/grand-austria-hotel",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "60-120分",
     "pmin": 2,
     "pmax": 4,
-    "time": "60-120分",
     "weight": 4,
-    "id": 182874,
-    "img": "182874.jpg"
+    "img": "182874.jpg",
+    "genres": [
+      "ダイスピック"
+    ]
   },
   {
+    "id": 320780,
     "name": "グランドオーストリアホテル：レッツワルツ",
     "url": "https://boardgamegeek.com/boardgameexpansion/320780/grand-austria-hotel-lets-waltz",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "60-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "60-120分",
     "weight": 4,
-    "id": 320780,
-    "img": "320780.jpg"
+    "img": "320780.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 638090,
     "name": "グリーンファイブラ",
     "url": "https://boardgamegeek.com/boardgameversion/638090/japanese-edition",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 1,
-    "id": 638090,
-    "img": "638090.jpg"
+    "img": "638090.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 170430,
     "name": "クリスマスの12日",
     "url": "https://boardgamegeek.com/boardgame/170430/12-days-of-christmas",
-    "players": "3~8",
+    "players": "3～8",
+    "time": "20-30分",
     "pmin": 3,
     "pmax": 8,
-    "time": "20-30分",
     "weight": 1,
-    "id": 170430,
-    "img": "170430.jpg"
+    "img": "170430.jpg",
+    "genres": [
+      "ゴーアウト"
+    ]
   },
   {
+    "id": 170624,
     "name": "クルセイダーズ",
     "url": "https://boardgamegeek.com/boardgame/170624/crusaders-thy-will-be-done",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "40-60分",
     "pmin": 2,
     "pmax": 4,
-    "time": "40-60分",
     "weight": 3,
-    "id": 170624,
-    "img": "170624.jpg"
+    "img": "170624.jpg",
+    "genres": [
+      "マンカラ"
+    ]
   },
   {
+    "id": 289240,
     "name": "クルセイダーズ：インフルエンス",
     "url": "https://boardgamegeek.com/boardgameexpansion/289240/crusaders-thy-will-be-done-divine-influence",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "45-60分",
     "pmin": 2,
     "pmax": 4,
-    "time": "45-60分",
     "weight": 3,
-    "id": 289240,
-    "img": "289240.jpg"
+    "img": "289240.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 231962,
     "name": "クレイジーワーズ",
     "url": "https://boardgamegeek.com/boardgame/231962/krazy-wordz",
-    "players": "3~7",
+    "players": "3～7",
+    "time": "45分",
     "pmin": 3,
     "pmax": 7,
-    "time": "45分",
     "weight": 1,
-    "id": 231962,
-    "img": "231962.jpg"
+    "img": "231962.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
-    "name": "グレートプレインズ ",
+    "id": 330036,
+    "name": "グレートプレインズ",
     "url": "https://boardgamegeek.com/boardgame/330036/great-plains",
     "players": "2",
+    "time": "20分",
     "pmin": 2,
     "pmax": 2,
-    "time": "20分",
     "weight": 2,
-    "id": 330036,
-    "img": "330036.jpg"
+    "img": "330036.jpg",
+    "genres": [
+      "アブストラクト"
+    ]
   },
   {
     "id": 430921,
     "name": "クワトロトリックテイキング",
     "url": "https://boardgamegeek.com/boardgame/430921/quattro-trick-taking",
-    "players": "3-4",
+    "players": "3～4",
     "time": "30-60分",
     "pmin": 3,
     "pmax": 4,
     "weight": 2,
-    "img": "430921.jpg"
+    "img": "430921.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 245638,
     "name": "コインブラ",
     "url": "https://boardgamegeek.com/boardgame/245638/coimbra",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "60-90分",
     "pmin": 2,
     "pmax": 4,
-    "time": "60-90分",
     "weight": 3,
-    "id": 245638,
-    "img": "245638.jpg"
+    "img": "245638.jpg",
+    "genres": [
+      "ダイスプレイスメント"
+    ]
   },
   {
+    "id": 281619,
     "name": "ゴーストオブクリスマス",
     "url": "https://boardgamegeek.com/boardgame/281619/ghosts-of-christmas",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "40分",
     "pmin": 3,
     "pmax": 4,
-    "time": "40分",
     "weight": 2,
-    "id": 281619,
-    "img": "281619.jpg"
+    "img": "281619.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
     "id": 449297,
@@ -787,40 +992,52 @@
     "pmin": 3,
     "pmax": 6,
     "weight": 1,
-    "img": "449297.jpg"
+    "img": "449297.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 154086,
     "name": "ゴールドウェスト",
     "url": "https://boardgamegeek.com/boardgame/154086/gold-west",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "45-60分",
     "pmin": 2,
     "pmax": 4,
-    "time": "45-60分",
     "weight": 3,
-    "id": 154086,
-    "img": "154086.jpg"
+    "img": "154086.jpg",
+    "genres": [
+      "マンカラ"
+    ]
   },
   {
+    "id": 424435,
     "name": "コンテキスト",
     "url": "https://boardgamegeek.com/boardgame/424435/context",
-    "players": "3~8",
+    "players": "3～8",
+    "time": "30-45分",
     "pmin": 3,
     "pmax": 8,
-    "time": "30-45分",
     "weight": 1,
-    "id": 424435,
-    "img": "424435.jpg"
+    "img": "424435.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 2630,
     "name": "ザ・バクダン",
     "url": "https://boardgamegeek.com/boardgame/2630/die-bombe",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "20分",
     "pmin": 3,
     "pmax": 6,
-    "time": "20分",
     "weight": 1,
-    "id": 2630,
-    "img": "2630.jpg"
+    "img": "2630.jpg",
+    "genres": [
+      "競り"
+    ]
   },
   {
     "id": 447621,
@@ -831,73 +1048,96 @@
     "pmin": 3,
     "pmax": 6,
     "weight": 1,
-    "img": "447621.jpg"
+    "img": "447621.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 32968,
     "name": "サメ警報",
     "url": "https://boardgamegeek.com/boardgame/32968/shark-alarm",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "15分",
     "pmin": 2,
     "pmax": 5,
-    "time": "15分",
     "weight": 1,
-    "id": 32968,
-    "img": "32968.jpg"
+    "img": "32968.jpg",
+    "genres": [
+      "へんなの"
+    ]
   },
   {
+    "id": 229220,
     "name": "サンタマリア",
     "url": "https://boardgamegeek.com/boardgame/229220/santa-maria",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "45-90分",
     "pmin": 1,
     "pmax": 4,
-    "time": "45-90分",
     "weight": 3,
-    "id": 229220,
-    "img": "229220.jpg"
+    "img": "229220.jpg",
+    "genres": [
+      "ダイスドラフト",
+      "タイル配置"
+    ]
   },
   {
+    "id": 367220,
     "name": "シーソルト&ペーパー",
     "url": "https://boardgamegeek.com/boardgame/367220/sea-salt-and-paper",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "30分",
     "pmin": 2,
     "pmax": 4,
-    "time": "30分",
     "weight": 1,
-    "id": 367220,
-    "img": "367220.jpg"
+    "img": "367220.jpg",
+    "genres": [
+      "セットコレクション",
+      "カードゲーム"
+    ]
   },
   {
+    "id": 396545,
     "name": "シーソルト＆ペーパー：塩分追加パック",
     "url": "https://boardgamegeek.com/boardgameexpansion/396545/sea-salt-and-paper-extra-salt",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "30分",
     "pmin": 2,
     "pmax": 4,
-    "time": "30分",
     "weight": 1,
-    "id": 396545,
-    "img": "396545.jpg"
+    "img": "396545.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 430995,
     "name": "シックスフォース",
     "url": "https://boardgamegeek.com/boardgame/430995/6-forces",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "40分",
     "pmin": 3,
     "pmax": 4,
-    "time": "40分",
     "weight": 1,
-    "id": 430995,
-    "img": "430995.jpg"
+    "img": "430995.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 149910,
     "name": "シックスメイキング",
     "url": "https://boardgamegeek.com/boardgame/149910/six-making",
     "players": "2",
+    "time": "25分",
     "pmin": 2,
     "pmax": 2,
-    "time": "25分",
     "weight": 2,
-    "id": 149910,
-    "img": "149910.jpg"
+    "img": "149910.jpg",
+    "genres": [
+      "アブストラクト"
+    ]
   },
   {
     "id": 32382,
@@ -908,997 +1148,1284 @@
     "pmin": 2,
     "pmax": 5,
     "weight": 3,
-    "img": "32382.jpg"
+    "img": "32382.jpg",
+    "genres": [
+      "アブストラクト"
+    ]
   },
   {
+    "id": 324711,
     "name": "シャーデンフロイデ",
     "url": "https://boardgamegeek.com/boardgame/324711/schadenfreude",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "20分",
     "pmin": 3,
     "pmax": 5,
-    "time": "20分",
     "weight": 2,
-    "id": 324711,
-    "img": "324711.jpg"
+    "img": "324711.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 420891,
     "name": "シャットザブックス",
     "url": "https://boardgamegeek.com/boardgame/420891/shut-the-books",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "40分",
     "pmin": 3,
     "pmax": 4,
-    "time": "40分",
     "weight": 1,
-    "id": 420891,
-    "img": "420891.jpg"
+    "img": "420891.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 354,
     "name": "シュティッヒルン",
     "url": "https://boardgamegeek.com/boardgame/354/stick-em",
-    "players": "3~8",
+    "players": "3～8",
+    "time": "30-60分",
     "pmin": 3,
     "pmax": 8,
-    "time": "30-60分",
     "weight": 1,
-    "id": 354,
-    "img": "354.jpg"
+    "img": "354.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 35961,
     "name": "ジュピターのもとに",
     "url": "https://boardgamegeek.com/boardgame/35961/beim-jupiter-gottliche-sticheleien",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "45分",
     "pmin": 3,
     "pmax": 5,
-    "time": "45分",
     "weight": 2,
-    "id": 35961,
-    "img": "35961.jpg"
+    "img": "35961.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 1063,
     "name": "シュラウム人",
     "url": "https://boardgamegeek.com/boardgame/1063/schraumen",
-    "players": "3~8",
+    "players": "3～8",
+    "time": "60分",
     "pmin": 3,
     "pmax": 8,
-    "time": "60分",
     "weight": 2,
-    "id": 1063,
-    "img": "1063.jpg"
+    "img": "1063.jpg",
+    "genres": [
+      "へんなの"
+    ]
   },
   {
+    "id": 372,
     "name": "ショッテントッテン",
     "url": "https://boardgamegeek.com/boardgame/372/schotten-totten",
     "players": "2",
+    "time": "20分",
     "pmin": 2,
     "pmax": 2,
-    "time": "20分",
     "weight": 1,
-    "id": 372,
-    "img": "372.jpg"
+    "img": "372.jpg",
+    "genres": [
+      "カードゲーム"
+    ]
   },
   {
+    "id": 300930,
     "name": "ショッテントッテン2",
     "url": "https://boardgamegeek.com/boardgame/300930/schotten-totten-2",
     "players": "2",
+    "time": "20分",
     "pmin": 2,
     "pmax": 2,
-    "time": "20分",
     "weight": 2,
-    "id": 300930,
-    "img": "300930.jpg"
+    "img": "300930.jpg",
+    "genres": [
+      "カードゲーム"
+    ]
   },
   {
+    "id": 205308,
     "name": "ジョリーアンドロジャー",
     "url": "https://boardgamegeek.com/boardgame/205308/jolly-and-roger",
     "players": "2",
+    "time": "20分",
     "pmin": 2,
     "pmax": 2,
-    "time": "20分",
     "weight": 2,
-    "id": 205308,
-    "img": "205308.jpg"
+    "img": "205308.jpg",
+    "genres": [
+      "ケーキ分配"
+    ]
   },
   {
+    "id": 408547,
     "name": "シングス・イン・リングス",
     "url": "https://boardgamegeek.com/boardgame/408547/things-in-rings",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "20分",
     "pmin": 2,
     "pmax": 6,
-    "time": "20分",
     "weight": 1,
-    "id": 408547,
-    "img": "408547.jpg"
+    "img": "408547.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 162286,
     "name": "スーパーマザーロード",
     "url": "https://boardgamegeek.com/boardgame/162286/super-motherload",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "60分",
     "pmin": 2,
     "pmax": 4,
-    "time": "60分",
     "weight": 3,
-    "id": 162286,
-    "img": "162286.jpg"
+    "img": "162286.jpg",
+    "genres": [
+      "タイル配置",
+      "デッキ構築"
+    ]
   },
   {
+    "id": 2354,
     "name": "スキャン",
     "url": "https://boardgamegeek.com/boardgame/2354/scan",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "10分",
     "pmin": 2,
     "pmax": 4,
-    "time": "10分",
     "weight": 1,
-    "id": 2354,
-    "img": "2354.jpg"
+    "img": "2354.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
     "id": 392492,
     "name": "ストゥポル・ムンディ",
     "url": "https://boardgamegeek.com/boardgame/392492/stupor-mundi",
-    "players": "1~4",
+    "players": "1～4",
     "time": "90-150分",
     "pmin": 1,
     "pmax": 4,
     "weight": 4,
-    "img": "392492.jpg"
+    "img": "392492.jpg",
+    "genres": [
+      "ハンドマネジメント",
+      "アクション選択"
+    ]
   },
   {
+    "id": 103814,
     "name": "ストリームス",
     "url": "https://boardgamegeek.com/boardgame/103814/streams",
-    "players": "1~99",
+    "players": "1～99",
+    "time": "10分",
     "pmin": 1,
     "pmax": 99,
-    "time": "10分",
     "weight": 1,
-    "id": 103814,
-    "img": "103814.jpg"
+    "img": "103814.jpg",
+    "genres": [
+      "紙ペン"
+    ]
   },
   {
+    "id": 8129,
     "name": "スラフオフ！",
     "url": "https://boardgamegeek.com/boardgame/8129/sluff-off",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 8129,
-    "img": "8129.jpg"
+    "img": "8129.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 265683,
     "name": "セカンドチャンス",
     "url": "https://boardgamegeek.com/boardgame/265683/second-chance",
-    "players": "1~6",
+    "players": "1～6",
+    "time": "20分",
     "pmin": 1,
     "pmax": 6,
-    "time": "20分",
     "weight": 1,
-    "id": 265683,
-    "img": "265683.jpg"
+    "img": "265683.jpg",
+    "genres": [
+      "紙ペン"
+    ]
   },
   {
+    "id": 234337,
     "name": "セネターズ",
     "url": "https://boardgamegeek.com/boardgame/234337/senators",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "45-60分",
     "pmin": 3,
     "pmax": 5,
-    "time": "45-60分",
     "weight": 3,
-    "id": 234337,
-    "img": "234337.jpg"
+    "img": "234337.jpg",
+    "genres": [
+      "競り"
+    ]
   },
   {
+    "id": 324344,
     "name": "セブンセグメントトリックス",
     "url": "https://boardgamegeek.com/boardgame/324344/twinkle-starship",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 324344,
-    "img": "324344.jpg"
+    "img": "324344.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 24771,
     "name": "ゼロの恐怖",
     "url": "https://boardgamegeek.com/boardgame/24771/null-and-nichtig",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 24771,
-    "img": "24771.jpg"
+    "img": "24771.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 67499,
     "name": "そっとおやすみ",
     "url": "https://boardgamegeek.com/boardgame/67499/schlafmutze",
-    "players": "3~7",
+    "players": "3～7",
+    "time": "15分",
     "pmin": 3,
     "pmax": 7,
-    "time": "15分",
     "weight": 1,
-    "id": 67499,
-    "img": "67499.jpg"
+    "img": "67499.jpg",
+    "genres": [
+      "パーティ",
+      "ハンドマネジメント"
+    ]
   },
   {
+    "id": 340,
     "name": "ゾフィンズー",
     "url": "https://boardgamegeek.com/boardgame/340/franks-zoo",
-    "players": "3~7",
+    "players": "3～7",
+    "time": "60分",
     "pmin": 3,
     "pmax": 7,
-    "time": "60分",
     "weight": 2,
-    "id": 340,
-    "img": "340.jpg"
+    "img": "340.jpg",
+    "genres": [
+      "ゴーアウト"
+    ]
   },
   {
+    "id": 322289,
     "name": "ダーウィンズジャーニー",
     "url": "https://boardgamegeek.com/boardgame/322289/darwins-journey",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "60-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "60-120分",
     "weight": 4,
-    "id": 322289,
-    "img": "322289.jpg"
+    "img": "322289.jpg",
+    "genres": [
+      "ワーカープレイスメント"
+    ]
   },
   {
+    "id": 383591,
     "name": "ダーウィンズジャーニー：動物ミニ拡張",
     "url": "https://boardgamegeek.com/boardgameexpansion/383591/darwins-journey-animal-companion",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "60-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "60-120分",
     "weight": 4,
-    "id": 383591,
-    "img": "383591.jpg"
+    "img": "383591.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 318009,
     "name": "ダイナソーアイランド ロールライト",
     "url": "https://boardgamegeek.com/boardgame/318009/dinosaur-island-rawr-n-write",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "30-45分",
     "pmin": 1,
     "pmax": 4,
-    "time": "30-45分",
     "weight": 3,
-    "id": 318009,
-    "img": "318009.jpg"
+    "img": "318009.jpg",
+    "genres": [
+      "紙ペン"
+    ]
   },
   {
+    "id": 236217,
     "name": "タイムボム",
     "url": "https://boardgamegeek.com/boardgame/236217/time-bomb",
-    "players": "4~8",
+    "players": "4～8",
+    "time": "1-30分",
     "pmin": 4,
     "pmax": 8,
-    "time": "1-30分",
     "weight": 2,
-    "id": 236217,
-    "img": "236217.jpg"
+    "img": "236217.jpg",
+    "genres": [
+      "正体隠匿"
+    ]
   },
   {
+    "id": 227466,
     "name": "タギロン",
     "url": "https://boardgamegeek.com/boardgame/227466/break-the-code",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "20分",
     "pmin": 2,
     "pmax": 4,
-    "time": "20分",
     "weight": 2,
-    "id": 227466,
-    "img": "227466.jpg"
+    "img": "227466.jpg",
+    "genres": [
+      "推理"
+    ]
   },
   {
+    "id": 312463,
     "name": "ダック",
     "url": "https://boardgamegeek.com/boardgame/312463/duck",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "20分",
     "pmin": 3,
     "pmax": 5,
-    "time": "20分",
     "weight": 1,
-    "id": 312463,
-    "img": "312463.jpg"
+    "img": "312463.jpg",
+    "genres": [
+      "ハンドマネジメント",
+      "カードゲーム"
+    ]
   },
   {
+    "id": 44,
     "name": "ダビデとゴリアテ",
     "url": "https://boardgamegeek.com/boardgame/44/david-and-goliath",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "60分",
     "pmin": 3,
     "pmax": 6,
-    "time": "60分",
     "weight": 1,
-    "id": 44,
-    "img": "44.jpg"
+    "img": "44.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 2067,
     "name": "ダブル",
     "url": "https://boardgamegeek.com/boardgame/2067/double",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "30分",
     "pmin": 2,
     "pmax": 6,
-    "time": "30分",
     "weight": 1,
-    "id": 2067,
-    "img": "2067.jpg"
+    "img": "2067.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 234842,
     "name": "チックウッドの森",
     "url": "https://boardgamegeek.com/boardgame/234842/chickwood-forest",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "45分",
     "pmin": 2,
     "pmax": 5,
-    "time": "45分",
     "weight": 2,
-    "id": 234842,
-    "img": "234842.jpg"
+    "img": "234842.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 213631,
     "name": "チップイット",
     "url": "https://boardgamegeek.com/boardgame/213631/to-unlimited-and-beyond",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "10分",
     "pmin": 2,
     "pmax": 6,
-    "time": "10分",
     "weight": 2,
-    "id": 213631,
-    "img": "213631.jpg"
+    "img": "213631.jpg",
+    "genres": [
+      "ゴーアウト"
+    ]
   },
   {
+    "id": 352818,
     "name": "ツイン・パームス",
     "url": "https://boardgamegeek.com/boardgame/352818/twin-palms",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "30-60分",
     "pmin": 2,
     "pmax": 5,
-    "time": "30-60分",
     "weight": 1,
-    "id": 352818,
-    "img": "352818.jpg"
+    "img": "352818.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 186864,
     "name": "ティーフェタッシェン",
     "url": "https://boardgamegeek.com/boardgame/186864/tiefe-taschen",
-    "players": "4~8",
+    "players": "4～8",
+    "time": "20-50分",
     "pmin": 4,
     "pmax": 8,
-    "time": "20-50分",
     "weight": 2,
-    "id": 186864,
-    "img": "186864.jpg"
+    "img": "186864.jpg",
+    "genres": [
+      "へんなの",
+      "パーティ"
+    ]
   },
   {
+    "id": 162082,
     "name": "デウス",
     "url": "https://boardgamegeek.com/boardgame/162082/deus",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "60-90分",
     "pmin": 2,
     "pmax": 4,
-    "time": "60-90分",
     "weight": 3,
-    "id": 162082,
-    "img": "162082.jpg"
+    "img": "162082.jpg",
+    "genres": [
+      "マジョリティ",
+      "拡大再生産"
+    ]
   },
   {
+    "id": 201609,
     "name": "デウス：エジプト",
     "url": "https://boardgamegeek.com/boardgameexpansion/201609/deus-egypt",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "60-90分",
     "pmin": 2,
     "pmax": 4,
-    "time": "60-90分",
     "weight": 3,
-    "id": 201609,
-    "img": "201609.jpg"
+    "img": "201609.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 229853,
     "name": "テオティワカン:シティオブゴッド",
     "url": "https://boardgamegeek.com/boardgame/229853/teotihuacan-city-of-gods",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "90-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "90-120分",
     "weight": 4,
-    "id": 229853,
-    "img": "229853.jpg"
+    "img": "229853.jpg",
+    "genres": [
+      "ダイスプレイスメント"
+    ]
   },
   {
+    "id": 293473,
     "name": "テオティワカン：シャドウオブシトレ",
     "url": "https://boardgamegeek.com/boardgameexpansion/293473/teotihuacan-shadow-of-xitle",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "90-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "90〜120分",
     "weight": 4,
-    "id": 293473,
-    "img": "293473.jpg"
+    "img": "293473.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 316777,
     "name": "テオティワカン：拡大の時代",
     "url": "https://boardgamegeek.com/boardgameexpansion/316777/teotihuacan-expansion-period",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "90-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "90〜120分",
     "weight": 4,
-    "id": 316777,
-    "img": "316777.jpg"
+    "img": "316777.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 270364,
     "name": "テオティワカン：後期先古典期",
     "url": "https://boardgamegeek.com/boardgameexpansion/270364/teotihuacan-late-preclassic-period",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "90-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "90〜120分",
     "weight": 4,
-    "id": 270364,
-    "img": "270364.jpg"
+    "img": "270364.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 225694,
     "name": "デクリプト",
     "url": "https://boardgamegeek.com/boardgame/225694/decrypto",
-    "players": "3~8",
+    "players": "3～8",
+    "time": "15-45分",
     "pmin": 3,
     "pmax": 8,
-    "time": "15~45分",
     "weight": 2,
-    "id": 225694,
-    "img": "225694.jpg"
+    "img": "225694.jpg",
+    "genres": [
+      "パーティ",
+      "チーム戦"
+    ]
   },
   {
+    "id": 273938,
     "name": "デクリプト：レーザーディスク",
     "url": "https://boardgamegeek.com/boardgameexpansion/273938/decrypto-expansion-01-laserdrive",
-    "players": "3~8",
+    "players": "3～8",
+    "time": "15-45分",
     "pmin": 3,
     "pmax": 8,
-    "time": "15~45分",
     "weight": 2,
-    "id": 273938,
-    "img": "273938.jpg"
+    "img": "273938.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 397598,
     "name": "デューンインペリウム 反乱",
     "url": "https://boardgamegeek.com/boardgame/397598/dune-imperium-uprising",
-    "players": "1~6",
+    "players": "1～6",
+    "time": "60-120分",
     "pmin": 1,
     "pmax": 6,
-    "time": "60〜120分",
     "weight": 4,
-    "id": 397598,
-    "img": "397598.jpg"
+    "img": "397598.jpg",
+    "genres": [
+      "ワーカープレイスメント",
+      "デッキ構築"
+    ]
   },
   {
+    "id": 364186,
     "name": "テラノヴァ",
     "url": "https://boardgamegeek.com/boardgame/364186/terra-nova",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "60-90分",
     "pmin": 2,
     "pmax": 4,
-    "time": "60-90分",
     "weight": 3,
-    "id": 364186,
-    "img": "364186.jpg"
+    "img": "364186.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 272427,
     "name": "テラマラ",
     "url": "https://boardgamegeek.com/boardgame/272427/terramara",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "120分",
     "pmin": 2,
     "pmax": 4,
-    "time": "120分",
     "weight": 4,
-    "id": 272427,
-    "img": "272427.jpg"
+    "img": "272427.jpg",
+    "genres": [
+      "ワーカープレイスメント"
+    ]
   },
   {
     "id": 426043,
     "name": "デンジャー",
     "url": "https://boardgamegeek.com/boardgame/426043/danger-the-high-voltage-game",
-    "players": "2~4",
+    "players": "2～4",
     "time": "15-30分",
     "pmin": 2,
     "pmax": 4,
     "weight": 1,
-    "img": "426043.jpg"
+    "img": "426043.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 262566,
     "name": "ドゥッベ",
     "url": "https://boardgamegeek.com/boardgame/262566/dubbe",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "45-60分",
     "pmin": 2,
     "pmax": 5,
-    "time": "45-60分",
     "weight": 2,
-    "id": 262566,
-    "img": "262566.jpg"
+    "img": "262566.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 292974,
     "name": "トーナメントアットアヴァロン",
     "url": "https://boardgamegeek.com/boardgame/292974/tournament-at-avalon",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "45分",
     "pmin": 3,
     "pmax": 6,
-    "time": "45分",
     "weight": 2,
-    "id": 292974,
-    "img": "292974.jpg"
+    "img": "292974.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 415295,
     "name": "ドラゴンクエスト 銀のタロット",
     "url": "https://boardgamegeek.com/boardgame/415295/dragon-quest-the-silver-tarot",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 415295,
-    "img": "415295.jpg"
+    "img": "415295.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 11396,
     "name": "ドラゴンマスター",
     "url": "https://boardgamegeek.com/boardgame/11396/dragon-master",
     "players": "2",
+    "time": "20分",
     "pmin": 2,
     "pmax": 2,
-    "time": "20分",
     "weight": 2,
-    "id": 11396,
-    "img": "11396.jpg"
+    "img": "11396.jpg",
+    "genres": [
+      "へんなの"
+    ]
   },
   {
+    "id": 15261,
     "name": "トランプ・トリック・ゲーム",
     "url": "https://boardgamegeek.com/boardgame/15261/trump-tricks-game",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "45分",
     "pmin": 3,
     "pmax": 4,
-    "time": "45分",
     "weight": 1,
-    "id": 15261,
-    "img": "15261.jpg"
+    "img": "15261.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 383701,
     "name": "トリッキータイムクライシス",
     "url": "https://boardgamegeek.com/boardgame/383701/tricky-time-crisis",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "25-45分",
     "pmin": 2,
     "pmax": 5,
-    "time": "25~45分",
     "weight": 2,
-    "id": 383701,
-    "img": "383701.jpg"
+    "img": "383701.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 81250,
     "name": "トリックマイスター",
     "url": "https://boardgamegeek.com/boardgame/81250/stich-meister",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "45分",
     "pmin": 3,
     "pmax": 5,
-    "time": "45分",
     "weight": 2,
-    "id": 81250,
-    "img": "81250.jpg"
+    "img": "81250.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 188018,
     "name": "ナインタイル",
     "url": "https://boardgamegeek.com/boardgame/188018/nine-tiles",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "15分",
     "pmin": 2,
     "pmax": 4,
-    "time": "15分",
     "weight": 1,
-    "id": 188018,
-    "img": "188018.jpg"
+    "img": "188018.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 449831,
     "name": "ナショナルエコノミー",
     "url": "https://boardgamegeek.com/boardgame/449831/national-economy",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "30-45分",
     "pmin": 1,
     "pmax": 4,
-    "time": "30-45分",
     "weight": 2,
-    "id": 449831,
-    "img": "449831.jpg"
+    "img": "449831.jpg",
+    "genres": [
+      "ワーカープレイスメント"
+    ]
   },
   {
+    "id": 298376,
     "name": "ニャー",
     "url": "https://boardgamegeek.com/boardgame/298376/meow",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "20分",
     "pmin": 2,
     "pmax": 6,
-    "time": "20分",
     "weight": 1,
-    "id": 298376,
-    "img": "298376.jpg"
+    "img": "298376.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 378979,
     "name": "ヌスフィヨルド ビッグボックス日本語版",
     "url": "https://boardgamegeek.com/boardgame/378979/nusfjord-big-box",
-    "players": "1~5",
+    "players": "1～5",
+    "time": "60-120分",
     "pmin": 1,
     "pmax": 5,
-    "time": "60〜120分",
     "weight": 3,
-    "id": 378979,
-    "img": "378979.jpg"
+    "img": "378979.jpg",
+    "genres": [
+      "ワーカープレイスメント"
+    ]
   },
   {
+    "id": 245931,
     "name": "ネタタンカ デラックス",
     "url": "https://boardgamegeek.com/boardgame/245931/neta-tanka-deluxe-edition",
-    "players": "1~5",
+    "players": "1～5",
+    "time": "60-90分",
     "pmin": 1,
     "pmax": 5,
-    "time": "60-90分",
     "weight": 3,
-    "id": 245931,
-    "img": "245931.jpg"
+    "img": "245931.jpg",
+    "genres": [
+      "ワーカープレイスメント"
+    ]
   },
   {
+    "id": 436936,
     "name": "ノールーズエンズ",
     "url": "https://boardgamegeek.com/boardgame/436936/no-loose-ends",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "40分",
     "pmin": 2,
     "pmax": 5,
-    "time": "40分",
     "weight": 2,
-    "id": 436936,
-    "img": "436936.jpg"
+    "img": "436936.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 294693,
     "name": "ノコスダイス",
     "url": "https://boardgamegeek.com/boardgame/294693/nokosu-dice",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "45-60分",
     "pmin": 3,
     "pmax": 5,
-    "time": "45-60分",
     "weight": 3,
-    "id": 294693,
-    "img": "294693.jpg"
+    "img": "294693.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 338,
     "name": "バーゲンハンター",
     "url": "https://boardgamegeek.com/boardgame/338/bargain-hunter",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "45分",
     "pmin": 3,
     "pmax": 4,
-    "time": "45分",
     "weight": 2,
-    "id": 338,
-    "img": "338.jpg"
+    "img": "338.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 216578,
     "name": "ハーフパイントヒーローズ",
     "url": "https://boardgamegeek.com/boardgame/216578/half-pint-heroes",
-    "players": "2~7",
+    "players": "2～7",
+    "time": "30-60分",
     "pmin": 2,
     "pmax": 7,
-    "time": "30-60分",
     "weight": 2,
-    "id": 216578,
-    "img": "216578.jpg"
+    "img": "216578.jpg",
+    "genres": [
+      "トリックテイキング",
+      "ポーカー"
+    ]
   },
   {
+    "id": 253692,
     "name": "ハーフパイントヒーローズ：ハッピーアワー",
     "url": "https://boardgamegeek.com/boardgameexpansion/253692/half-pint-heroes-happy-hour",
-    "players": "2~9",
+    "players": "2～9",
+    "time": "60-90分",
     "pmin": 2,
     "pmax": 9,
-    "time": "60-90分",
     "weight": 2,
-    "id": 253692,
-    "img": "253692.jpg"
+    "img": "253692.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 37441,
     "name": "パーラ",
     "url": "https://boardgamegeek.com/boardgame/37441/pala",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 37441,
-    "img": "37441.jpg"
+    "img": "37441.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 200057,
     "name": "パイオニアデイズ",
     "url": "https://boardgamegeek.com/boardgame/200057/pioneer-days",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "45-75分",
     "pmin": 2,
     "pmax": 4,
-    "time": "45-75分",
     "weight": 3,
-    "id": 200057,
-    "img": "200057.jpg"
+    "img": "200057.jpg",
+    "genres": [
+      "ダイスピック"
+    ]
   },
   {
+    "id": 220,
     "name": "ハイソサエティ",
     "url": "https://boardgamegeek.com/boardgame/220/high-society",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 220,
-    "img": "220.jpg"
+    "img": "220.jpg",
+    "genres": [
+      "競り"
+    ]
   },
   {
-    "name": "ハイソサエティ日本語版 ",
-    "url": "https://boardgamegeek.com/boardgameversion/401618/japanese-edition",
-    "players": "3~5",
-    "pmin": 3,
-    "pmax": 5,
-    "time": "30分",
-    "weight": 2,
     "id": 401618,
-    "img": "401618.jpg"
+    "name": "ハイソサエティ日本語版",
+    "url": "https://boardgamegeek.com/boardgameversion/401618/japanese-edition",
+    "players": "3～5",
+    "time": "30分",
+    "pmin": 3,
+    "pmax": 5,
+    "weight": 2,
+    "img": "401618.jpg",
+    "genres": [
+      "競り"
+    ]
   },
   {
+    "id": 175,
     "name": "はげたかのえじき",
     "url": "https://boardgamegeek.com/boardgame/175/what-the-heck",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "20分",
     "pmin": 2,
     "pmax": 5,
-    "time": "20分",
     "weight": 1,
-    "id": 175,
-    "img": "175.jpg"
+    "img": "175.jpg",
+    "genres": [
+      "バッティング"
+    ]
   },
   {
+    "id": 393888,
     "name": "パストニヒト！",
     "url": "https://boardgamegeek.com/boardgame/393888/match",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "20分",
     "pmin": 2,
     "pmax": 6,
-    "time": "20分",
     "weight": 1,
-    "id": 393888,
-    "img": "393888.jpg"
+    "img": "393888.jpg",
+    "genres": [
+      "へんなの"
+    ]
   },
   {
+    "id": 379583,
     "name": "パターンズ",
     "url": "https://boardgamegeek.com/boardgame/379583/patterns",
     "players": "2",
+    "time": "20分",
     "pmin": 2,
     "pmax": 2,
-    "time": "20分",
     "weight": 2,
-    "id": 379583,
-    "img": "379583.jpg"
+    "img": "379583.jpg",
+    "genres": [
+      "アブストラクト"
+    ]
   },
   {
+    "id": 269144,
     "name": "ハダラ",
     "url": "https://boardgamegeek.com/boardgame/269144/hadara",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "45-60分",
     "pmin": 2,
     "pmax": 5,
-    "time": "45-60分",
     "weight": 2,
-    "id": 269144,
-    "img": "269144.jpg"
+    "img": "269144.jpg",
+    "genres": [
+      "拡大再生産"
+    ]
   },
   {
+    "id": 290042,
     "name": "ハダラ：貴族と発明",
     "url": "https://boardgamegeek.com/boardgameexpansion/290042/hadara-nobles-and-inventions",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "45-60分",
     "pmin": 2,
     "pmax": 5,
-    "time": "45-60分",
     "weight": 2,
-    "id": 290042,
-    "img": "290042.jpg"
+    "img": "290042.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 350,
     "name": "ハットトリック",
     "url": "https://boardgamegeek.com/boardgame/350/hattrick",
-    "players": "4~6",
+    "players": "4～6",
+    "time": "30分",
     "pmin": 4,
     "pmax": 6,
-    "time": "30分",
     "weight": 2,
-    "id": 350,
-    "img": "350.jpg"
+    "img": "350.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 760,
     "name": "バトルライン",
     "url": "https://boardgamegeek.com/boardgame/760/battle-line",
     "players": "2",
+    "time": "30分",
     "pmin": 2,
     "pmax": 2,
-    "time": "30分",
     "weight": 2,
-    "id": 760,
-    "img": "760.jpg"
+    "img": "760.jpg",
+    "genres": [
+      "ハンドマネジメント"
+    ]
   },
   {
+    "id": 200853,
     "name": "ハビタッツ",
     "url": "https://boardgamegeek.com/boardgame/200853/habitats",
-    "players": "1~5",
+    "players": "1～5",
+    "time": "30-50分",
     "pmin": 1,
     "pmax": 5,
-    "time": "30-50分",
     "weight": 3,
-    "id": 200853,
-    "img": "200853.jpg"
+    "img": "200853.jpg",
+    "genres": [
+      "タイル配置"
+    ]
   },
   {
+    "id": 38992,
     "name": "パレロワイヤル",
     "url": "https://boardgamegeek.com/boardgame/38992/royal-palace",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "60分",
     "pmin": 2,
     "pmax": 4,
-    "time": "60分",
     "weight": 2,
-    "id": 38992,
-    "img": "38992.jpg"
+    "img": "38992.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 334267,
     "name": "ヒーフー！",
     "url": "https://boardgamegeek.com/boardgame/334267/hii-fuu",
-    "players": "4~5",
+    "players": "4～5",
+    "time": "20分",
     "pmin": 4,
     "pmax": 5,
-    "time": "20分",
     "weight": 2,
-    "id": 334267,
-    "img": "334267.jpg"
+    "img": "334267.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 320718,
     "name": "ヒドゥンリーダーズ",
     "url": "https://boardgamegeek.com/boardgame/320718/hidden-leaders",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "20-40分",
     "pmin": 2,
     "pmax": 6,
-    "time": "20-40分",
     "weight": 2,
-    "id": 320718,
-    "img": "320718.jpg"
+    "img": "320718.jpg",
+    "genres": [
+      "正体隠匿",
+      "カードゲーム"
+    ]
   },
   {
+    "id": 301317,
     "name": "ヒューストン！イルカ発生",
     "url": "https://boardgamegeek.com/boardgame/301317/houston-we-have-a-dolphin",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "20-40分",
     "pmin": 3,
     "pmax": 5,
-    "time": "20-40分",
     "weight": 2,
-    "id": 301317,
-    "img": "301317.jpg"
+    "img": "301317.jpg",
+    "genres": [
+      "正体隠匿"
+    ]
   },
   {
+    "id": 223040,
     "name": "ファンタジーレルムズ",
     "url": "https://boardgamegeek.com/boardgame/223040/fantasy-realms",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "20分",
     "pmin": 2,
     "pmax": 6,
-    "time": "20分",
     "weight": 2,
-    "id": 223040,
-    "img": "223040.jpg"
+    "img": "223040.jpg",
+    "genres": [
+      "セットコレクション",
+      "ハンドマネジメント"
+    ]
   },
   {
+    "id": 330592,
     "name": "ファントムインク",
     "url": "https://boardgamegeek.com/boardgame/330592/phantom-ink",
-    "players": "2~8",
+    "players": "2～8",
+    "time": "10-15分",
     "pmin": 2,
     "pmax": 8,
-    "time": "10-15分",
     "weight": 2,
-    "id": 330592,
-    "img": "330592.jpg"
+    "img": "330592.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 419195,
     "name": "フィッシェン",
     "url": "https://boardgamegeek.com/boardgame/419195/fishing",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "40-60分",
     "pmin": 3,
     "pmax": 5,
-    "time": "40-60分",
     "weight": 2,
-    "id": 419195,
-    "img": "419195.jpg"
+    "img": "419195.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 234248,
     "name": "ブードゥープリンス",
     "url": "https://boardgamegeek.com/boardgame/234248/voodoo-prince",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "20分",
     "pmin": 2,
     "pmax": 5,
-    "time": "20分",
     "weight": 2,
-    "id": 234248,
-    "img": "234248.jpg"
+    "img": "234248.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 438442,
     "name": "フェヤズ・スワンプ",
     "url": "https://boardgamegeek.com/boardgame/438442/feyas-swamp",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "80-100分",
     "pmin": 2,
     "pmax": 4,
-    "time": "80-100分",
     "weight": 2,
-    "id": 438442,
-    "img": "438442.jpg"
+    "img": "438442.jpg",
+    "genres": [
+      "ワーカープレイスメント",
+      "タイル配置"
+    ]
   },
   {
+    "id": 1942,
     "name": "フォッペン",
     "url": "https://boardgamegeek.com/boardgame/1942/foppen",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "20分",
     "pmin": 3,
     "pmax": 6,
-    "time": "20分",
     "weight": 1,
-    "id": 1942,
-    "img": "1942.jpg"
+    "img": "1942.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 93733,
     "name": "フォレショレ",
     "url": "https://boardgamegeek.com/boardgame/93733/volle-scholle",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "20分",
     "pmin": 3,
     "pmax": 4,
-    "time": "20分",
     "weight": 1,
-    "id": 93733,
-    "img": "93733.jpg"
+    "img": "93733.jpg",
+    "genres": [
+      "競り",
+      "記憶"
+    ]
   },
   {
+    "id": 1403,
     "name": "ぶくぶく",
     "url": "https://boardgamegeek.com/boardgame/1403/turn-the-tide",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 1403,
-    "img": "1403.jpg"
+    "img": "1403.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 132598,
     "name": "ブラックスワン",
     "url": "https://boardgamegeek.com/boardgame/132598/black-swan",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "30分",
     "pmin": 2,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 132598,
-    "img": "132598.jpg"
+    "img": "132598.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 420805,
     "name": "ブラックフォレスト",
     "url": "https://boardgamegeek.com/boardgame/420805/black-forest",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "60-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "60-120分",
     "weight": 4,
-    "id": 420805,
-    "img": "420805.jpg"
+    "img": "420805.jpg",
+    "genres": [
+      "ワーカームーブメント",
+      "拡大再生産"
+    ]
   },
   {
+    "id": 252595,
     "name": "フラッシュワード",
     "url": "https://boardgamegeek.com/boardgame/252595/flash-word",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "10分",
     "pmin": 2,
     "pmax": 6,
-    "time": "10分",
     "weight": 1,
-    "id": 252595,
-    "img": "252595.jpg"
+    "img": "252595.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 130877,
     "name": "ブラッドバウンド",
     "url": "https://boardgamegeek.com/boardgame/130877/blood-bound",
-    "players": "6~12",
+    "players": "6～12",
+    "time": "30分",
     "pmin": 6,
     "pmax": 12,
-    "time": "30分",
     "weight": 2,
-    "id": 130877,
-    "img": "130877.jpg"
+    "img": "130877.jpg",
+    "genres": [
+      "正体隠匿"
+    ]
   },
   {
+    "id": 245645,
     "name": "フランチャイズ",
     "url": "https://boardgamegeek.com/boardgame/245645/franchise",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "90分",
     "pmin": 2,
     "pmax": 5,
-    "time": "90分",
     "weight": 2,
-    "id": 245645,
-    "img": "245645.jpg"
+    "img": "245645.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
     "id": 420087,
@@ -1909,875 +2436,1132 @@
     "pmin": 3,
     "pmax": 18,
     "weight": 1,
-    "img": "420087.jpg"
+    "img": "420087.jpg",
+    "genres": [
+      "チキンレース"
+    ]
   },
   {
+    "id": 271320,
     "name": "ブルゴーニュ プラス",
     "url": "https://boardgamegeek.com/boardgame/271320/the-castles-of-burgundy",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "70-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "70-120分",
     "weight": 3,
-    "id": 271320,
-    "img": "271320.jpg"
+    "img": "271320.jpg",
+    "genres": [
+      "タイル配置",
+      "ダイスドラフト"
+    ]
   },
   {
     "id": 164698,
     "name": "フレッシュフィッシュ",
     "url": "https://boardgamegeek.com/boardgame/164698/fresh-fish",
-    "players": "2-5",
+    "players": "2～5",
     "time": "45分",
     "pmin": 2,
     "pmax": 5,
     "weight": 3,
-    "img": "164698.jpg"
+    "img": "164698.jpg",
+    "genres": [
+      "へんなの"
+    ]
   },
   {
+    "id": 4505,
     "name": "フレンチタロット",
     "url": "https://boardgamegeek.com/boardgame/4505/tarot",
-    "players": "2~8",
+    "players": "2～8",
+    "time": "30分",
     "pmin": 2,
     "pmax": 8,
-    "time": "30分",
     "weight": 3,
-    "id": 4505,
-    "img": "4505.jpg"
+    "img": "4505.jpg",
+    "genres": [
+      "タロット"
+    ]
   },
   {
+    "id": 365742,
     "name": "ベーコン",
     "url": "https://boardgamegeek.com/boardgame/365742/bacon",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "30-90分",
     "pmin": 3,
     "pmax": 6,
-    "time": "30-90分",
     "weight": 2,
-    "id": 365742,
-    "img": "365742.jpg"
+    "img": "365742.jpg",
+    "genres": [
+      "ゴーアウト"
+    ]
   },
   {
+    "id": 206,
     "name": "ペッパー",
     "url": "https://boardgamegeek.com/boardgame/206/jalape-no",
-    "players": "3~9",
+    "players": "3～9",
+    "time": "45分",
     "pmin": 3,
     "pmax": 9,
-    "time": "45分",
     "weight": 1,
-    "id": 206,
-    "img": "206.jpg"
+    "img": "206.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 1944,
     "name": "ペテン卵",
     "url": "https://boardgamegeek.com/boardgame/1944/mogelei",
-    "players": "3~8",
+    "players": "3～8",
+    "time": "30分",
     "pmin": 3,
     "pmax": 8,
-    "time": "30分",
     "weight": 1,
-    "id": 1944,
-    "img": "1944.jpg"
+    "img": "1944.jpg",
+    "genres": [
+      "トリックテイキング",
+      "へんなの"
+    ]
   },
   {
+    "id": 100001,
     "name": "ヘンケン単語帳",
     "url": "https://bodoge.hoobby.net/games/henken-tangocho",
-    "players": "3~8",
+    "players": "3～8",
+    "time": "5分",
     "pmin": 3,
     "pmax": 8,
-    "time": "5分",
     "weight": 2,
-    "id": 100001,
-    "img": "100001.jpg"
+    "img": "100001.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 223952,
     "name": "ボーストオアナッシング",
     "url": "https://boardgamegeek.com/boardgame/223952/best-of-neapolitan",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "15-30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "15-30分",
     "weight": 2,
-    "id": 223952,
-    "img": "223952.jpg"
+    "img": "223952.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 2563,
     "name": "ホットドッグ",
     "url": "https://boardgamegeek.com/boardgame/2563/hot-dog",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "45分",
     "pmin": 2,
     "pmax": 5,
-    "time": "45分",
     "weight": 1,
-    "id": 2563,
-    "img": "2563.jpg"
+    "img": "2563.jpg",
+    "genres": [
+      "競り"
+    ]
   },
   {
+    "id": 137155,
     "name": "ポテトマン",
     "url": "https://boardgamegeek.com/boardgame/137155/potato-man",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "40分",
     "pmin": 2,
     "pmax": 5,
-    "time": "40分",
     "weight": 1,
-    "id": 137155,
-    "img": "137155.jpg"
+    "img": "137155.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 345584,
     "name": "マインドバグ",
     "url": "https://boardgamegeek.com/boardgame/345584/mindbug-first-contact",
     "players": "2",
+    "time": "15-25分",
     "pmin": 2,
     "pmax": 2,
-    "time": "15-25分",
     "weight": 2,
-    "id": 345584,
-    "img": "345584.jpg"
+    "img": "345584.jpg",
+    "genres": [
+      "カードゲーム"
+    ]
   },
   {
+    "id": 449353,
     "name": "マインドバグキングオブトーキョー",
     "url": "https://boardgamegeek.com/boardgame/449353/mindbug-x-king-of-tokyo",
     "players": "2",
+    "time": "15-25分",
     "pmin": 2,
     "pmax": 2,
-    "time": "15-25分",
     "weight": 2,
-    "id": 449353,
-    "img": "449353.jpg"
+    "img": "449353.jpg",
+    "genres": [
+      "カードゲーム"
+    ]
   },
   {
+    "id": 302734,
     "name": "マスターワード",
     "url": "https://boardgamegeek.com/boardgame/302734/master-word",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "5-15分",
     "pmin": 3,
     "pmax": 6,
-    "time": "5-15分",
     "weight": 2,
-    "id": 302734,
-    "img": "302734.jpg"
+    "img": "302734.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 192,
     "name": "マメじゃないよ",
     "url": "https://boardgamegeek.com/boardgame/192/nicht-die-bohne",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "45分",
     "pmin": 3,
     "pmax": 6,
-    "time": "45分",
     "weight": 2,
-    "id": 192,
-    "img": "192.jpg"
+    "img": "192.jpg",
+    "genres": [
+      "へんなの"
+    ]
   },
   {
+    "id": 276025,
     "name": "マラカイボ",
     "url": "https://boardgamegeek.com/boardgame/276025/maracaibo",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "30-120分",
     "pmin": 1,
     "pmax": 4,
-    "time": "30〜120分",
     "weight": 4,
-    "id": 276025,
-    "img": "276025.jpg"
+    "img": "276025.jpg",
+    "genres": [
+      "ハンドマネジメント",
+      "すごろく"
+    ]
   },
   {
+    "id": 171623,
     "name": "マルコポーロの旅路",
     "url": "https://boardgamegeek.com/boardgame/171623/the-voyages-of-marco-polo",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "40-100分",
     "pmin": 2,
     "pmax": 4,
-    "time": "40-100分",
     "weight": 4,
-    "id": 171623,
-    "img": "171623.jpg"
+    "img": "171623.jpg",
+    "genres": [
+      "ダイスプレイスメント"
+    ]
   },
   {
+    "id": 232945,
     "name": "マルコポーロの旅路：秘密の道",
     "url": "https://boardgamegeek.com/boardgameexpansion/232945/the-voyages-of-marco-polo-agents-of-venice",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "40-100分",
     "pmin": 2,
     "pmax": 5,
-    "time": "40-100分",
     "weight": 4,
-    "id": 232945,
-    "img": "232945.jpg"
+    "img": "232945.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 264241,
     "name": "マンダラ",
     "url": "https://boardgamegeek.com/boardgame/264241/mandala",
     "players": "2",
+    "time": "20分",
     "pmin": 2,
     "pmax": 2,
-    "time": "20分",
     "weight": 2,
-    "id": 264241,
-    "img": "264241.jpg"
+    "img": "264241.jpg",
+    "genres": [
+      "ハンドマネジメント"
+    ]
   },
   {
+    "id": 172073,
     "name": "マンモス",
     "url": "https://boardgamegeek.com/boardgame/172073/mammuz",
-    "players": "3~7",
+    "players": "3～7",
+    "time": "20分",
     "pmin": 3,
     "pmax": 7,
-    "time": "20分",
     "weight": 1,
-    "id": 172073,
-    "img": "172073.jpg"
+    "img": "172073.jpg",
+    "genres": [
+      "ブラフ"
+    ]
   },
   {
+    "id": 18258,
     "name": "ミッションレッドプラネット",
     "url": "https://boardgamegeek.com/boardgame/18258/mission-red-planet",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "60分",
     "pmin": 3,
     "pmax": 5,
-    "time": "60分",
     "weight": 3,
-    "id": 18258,
-    "img": "18258.jpg"
+    "img": "18258.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 429608,
     "name": "ミュー&モア",
     "url": "https://boardgamegeek.com/boardgame/429608/mu-and-more-revised-edition",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "20-60分",
     "pmin": 2,
     "pmax": 6,
-    "time": "20-60分",
     "weight": 2,
-    "id": 429608,
-    "img": "429608.jpg"
+    "img": "429608.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 89442,
     "name": "ミューラ",
     "url": "https://boardgamegeek.com/boardgame/89442/miura",
     "players": "3",
+    "time": "10分",
     "pmin": 3,
     "pmax": 3,
-    "time": "10分",
     "weight": 2,
-    "id": 89442,
-    "img": "89442.jpg"
+    "img": "89442.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 346501,
     "name": "ミルフィオリ",
     "url": "https://boardgamegeek.com/boardgame/346501/mille-fiori",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "60-90分",
     "pmin": 2,
     "pmax": 4,
-    "time": "60-90分",
     "weight": 3,
-    "id": 346501,
-    "img": "346501.jpg"
+    "img": "346501.jpg",
+    "genres": [
+      "カードドラフト",
+      "マジョリティ"
+    ]
   },
   {
+    "id": 377715,
     "name": "ミルフィオリ：傑作",
     "url": "https://boardgamegeek.com/boardgameexpansion/377715/mille-fiori-the-masterpieces",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "60-90分",
     "pmin": 2,
     "pmax": 4,
-    "time": "60-90分",
     "weight": 3,
-    "id": 377715,
-    "img": "377715.jpg"
+    "img": "377715.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 4562,
     "name": "ムガル",
     "url": "https://boardgamegeek.com/boardgame/4562/mogul",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "45分",
     "pmin": 3,
     "pmax": 6,
-    "time": "45分",
     "weight": 2,
-    "id": 4562,
-    "img": "4562.jpg"
+    "img": "4562.jpg",
+    "genres": [
+      "競り",
+      "株"
+    ]
   },
   {
+    "id": 24762,
     "name": "メディチvsストロッツィ",
     "url": "https://boardgamegeek.com/boardgame/24762/medici-vs-strozzi",
     "players": "2",
+    "time": "30分",
     "pmin": 2,
     "pmax": 2,
-    "time": "30分",
     "weight": 2,
-    "id": 24762,
-    "img": "24762.jpg"
+    "img": "24762.jpg",
+    "genres": [
+      "競り"
+    ]
   },
   {
+    "id": 25568,
     "name": "メトロポリィス",
     "url": "https://boardgamegeek.com/boardgame/25568/metropolys",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "30-60分",
     "pmin": 2,
     "pmax": 4,
-    "time": "30-60分",
     "weight": 3,
-    "id": 25568,
-    "img": "25568.jpg"
+    "img": "25568.jpg",
+    "genres": [
+      "競り",
+      "へんなの"
+    ]
   },
   {
+    "id": 273937,
     "name": "モプセン",
     "url": "https://boardgamegeek.com/boardgame/273937/mopsen",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30-40分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30-40分",
     "weight": 1,
-    "id": 273937,
-    "img": "273937.jpg"
+    "img": "273937.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 1385,
     "name": "やあ、こんにちは！",
     "url": "https://boardgamegeek.com/boardgame/1385/aber-hallo",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 1385,
-    "img": "1385.jpg"
+    "img": "1385.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 31506,
     "name": "ヤギ戦争",
     "url": "https://boardgamegeek.com/boardgame/31506/cliffhanger",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "15分",
     "pmin": 3,
     "pmax": 6,
-    "time": "15分",
     "weight": 1,
-    "id": 31506,
-    "img": "31506.jpg"
+    "img": "31506.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 343927,
     "name": "ユニオンストックヤード",
     "url": "https://boardgamegeek.com/boardgame/343927/union-stockyards",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "45-90分",
     "pmin": 2,
     "pmax": 5,
-    "time": "45-90分",
     "weight": 3,
-    "id": 343927,
-    "img": "343927.jpg"
+    "img": "343927.jpg",
+    "genres": [
+      "ワーカープレイスメント"
+    ]
   },
   {
+    "id": 312763,
     "name": "ライツ スタータップス",
     "url": "https://boardgamegeek.com/boardgame/312763/rights-aka-startups",
-    "players": "3~7",
+    "players": "3～7",
+    "time": "20分",
     "pmin": 3,
     "pmax": 7,
-    "time": "20分",
     "weight": 2,
-    "id": 312763,
-    "img": "312763.jpg"
+    "img": "312763.jpg",
+    "genres": [
+      "セットコレクション",
+      "ハンドマネジメント"
+    ]
   },
   {
-    "name": "ラマダイス ",
+    "id": 325853,
+    "name": "ラマダイス",
     "url": "https://boardgamegeek.com/boardgame/325853/dont-llama-dice",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "20分",
     "pmin": 2,
     "pmax": 6,
-    "time": "20分",
     "weight": 1,
-    "id": 325853,
-    "img": "325853.jpg"
+    "img": "325853.jpg",
+    "genres": [
+      "ダイス",
+      "ゴーアウト"
+    ]
   },
   {
+    "id": 313473,
     "name": "ラマパーティ",
     "url": "https://boardgamegeek.com/boardgame/313473/lama-party-edition",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "20分",
     "pmin": 2,
     "pmax": 6,
-    "time": "20分",
     "weight": 1,
-    "id": 313473,
-    "img": "313473.jpg"
+    "img": "313473.jpg",
+    "genres": [
+      "ゴーアウト"
+    ]
   },
   {
+    "id": 215455,
     "name": "リカーーーリング",
     "url": "https://boardgamegeek.com/boardgame/215455/recurrring",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 3,
-    "id": 215455,
-    "img": "215455.jpg"
+    "img": "215455.jpg",
+    "genres": [
+      "ゴーアウト"
+    ]
   },
   {
+    "id": 35677,
     "name": "ル・アーブル",
     "url": "https://boardgamegeek.com/boardgame/35677/le-havre",
-    "players": "1~5",
+    "players": "1～5",
+    "time": "30-150分",
     "pmin": 1,
     "pmax": 5,
-    "time": "30-150分",
     "weight": 4,
-    "id": 35677,
-    "img": "35677.jpg"
+    "img": "35677.jpg",
+    "genres": [
+      "ワーカープレイスメント",
+      "拡大再生産"
+    ]
   },
   {
+    "id": 420862,
     "name": "ルイス",
     "url": "https://boardgamegeek.com/boardgame/420862/luz",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 420862,
-    "img": "420862.jpg"
+    "img": "420862.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
-    "name": "レオナルドダヴィンチ",
+    "id": 374858,
+    "name": "レオナルド・ダ・ヴィンチ レスター手稿",
     "url": "https://boardgamegeek.com/boardgame/374858/leonardo-da-vincis-codex-leicester",
-    "players": "1~5",
+    "players": "1～5",
+    "time": "30-150分",
     "pmin": 1,
     "pmax": 5,
-    "time": "30-150分",
     "weight": 3,
-    "id": 374858,
-    "img": "374858.jpg"
+    "img": "374858.jpg",
+    "genres": [
+      "ワーカープレイスメント",
+      "リソース管理"
+    ]
   },
   {
+    "id": 307002,
     "name": "レジサイド",
     "url": "https://boardgamegeek.com/boardgame/307002/regicide",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "10-30分",
     "pmin": 1,
     "pmax": 4,
-    "time": "10-30分",
     "weight": 2,
-    "id": 307002,
-    "img": "307002.jpg"
+    "img": "307002.jpg",
+    "genres": [
+      "協力"
+    ]
   },
   {
+    "id": 128882,
     "name": "レジスタンス：アヴァロン",
     "url": "https://boardgamegeek.com/boardgame/128882/the-resistance-avalon",
-    "players": "5~10",
+    "players": "5～10",
+    "time": "30分",
     "pmin": 5,
     "pmax": 10,
-    "time": "30分",
     "weight": 2,
-    "id": 128882,
-    "img": "128882.jpg"
+    "img": "128882.jpg",
+    "genres": [
+      "正体隠匿"
+    ]
   },
   {
+    "id": 381249,
     "name": "レベル プリンセス",
     "url": "https://boardgamegeek.com/boardgame/381249/rebel-princess",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "30分",
     "pmin": 3,
     "pmax": 6,
-    "time": "30分",
     "weight": 2,
-    "id": 381249,
-    "img": "381249.jpg"
+    "img": "381249.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 2149,
     "name": "レンフィールド",
     "url": "https://boardgamegeek.com/boardgame/2149/renfield",
-    "players": "4~7",
+    "players": "4～7",
+    "time": "60分",
     "pmin": 4,
     "pmax": 7,
-    "time": "60分",
     "weight": 2,
-    "id": 2149,
-    "img": "2149.jpg"
+    "img": "2149.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 374866,
     "name": "ロボトリック",
     "url": "https://boardgamegeek.com/boardgame/374866/robotrick",
     "players": "3",
+    "time": "30分",
     "pmin": 3,
     "pmax": 3,
-    "time": "30分",
     "weight": 1,
-    "id": 374866,
-    "img": "374866.jpg"
+    "img": "374866.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 148290,
     "name": "ロングホーン",
     "url": "https://boardgamegeek.com/boardgame/148290/longhorn",
     "players": "2",
+    "time": "15分",
     "pmin": 2,
     "pmax": 2,
-    "time": "15分",
     "weight": 2,
-    "id": 148290,
-    "img": "148290.jpg"
+    "img": "148290.jpg",
+    "genres": [
+      "マジョリティ"
+    ]
   },
   {
+    "id": 15000,
     "name": "ワードバスケット",
     "url": "https://boardgamegeek.com/boardgame/15000/word-basket",
-    "players": "2~8",
+    "players": "2～8",
+    "time": "10分",
     "pmin": 2,
     "pmax": 8,
-    "time": "10分",
     "weight": 1,
-    "id": 15000,
-    "img": "15000.jpg"
+    "img": "15000.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 307187,
     "name": "ワードン",
     "url": "https://boardgamegeek.com/boardgame/307187/wadon-wordon",
     "players": "2",
+    "time": "15分",
     "pmin": 2,
     "pmax": 2,
-    "time": "15分",
     "weight": 2,
-    "id": 307187,
-    "img": "307187.jpg"
+    "img": "307187.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 172309,
     "name": "悪魔の針",
     "url": "https://boardgamegeek.com/boardgame/172309/monster-trick",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "40分",
     "pmin": 2,
     "pmax": 5,
-    "time": "40分",
     "weight": 1,
-    "id": 172309,
-    "img": "172309.jpg"
+    "img": "172309.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 206915,
     "name": "恐怖の古代寺院",
     "url": "https://boardgamegeek.com/boardgame/206915/tempel-des-schreckens",
-    "players": "3~10",
+    "players": "3～10",
+    "time": "15分",
     "pmin": 3,
     "pmax": 10,
-    "time": "15分",
     "weight": 2,
-    "id": 206915,
-    "img": "206915.jpg"
+    "img": "206915.jpg",
+    "genres": [
+      "正体隠匿"
+    ]
   },
   {
+    "id": 458864,
     "name": "銀河トリックテイキングガイド",
     "url": "https://boardgamegeek.com/boardgame/458864/the-tricktakers-guide-to-the-galaxy",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 458864,
-    "img": "458864.jpg"
+    "img": "458864.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 368103,
     "name": "激辛チリソース",
     "url": "https://boardgamegeek.com/boardgame/368103/pick-a-pepper",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "30分",
     "pmin": 2,
     "pmax": 4,
-    "time": "30分",
     "weight": 1,
-    "id": 368103,
-    "img": "368103.jpg"
+    "img": "368103.jpg",
+    "genres": [
+      "ハンドマネジメント"
+    ]
   },
   {
+    "id": 3159,
     "name": "決算日",
     "url": "https://boardgamegeek.com/boardgame/3159/zahltag",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "30分",
     "pmin": 2,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 3159,
-    "img": "3159.jpg"
+    "img": "3159.jpg",
+    "genres": [
+      "ハンドマネジメント",
+      "へんなの"
+    ]
   },
   {
+    "id": 139572,
     "name": "枯山水の石庭",
     "url": "https://boardgamegeek.com/boardgame/139572/karesansui",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "45-60分",
     "pmin": 3,
     "pmax": 6,
-    "time": "45-60分",
     "weight": 2,
-    "id": 139572,
-    "img": "139572.jpg"
+    "img": "139572.jpg",
+    "genres": [
+      "へんなの"
+    ]
   },
   {
+    "id": 147768,
     "name": "五本のキュウリ",
     "url": "https://boardgamegeek.com/boardgame/147768/five-cucumbers",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "25分",
     "pmin": 2,
     "pmax": 6,
-    "time": "25分",
     "weight": 2,
-    "id": 147768,
-    "img": "147768.jpg"
+    "img": "147768.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 53168,
     "name": "三頭政治",
     "url": "https://boardgamegeek.com/boardgame/53168/triumvirate",
     "players": "2",
+    "time": "20分",
     "pmin": 2,
     "pmax": 2,
-    "time": "20分",
     "weight": 2,
-    "id": 53168,
-    "img": "53168.jpg"
+    "img": "53168.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 243430,
     "name": "支離滅裂",
     "url": "https://boardgamegeek.com/boardgame/243430/dealt",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 2,
-    "id": 243430,
-    "img": "243430.jpg"
+    "img": "243430.jpg",
+    "genres": [
+      "ゴーアウト"
+    ]
   },
   {
+    "id": 260568,
     "name": "七つの予言",
     "url": "https://boardgamegeek.com/boardgame/260568/seven-prophecies",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "25-35分",
     "pmin": 3,
     "pmax": 4,
-    "time": "25-35分",
     "weight": 1,
-    "id": 260568,
-    "img": "260568.jpg"
+    "img": "260568.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 2393,
     "name": "象棋麻雀",
     "url": "https://boardgamegeek.com/boardgame/2393/xiangqi",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "60分",
     "pmin": 2,
     "pmax": 4,
-    "time": "60分",
     "weight": 3,
-    "id": 2393,
-    "img": "2393.jpg"
+    "img": "2393.jpg",
+    "genres": [
+      "麻雀"
+    ]
   },
   {
+    "id": 1317,
     "name": "乗り間違い",
     "url": "https://boardgamegeek.com/boardgame/1317/auf-falscher-fahrte",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 1317,
-    "img": "1317.jpg"
+    "img": "1317.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 216497,
     "name": "聖杯サクセション",
     "url": "https://boardgamegeek.com/boardgame/216497/district-noir",
     "players": "2",
+    "time": "10-20分",
     "pmin": 2,
     "pmax": 2,
-    "time": "10-20分",
     "weight": 1,
-    "id": 216497,
-    "img": "216497.jpg"
+    "img": "216497.jpg",
+    "genres": [
+      "セットコレクション",
+      "ハンドマネジメント"
+    ]
   },
   {
+    "id": 296151,
     "name": "西フランク王国の子爵",
     "url": "https://boardgamegeek.com/boardgame/296151/viscounts-of-the-west-kingdom",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "60-90分",
     "pmin": 1,
     "pmax": 4,
-    "time": "60-90分",
     "weight": 4,
-    "id": 296151,
-    "img": "296151.jpg"
+    "img": "296151.jpg",
+    "genres": [
+      "ロンデル",
+      "拡大再生産"
+    ]
   },
   {
+    "id": 343468,
     "name": "西フランク王国の子爵：黄金の門",
     "url": "https://boardgamegeek.com/boardgameexpansion/343468/viscounts-of-the-west-kingdom-gates-of-gold",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "60-90分",
     "pmin": 1,
     "pmax": 4,
-    "time": "60-90分",
     "weight": 4,
-    "id": 343468,
-    "img": "343468.jpg"
+    "img": "343468.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 343470,
     "name": "西フランク王国の子爵：鍵の番人",
     "url": "https://boardgamegeek.com/boardgameexpansion/343470/viscounts-of-the-west-kingdom-keeper-of-keys",
-    "players": "1~4",
+    "players": "1～4",
+    "time": "60-90分",
     "pmin": 1,
     "pmax": 4,
-    "time": "60-90分",
     "weight": 4,
-    "id": 343470,
-    "img": "343470.jpg"
+    "img": "343470.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 38863,
     "name": "大勝負",
     "url": "https://boardgamegeek.com/boardgame/38863/the-rich-and-the-good",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "45分",
     "pmin": 3,
     "pmax": 5,
-    "time": "45分",
     "weight": 3,
-    "id": 38863,
-    "img": "38863.jpg"
+    "img": "38863.jpg",
+    "genres": [
+      "株",
+      "ハンドマネジメント"
+    ]
   },
   {
+    "id": 113,
     "name": "知略悪略：ドイツ版",
     "url": "https://boardgamegeek.com/boardgame/113/plotters-inc",
-    "players": "4~6",
+    "players": "4～6",
+    "time": "60分",
     "pmin": 4,
     "pmax": 6,
-    "time": "60分",
     "weight": 2,
-    "id": 113,
-    "img": "113.jpg"
+    "img": "113.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 436009,
     "name": "知略悪略：日本語版",
     "url": "https://boardgamegeek.com/boardgameversion/436009/japanese-edition",
-    "players": "4~6",
+    "players": "4～6",
+    "time": "60分",
     "pmin": 4,
     "pmax": 6,
-    "time": "60分",
     "weight": 1,
-    "id": 436009,
-    "img": "436009.jpg"
+    "img": "436009.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 10906,
     "name": "泥棒と乞食",
     "url": "https://boardgamegeek.com/boardgame/10906/beggars-and-thieves",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "30分",
     "pmin": 2,
     "pmax": 5,
-    "time": "30分",
     "weight": 1,
-    "id": 10906,
-    "img": "10906.jpg"
+    "img": "10906.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 121041,
     "name": "適当なカンケイ",
     "url": "https://boardgamegeek.com/boardgame/121041/pluckin-pairs",
-    "players": "3~8",
+    "players": "3～8",
+    "time": "50分",
     "pmin": 3,
     "pmax": 8,
-    "time": "50分",
     "weight": 1,
-    "id": 121041,
-    "img": "121041.jpg"
+    "img": "121041.jpg",
+    "genres": [
+      "パーティ"
+    ]
   },
   {
+    "id": 225482,
     "name": "波乱と海原",
     "url": "https://boardgamegeek.com/boardgame/225482/seas-of-strife",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "45分",
     "pmin": 3,
     "pmax": 6,
-    "time": "45分",
     "weight": 2,
-    "id": 225482,
-    "img": "225482.jpg"
+    "img": "225482.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
     "id": 392134,
     "name": "美少女戦士セーラームーン・カードゲーム：マスカレイドバトル",
     "url": "https://boardgamegeek.com/boardgame/392134/sailor-moon-card-game-masquerade-battle",
-    "players": "3-7",
+    "players": "3～7",
     "time": "20-30分",
     "pmin": 3,
     "pmax": 7,
     "weight": 2,
-    "img": "392134.jpg"
+    "img": "392134.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 34084,
     "name": "魔法にかかったみたい",
     "url": "https://boardgamegeek.com/boardgame/34084/witchs-brew",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30-60分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30-60分",
     "weight": 3,
-    "id": 34084,
-    "img": "34084.jpg"
+    "img": "34084.jpg",
+    "genres": [
+      "バッティング",
+      "リソース管理"
+    ]
   },
   {
+    "id": 165354,
     "name": "魔法にかかったみたい：拡張セット",
     "url": "https://boardgamegeek.com/boardgame/165354/witchs-brew-the-6th-player-and-the-amulets-and-the",
-    "players": "3~6",
+    "players": "3～6",
+    "time": "30-60分",
     "pmin": 3,
     "pmax": 6,
-    "time": "30-60分",
     "weight": 3,
-    "id": 165354,
-    "img": "165354.jpg"
+    "img": "165354.jpg",
+    "genres": [
+      "拡張"
+    ]
   },
   {
+    "id": 434140,
     "name": "魔龍屠るべし：破",
     "url": "https://boardgamegeek.com/boardgame/434140/slaughter-the-dragon-ha",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "20-50分",
     "pmin": 3,
     "pmax": 5,
-    "time": "20-50分",
     "weight": 2,
-    "id": 434140,
-    "img": "434140.jpg"
+    "img": "434140.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 1271,
     "name": "命中",
     "url": "https://boardgamegeek.com/boardgame/1271/volltreffer",
-    "players": "3~5",
+    "players": "3～5",
+    "time": "30分",
     "pmin": 3,
     "pmax": 5,
-    "time": "30分",
     "weight": 1,
-    "id": 1271,
-    "img": "1271.jpg"
+    "img": "1271.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 251433,
     "name": "妖怪セプテット",
     "url": "https://boardgamegeek.com/boardgame/251433/yokai-septet",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "30-45分",
     "pmin": 2,
     "pmax": 4,
-    "time": "30-45分",
     "weight": 1,
-    "id": 251433,
-    "img": "251433.jpg"
+    "img": "251433.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 398772,
     "name": "容疑者トリック",
     "url": "https://boardgamegeek.com/boardgame/398772/stich-fur-stich",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 398772,
-    "img": "398772.jpg"
+    "img": "398772.jpg",
+    "genres": [
+      "トリックテイキング",
+      "推理"
+    ]
   },
   {
+    "id": 313531,
     "name": "葉っぱのざわめき",
     "url": "https://boardgamegeek.com/boardgame/313531/rustling-leaves",
-    "players": "2~6",
+    "players": "2～6",
+    "time": "20分",
     "pmin": 2,
     "pmax": 6,
-    "time": "20分",
     "weight": 2,
-    "id": 313531,
-    "img": "313531.jpg"
+    "img": "313531.jpg",
+    "genres": [
+      "紙ペン"
+    ]
   },
   {
+    "id": 25925,
     "name": "落水邸物語",
     "url": "https://boardgamegeek.com/boardgame/25925/luo-shui-di-wu-yu-origin-of-failing-water",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "30分",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 25925,
-    "img": "25925.jpg"
+    "img": "25925.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 369084,
     "name": "龍-TATSU-",
     "url": "https://boardgamegeek.com/boardgame/369084/tatsu",
-    "players": "2~4",
+    "players": "2～4",
+    "time": "30分",
     "pmin": 2,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 369084,
-    "img": "369084.jpg"
+    "img": "369084.jpg",
+    "genres": [
+      "トリックテイキング",
+      "チーム戦"
+    ]
   },
   {
+    "id": 181796,
     "name": "浪費家倶楽部",
     "url": "https://boardgamegeek.com/boardgame/181796/the-prodigals-club",
-    "players": "2~5",
+    "players": "2～5",
+    "time": "40-100分",
     "pmin": 2,
     "pmax": 5,
-    "time": "40-100分",
     "weight": 3,
-    "id": 181796,
-    "img": "181796.jpg"
+    "img": "181796.jpg",
+    "genres": [
+      "ワーカープレイスメント"
+    ]
   }
 ]
