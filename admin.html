@@ -1,6 +1,196 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<!-- Playables SDK -->
+<script>// Playables SDK v1.0.0
+// Game lifecycle bridge: rAF-based game-ready detection + event communication
+(function() {
+  'use strict';
+
+  // Idempotency: skip if already initialized (e.g., server-side injection
+  // followed by client-side inject-javascript via the Bloks webview component).
+  if (window.playablesSDK) return;
+
+  var HANDLER_NAME = 'playablesGameEventHandler';
+  var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
+  var RAF_FRAME_THRESHOLD = 3;
+
+  var gameReadySent = false;
+  var firstInteractionSent = false;
+  var errorSent = false;
+  var frameCount = 0;
+  var originalRAF = window.requestAnimationFrame;
+
+  // --- Transport Layer ---
+
+  function hasIOSBridge() {
+    return !!(window.webkit &&
+              window.webkit.messageHandlers &&
+              window.webkit.messageHandlers[HANDLER_NAME]);
+  }
+
+  function hasAndroidBridge() {
+    return !!(window[ANDROID_BRIDGE_NAME] &&
+              typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
+  }
+
+  function isInIframe() {
+    return !!(window.parent && window.parent !== window);
+  }
+
+  function sendEvent(eventName, payload) {
+    var message = {
+      type: eventName,
+      payload: payload || {},
+      timestamp: Date.now()
+    };
+
+    if (hasIOSBridge()) {
+      try {
+        window.webkit.messageHandlers[HANDLER_NAME].postMessage(message);
+      } catch (e) { /* ignore */ }
+      return;
+    }
+
+    if (hasAndroidBridge()) {
+    try {
+      var p = payload || {};
+      p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
+      window[ANDROID_BRIDGE_NAME].postEvent(
+        eventName,
+        JSON.stringify(p)
+      );
+    } catch (e) { /* ignore */ }
+    return;
+  }
+
+    if (isInIframe()) {
+      try {
+        window.parent.postMessage(message, '*');
+      } catch (e) { /* ignore */ }
+      return;
+    }
+  }
+
+  // --- rAF Game-Ready Detection ---
+
+  function onFrame() {
+    if (gameReadySent) return;
+
+    frameCount++;
+    if (frameCount >= RAF_FRAME_THRESHOLD) {
+      gameReadySent = true;
+      sendEvent('game_ready', {
+        frame_count: frameCount,
+        detected_at: Date.now()
+      });
+      return;
+    }
+
+    originalRAF.call(window, onFrame);
+  }
+
+  if (originalRAF) {
+    window.requestAnimationFrame = function(callback) {
+      if (!gameReadySent) {
+        return originalRAF.call(window, function(timestamp) {
+          frameCount++;
+          if (frameCount >= RAF_FRAME_THRESHOLD && !gameReadySent) {
+            gameReadySent = true;
+            sendEvent('game_ready', {
+              frame_count: frameCount,
+              detected_at: Date.now()
+            });
+          }
+          callback(timestamp);
+        });
+      }
+      return originalRAF.call(window, callback);
+    };
+  }
+
+  // --- First User Interaction Detection ---
+
+  function setupFirstInteractionDetection() {
+    var events = ['touchstart', 'mousedown', 'keydown'];
+
+    function onFirstInteraction() {
+      if (firstInteractionSent) return;
+      firstInteractionSent = true;
+      sendEvent('user_interaction_start', null);
+
+      for (var i = 0; i < events.length; i++) {
+        document.removeEventListener(events[i], onFirstInteraction, true);
+      }
+    }
+
+    for (var i = 0; i < events.length; i++) {
+      document.addEventListener(events[i], onFirstInteraction, true);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFirstInteractionDetection);
+  } else {
+    setupFirstInteractionDetection();
+  }
+
+  // --- Auto Error Capture ---
+
+  window.addEventListener('error', function(event) {
+    if (errorSent) return;
+    errorSent = true;
+    sendEvent('error', {
+      message: event.message || 'Unknown error',
+      source: event.filename || '',
+      lineno: event.lineno || 0,
+      colno: event.colno || 0,
+      auto_captured: true
+    });
+  });
+
+  window.addEventListener('unhandledrejection', function(event) {
+    if (errorSent) return;
+    errorSent = true;
+    var reason = event.reason;
+    sendEvent('error', {
+      message: (reason instanceof Error) ? reason.message : String(reason),
+      type: 'unhandled_promise_rejection',
+      auto_captured: true
+    });
+  });
+
+  // --- Public API ---
+
+  window.playablesSDK = {
+    complete: function(score) {
+      sendEvent('game_ended', {
+        score: score,
+        completed: true
+      });
+    },
+
+    error: function(message) {
+      if (errorSent) return;
+      errorSent = true;
+      sendEvent('error', {
+        message: message || 'Unknown error',
+        auto_captured: false
+      });
+    },
+
+    sendEvent: function(eventName, payload) {
+      if (!eventName || typeof eventName !== 'string') return;
+      sendEvent(eventName, payload);
+    }
+  };
+
+  // Kick off rAF detection in case no game code calls rAF immediately
+  if (originalRAF) {
+    originalRAF.call(window, onFrame);
+  }
+})();</script>
+<script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>管理 - ボードゲームコレクション</title>
@@ -10,14 +200,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
 </style>
 </head>
 <body class="bg-white text-neutral-900">
-
 <!-- パスワードロック -->
 <div id="lock" class="fixed inset-0 bg-white z-50 flex items-center justify-center p-4">
   <div class="w-full max-w-[320px] border border-neutral-200 rounded-2xl p-6">
     <h1 class="text-[15px] font-medium mb-1">管理ページ</h1>
     <p class="text-[12px] text-neutral-600 mb-4">パスワードを入力してください</p>
-    <input id="pw" type="password" class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm">
-    <button id="pwBtn" class="mt-3 w-full bg-neutral-900 text-white text-sm rounded-xl py-2">入る</button>
+    <input id="pw" type="password" class="w-full border border-neutral-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10" placeholder="••••••••" autofocus>
+    <button id="pwBtn" class="mt-3 w-full bg-neutral-900 text-white text-sm rounded-xl py-2 hover:bg-black">入る</button>
     <p id="pwErr" class="text-[11px] text-red-600 mt-2 h-4"></p>
   </div>
 </div>
@@ -28,94 +217,209 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
       <h1 class="text-2xl md:text-[28px] font-semibold tracking-tight">🎲 コレクション編集</h1>
       <p class="text-sm text-neutral-600 mt-1">ゲームを追加・編集してJSONを書き出し</p>
     </div>
-    <a href="index.html" class="text-[12px] text-neutral-600 border border-neutral-200 rounded-lg px-3 py-1.5">← 一覧に戻る</a>
+    <a href="index.html" class="text-[12px] text-neutral-600 hover:text-neutral-900 border border-neutral-200 rounded-lg px-3 py-1.5 whitespace-nowrap bg-white">← 一覧に戻る</a>
   </header>
 
   <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
-
     <!-- 左：フォーム -->
     <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
+      <h2 class="text-sm font-medium mb-4">ゲーム情報</h2>
       <form id="form" class="space-y-3">
-
         <input type="hidden" id="id">
-
-        <input id="name" placeholder="ゲーム名" class="w-full border rounded-lg px-3 py-2 text-sm">
-        <input id="url" placeholder="URL" class="w-full border rounded-lg px-3 py-2 text-sm">
-
-        <input id="players" readonly placeholder="人数" class="w-full border rounded-lg px-3 py-2 text-sm bg-neutral-100">
-        <input id="time" readonly placeholder="時間" class="w-full border rounded-lg px-3 py-2 text-sm bg-neutral-100">
-
-        <div class="grid grid-cols-2 gap-3">
-          <input id="pmin" type="number" placeholder="最小人数" class="border rounded-lg px-3 py-2 text-sm">
-          <input id="pmax" type="number" placeholder="最大人数" class="border rounded-lg px-3 py-2 text-sm">
+        
+        <div>
+          <label class="text-[12px] text-neutral-600">ゲーム名</label>
+          <input id="name" required class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+        </div>
+        
+        <div>
+          <label class="text-[12px] text-neutral-600">URL</label>
+          <input id="url" type="url" placeholder="https://boardgamegeek.com/..." class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
         </div>
 
         <div class="grid grid-cols-2 gap-3">
-          <input id="tmin" type="number" placeholder="最小時間" class="border rounded-lg px-3 py-2 text-sm">
-          <input id="tmax" type="number" placeholder="最大時間" class="border rounded-lg px-3 py-2 text-sm">
+          <div>
+            <label class="text-[12px] text-neutral-600">プレイ人数（自動）</label>
+            <input id="players" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="最小・最大から自動">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">プレイ時間</label>
+            <input id="time" readonly class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm bg-neutral-100 text-neutral-600" placeholder="自動">
+          </div>
         </div>
 
-        <input id="weight" type="number" step="0.1" placeholder="重さ" class="w-full border rounded-lg px-3 py-2 text-sm">
-        <input id="img" placeholder="画像ファイル名" class="w-full border rounded-lg px-3 py-2 text-sm">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[12px] text-neutral-600">最小人数</label>
+            <input id="pmin" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">最大人数</label>
+            <input id="pmax" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+        </div>
 
-        <!-- ★追加：ジャンル -->
-        <input id="genre" placeholder="ジャンル（例：戦略 / パーティー）" class="w-full border rounded-lg px-3 py-2 text-sm">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[12px] text-neutral-600">最小時間（分）</label>
+            <input id="tmin" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">最大時間（分）</label>
+            <input id="tmax" type="number" min="1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+        </div>
 
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-[12px] text-neutral-600">重さ(1-5)</label>
+            <input id="weight" type="number" min="1" max="5" step="0.1" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+          <div>
+            <label class="text-[12px] text-neutral-600">画像ファイル名</label>
+            <input id="img" placeholder="12345.jpg" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+          </div>
+        </div>
+<div>
+  <label class="text-[12px] text-neutral-600">ジャンル</label>
+  <input id="genre" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+</div>
+        
         <div class="flex gap-2 pt-2">
-          <button type="submit" class="flex-1 bg-neutral-900 text-white rounded-lg py-2 text-sm">保存</button>
-          <button type="button" id="clearBtn" class="px-4 border rounded-lg text-sm">クリア</button>
-          <button type="button" id="deleteBtn" class="px-4 border text-red-600 rounded-lg text-sm hidden">削除</button>
+          <button type="submit" class="flex-1 bg-neutral-900 text-white text-sm rounded-lg py-2 hover:bg-black">保存</button>
+          <button type="button" id="clearBtn" class="px-4 border border-neutral-200 rounded-lg text-sm hover:bg-neutral-50">クリア</button>
+          <button type="button" id="deleteBtn" class="px-4 border border-red-200 text-red-600 rounded-lg text-sm hover:bg-red-50 hidden">削除</button>
         </div>
       </form>
     </section>
 
     <!-- 右：一覧 -->
     <section class="border border-neutral-200 rounded-xl p-4 md:p-6">
-      <input id="search" placeholder="検索" class="w-full border rounded-lg px-3 py-2 text-sm mb-3">
-      <div id="list" class="space-y-1"></div>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-sm font-medium">ゲーム一覧 <span class="text-neutral-500">(<span id="count">0</span>件)</span></h2>
+        <div class="flex gap-2">
+          <button id="exportBtn" class="text-[12px] bg-emerald-600 text-white rounded-lg px-3 py-1.5 hover:bg-emerald-700">JSONコピー</button>
+        </div>
+      </div>
+      
+      <input id="search" placeholder="ゲーム名で検索..." class="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-neutral-900/10">
+      
+      <div id="list" class="space-y-1 max-h-[600px] overflow-y-auto -mx-2 px-2"></div>
     </section>
-
   </main>
 </div>
 
 <script>
 (function() {
   const PASS = '1111';
-  const $ = id => document.getElementById(id);
-
-  let games = [];
-  let editingIdx = -1;
-
-  $('pwBtn').onclick = () => {
-    if ($('pw').value === PASS) {
-      $('lock').style.display = 'none';
+  const lock = document.getElementById('lock');
+  const pw = document.getElementById('pw');
+  const pwBtn = document.getElementById('pwBtn');
+  const pwErr = document.getElementById('pwErr');
+  
+  function unlock() {
+    if (pw.value === PASS) {
+      lock.style.display = 'none';
       loadGames();
     } else {
-      $('pwErr').textContent = 'パスワードが違います';
+      pwErr.textContent = 'パスワードが違います';
+      pw.select();
     }
-  };
-
-  async function loadGames() {
-    const res = await fetch('games.json?v=' + Date.now());
-    games = await res.json();
-    renderList();
   }
-
+  
+  pwBtn.addEventListener('click', unlock);
+  pw.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+  
+  let games = [];
+  let editingIdx = -1;
+  
+  async function loadGames() {
+    try {
+      const res = await fetch('games.json?v=' + Date.now(), {cache: 'no-store'});
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      games = await res.json();
+      console.log('Loaded', games.length, 'games');
+    } catch (e) {
+      console.error('Failed:', e);
+      alert('games.jsonの読み込みに失敗しました\n' + e.message + '\n\n同じフォルダにgames.jsonがあるか確認してください');
+      games = [];
+    }
+    renderList();
+    updateCount();
+  }
+  
+  function $(id) { return document.getElementById(id); }
+  
+  function updateCount() {
+    $('count').textContent = games.length;
+  }
+  
+  // 自動更新：人数
+  function updatePlayers() {
+    const min = parseInt($('pmin').value) || 0;
+    const max = parseInt($('pmax').value) || 0;
+    let val = '';
+    if (min && max) val = min === max ? String(min) : min + '～' + max;
+    else if (min) val = String(min);
+    else if (max) val = String(max);
+    $('players').value = val;
+  }
+  
+  // 自動更新：時間
+  function updateTime() {
+    const min = parseInt($('tmin').value) || 0;
+    const max = parseInt($('tmax').value) || 0;
+    let val = '';
+    if (min && max) val = min === max ? min + '分' : min + '-' + max + '分';
+    else if (min) val = min + '分';
+    else if (max) val = max + '分';
+    $('time').value = val;
+  }
+  
+  // 自動更新：URL → 画像
+  function updateFromURL() {
+    const url = $('url').value;
+    if (!url) return;
+    
+    // boardgamegeek.com/boardgame/12345 を探す
+    const m = url.match(/boardgamegeek\.com\/boardgame\/(\d+)/i);
+    if (m) {
+      const id = m[1];
+      $('id').value = id;
+      if (!$('img').value) {
+        $('img').value = id + '.jpg';
+      }
+      console.log('BGG ID:', id);
+    }
+  }
+  
+  $('pmin').addEventListener('input', updatePlayers);
+  $('pmax').addEventListener('input', updatePlayers);
+  $('tmin').addEventListener('input', updateTime);
+  $('tmax').addEventListener('input', updateTime);
+  $('url').addEventListener('blur', updateFromURL);
+  $('url').addEventListener('change', updateFromURL);
+  
   function renderList() {
     const q = $('search').value.toLowerCase();
-    $('list').innerHTML = games
-      .filter(g => g.name.toLowerCase().includes(q))
-      .map((g,i)=>`
-        <div onclick="editGame(${i})" class="p-2 border rounded cursor-pointer">
-          ${g.name}
+    const list = $('list');
+    const filtered = q ? games.filter(g => g.name.toLowerCase().includes(q)) : games;
+    
+    list.innerHTML = filtered.map(g => {
+      const idx = games.indexOf(g);
+      return `<div class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-neutral-50 cursor-pointer" onclick="editGame(${idx})">
+        <img src="images/${g.img}" class="w-10 h-10 rounded object-cover bg-neutral-100" onerror="this.style.opacity='0.3'">
+        <div class="flex-1 min-w-0">
+          <div class="text-[13px] truncate">${g.name}</div>
+          <div class="text-[11px] text-neutral-500">${g.players || ''} · ${g.time || ''}</div>
         </div>
-      `).join('');
+      </div>`;
+    }).join('');
   }
-
-  window.editGame = function(i){
-    const g = games[i];
-    editingIdx = i;
-
+  
+  window.editGame = function(idx) {
+    const g = games[idx];
+    editingIdx = idx;
     $('id').value = g.id || '';
     $('name').value = g.name || '';
     $('url').value = g.url || '';
@@ -125,14 +429,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
     $('pmax').value = g.pmax || '';
     $('weight').value = g.weight || '';
     $('img').value = g.img || '';
-
-    // ★追加：ジャンル復元
-    $('genre').value = g.genre || '';
+    
+    // 時間を分解
+    if (g.time) {
+      const nums = g.time.match(/\d+/g);
+      if (nums) {
+        $('tmin').value = nums[0] || '';
+        $('tmax').value = nums[1] || nums[0] || '';
+      }
+    }
+    
+    $('deleteBtn').classList.remove('hidden');
+    $('name').focus();
   };
-
+  
   $('form').addEventListener('submit', e => {
     e.preventDefault();
-
     const g = {
       id: parseInt($('id').value) || Date.now(),
       name: $('name').value.trim(),
@@ -142,23 +454,55 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Goth
       pmin: parseInt($('pmin').value) || 0,
       pmax: parseInt($('pmax').value) || 0,
       weight: parseFloat($('weight').value) || 1,
-      img: $('img').value.trim(),
-
-      // ★追加：ジャンル保存
-      genre: $('genre').value.trim()
+      img: $('img').value.trim()
     };
-
+    
+    if (!g.name) return alert('ゲーム名を入力してください');
+    
     if (editingIdx >= 0) games[editingIdx] = g;
     else games.push(g);
-
+    
+    games.sort((a,b) => a.name.localeCompare(b.name, 'ja'));
     renderList();
+    updateCount();
     e.target.reset();
     editingIdx = -1;
+    $('deleteBtn').classList.add('hidden');
+    $('players').value = '';
+    $('time').value = '';
   });
-
+  
+  $('clearBtn').addEventListener('click', () => {
+    $('form').reset();
+    editingIdx = -1;
+    $('deleteBtn').classList.add('hidden');
+    $('players').value = '';
+    $('time').value = '';
+  });
+  
+  $('deleteBtn').addEventListener('click', () => {
+    if (editingIdx >= 0 && confirm('削除しますか？')) {
+      games.splice(editingIdx, 1);
+      renderList();
+      updateCount();
+      $('form').reset();
+      editingIdx = -1;
+      $('deleteBtn').classList.add('hidden');
+    }
+  });
+  
   $('search').addEventListener('input', renderList);
+  
+  $('exportBtn').addEventListener('click', () => {
+    const json = JSON.stringify(games, null, 2);
+    navigator.clipboard.writeText(json).then(() => {
+      const btn = $('exportBtn');
+      const t = btn.textContent;
+      btn.textContent = 'コピー完了!';
+      setTimeout(() => btn.textContent = t, 1500);
+    });
+  });
 })();
 </script>
-
 </body>
 </html>
