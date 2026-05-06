@@ -5,69 +5,86 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>管理 - ボードゲームコレクション</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
+</style>
 </head>
 
 <body class="bg-white text-neutral-900">
 
-<div class="max-w-[1280px] mx-auto px-4 py-6">
+<div class="max-w-[1280px] mx-auto px-4 py-6 md:py-10">
 
-  <h1 class="text-2xl font-bold mb-6">🎲 コレクション編集</h1>
-
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-    <!-- 左：フォーム -->
-    <div class="border p-4 rounded-xl">
-      <form id="form" class="space-y-3">
-
-        <input type="hidden" id="id">
-
-        <input id="name" placeholder="ゲーム名" class="w-full border p-2 rounded">
-
-        <input id="url" placeholder="URL" class="w-full border p-2 rounded">
-
-        <div class="grid grid-cols-2 gap-2">
-          <input id="pmin" type="number" placeholder="最小人数" class="border p-2 rounded">
-          <input id="pmax" type="number" placeholder="最大人数" class="border p-2 rounded">
-        </div>
-
-        <div class="grid grid-cols-2 gap-2">
-          <input id="tmin" type="number" placeholder="最小時間" class="border p-2 rounded">
-          <input id="tmax" type="number" placeholder="最大時間" class="border p-2 rounded">
-        </div>
-
-        <input id="weight" type="number" placeholder="重さ" class="w-full border p-2 rounded">
-
-        <input id="img" placeholder="画像ファイル名" class="w-full border p-2 rounded">
-
-        <!-- ⭐ ジャンル -->
-        <div>
-          <label class="text-sm">ジャンル</label>
-
-          <div class="flex gap-2 mt-1">
-            <input id="genreInput" class="flex-1 border p-2 rounded">
-            <button type="button" id="addGenreBtn" class="border px-3 rounded">追加</button>
-          </div>
-
-          <div id="genreList" class="flex flex-wrap gap-1 mt-2"></div>
-        </div>
-
-        <button class="w-full bg-black text-white py-2 rounded">保存</button>
-      </form>
-    </div>
-
-    <!-- 右：一覧 -->
-    <div class="border p-4 rounded-xl">
-      <div id="list"></div>
-    </div>
-
+<header class="mb-6 md:mb-8 flex items-start justify-between">
+  <div>
+    <h1 class="text-2xl md:text-[28px] font-semibold tracking-tight">🎲 コレクション編集</h1>
+    <p class="text-sm text-neutral-600 mt-1">ゲームを追加・編集してJSONを書き出し</p>
   </div>
+  <a href="index.html" class="text-[12px] text-neutral-600 border border-neutral-200 rounded-lg px-3 py-1.5 bg-white">← 一覧に戻る</a>
+</header>
+
+<main class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+
+<!-- 左：フォーム -->
+<section class="border border-neutral-200 rounded-xl p-4 md:p-6">
+<form id="form" class="space-y-3">
+
+<input type="hidden" id="id">
+
+<div>
+<label class="text-[12px] text-neutral-600">ゲーム名</label>
+<input id="name" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+</div>
+
+<div>
+<label class="text-[12px] text-neutral-600">URL</label>
+<input id="url" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm">
+</div>
+
+<div class="grid grid-cols-2 gap-3">
+<input id="pmin" type="number" placeholder="最小人数" class="border rounded px-2 py-2 text-sm">
+<input id="pmax" type="number" placeholder="最大人数" class="border rounded px-2 py-2 text-sm">
+</div>
+
+<div class="grid grid-cols-2 gap-3">
+<input id="tmin" type="number" placeholder="最小時間" class="border rounded px-2 py-2 text-sm">
+<input id="tmax" type="number" placeholder="最大時間" class="border rounded px-2 py-2 text-sm">
+</div>
+
+<div>
+<input id="weight" type="number" placeholder="重さ" class="w-full border rounded px-2 py-2 text-sm">
+</div>
+
+<div>
+<input id="img" placeholder="画像ファイル名" class="w-full border rounded px-2 py-2 text-sm">
+</div>
+
+<!-- ⭐ ジャンル（複数行入力） -->
+<div>
+<label class="text-[12px] text-neutral-600">ジャンル（1行に1つ）</label>
+<textarea id="genre" rows="4" class="mt-1 w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm"></textarea>
+</div>
+
+<div class="flex gap-2 pt-2">
+<button type="submit" class="flex-1 bg-neutral-900 text-white text-sm rounded-lg py-2">保存</button>
+<button type="button" id="clearBtn" class="px-4 border rounded-lg text-sm">クリア</button>
+</div>
+
+</form>
+</section>
+
+<!-- 右：一覧 -->
+<section class="border border-neutral-200 rounded-xl p-4 md:p-6">
+<div id="list"></div>
+</section>
+
+</main>
 </div>
 
 <script>
 let games = [];
 let editingIdx = -1;
-let genres = []; // ⭐ ここ重要
 
+// 読み込み
 async function loadGames(){
   try{
     const res = await fetch('games.json?v='+Date.now());
@@ -78,9 +95,9 @@ async function loadGames(){
   renderList();
 }
 
+// 一覧
 function renderList(){
   const list = document.getElementById('list');
-
   list.innerHTML = games.map((g,i)=>`
     <div class="p-2 border-b cursor-pointer" onclick="editGame(${i})">
       ${g.name}
@@ -88,32 +105,7 @@ function renderList(){
   `).join('');
 }
 
-function renderGenres(){
-  const list = document.getElementById('genreList');
-
-  list.innerHTML = genres.map((g,i)=>`
-    <span class="text-xs bg-gray-200 px-2 py-1 rounded flex items-center gap-1">
-      ${g}
-      <button onclick="removeGenre(${i})">×</button>
-    </span>
-  `).join('');
-}
-
-window.removeGenre = function(i){
-  genres.splice(i,1);
-  renderGenres();
-};
-
-document.getElementById('addGenreBtn').addEventListener('click', ()=>{
-  const input = document.getElementById('genreInput');
-  const val = input.value.trim();
-  if(!val) return;
-
-  genres.push(val);
-  input.value = '';
-  renderGenres();
-});
-
+// 編集
 window.editGame = function(i){
   const g = games[i];
   editingIdx = i;
@@ -127,23 +119,31 @@ window.editGame = function(i){
   document.getElementById('weight').value = g.weight || '';
   document.getElementById('img').value = g.img || '';
 
-  genres = g.genre || [];
-  renderGenres();
+  // ⭐ 配列 → 改行テキスト
+  document.getElementById('genre').value = (g.genre || []).join('\n');
 };
 
+// 保存
 document.getElementById('form').addEventListener('submit', e=>{
   e.preventDefault();
 
+  // ⭐ 改行 → 配列
+  const genres = document.getElementById('genre').value
+    .split('\n')
+    .map(s => s.trim())
+    .filter(Boolean);
+
   const g = {
-    name: document.getElementById('name').value,
-    url: document.getElementById('url').value,
+    id: Date.now(),
+    name: document.getElementById('name').value.trim(),
+    url: document.getElementById('url').value.trim(),
     pmin: parseInt(document.getElementById('pmin').value)||0,
     pmax: parseInt(document.getElementById('pmax').value)||0,
     tmin: parseInt(document.getElementById('tmin').value)||0,
     tmax: parseInt(document.getElementById('tmax').value)||0,
     weight: parseFloat(document.getElementById('weight').value)||1,
-    img: document.getElementById('img').value,
-    genre: genres // ⭐ ここだけ
+    img: document.getElementById('img').value.trim(),
+    genre: genres
   };
 
   if(editingIdx >= 0){
@@ -153,15 +153,18 @@ document.getElementById('form').addEventListener('submit', e=>{
   }
 
   navigator.clipboard.writeText(JSON.stringify(games,null,2));
-
   alert("JSONコピーしたよ");
 
   e.target.reset();
-  genres = [];
-  renderGenres();
   editingIdx = -1;
 
   renderList();
+});
+
+// クリア
+document.getElementById('clearBtn').addEventListener('click', ()=>{
+  document.getElementById('form').reset();
+  editingIdx = -1;
 });
 
 loadGames();
