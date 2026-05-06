@@ -3,36 +3,43 @@
     "id": 358669,
     "name": "12チップトリック",
     "url": "https://boardgamegeek.com/boardgame/358669/12-chip-trick",
-    "players": "2~4",
-    "time": "20分",
+    "players": "2～4",
+    "time": "",
     "pmin": 2,
     "pmax": 4,
     "weight": 1,
     "img": "358669.jpg",
-    "genre": "トリックテイキング"
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
     "id": 441614,
     "name": "3-tricky-pigs",
     "url": "https://boardgamegeek.com/boardgame/441614/3-tricky-pigs",
-    "players": "3~5",
-    "time": "30-60分",
+    "players": "3～5",
+    "time": "",
     "pmin": 3,
     "pmax": 5,
     "weight": 1,
     "img": "441614.jpg",
-    "genre": "トリックテイキング"
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
+    "id": 189190,
     "name": "9LIVES",
     "url": "https://boardgamegeek.com/boardgame/189190/9-lives",
-    "players": "3~4",
+    "players": "3～4",
+    "time": "",
     "pmin": 3,
     "pmax": 4,
-    "time": "30分",
     "weight": 2,
-    "id": 189190,
-    "img": "189190.jpg"
+    "img": "189190.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
   },
   {
     "name": "DOGS",
