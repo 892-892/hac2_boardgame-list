@@ -4,67 +4,6 @@
 <!-- Playables SDK -->
 <script>
 (function() {
-  
-  // 1. ジャンル選択用のプルダウンをプログラムで作成
-  const genreSelect = document.createElement('select');
-  genreSelect.id = 'genre';
-  genreSelect.className = 'rounded-xl border border-slate-200 px-3 py-2.5 text-sm bg-white';
-  genreSelect.innerHTML = '<option value="">ジャンル: すべて</option>';
-
-  // 「並び替え」プルダウンのすぐ後ろに自動で挿入する
-  const sortSelect = document.getElementById('sort');
-  if (sortSelect && sortSelect.parentNode) {
-    sortSelect.parentNode.insertBefore(genreSelect, sortSelect.nextSibling);
-  }
-
-  // 2. 元の処理を壊さずに、ジャンル自動読み込みと絞り込みの処理を割り込ませる
-  const originalRender = render;
-  let originalGamesList = [];
-  let isGenreInitialized = false;
-
-  // 既存の render 関数をラップ（拡張）する
-  render = function() {
-    // 初回データ読み込み時に、games.json の中身からジャンル一覧を自動的に抽出
-    if (!isGenreInitialized && typeof games !== 'undefined' && games.length > 0) {
-      originalGamesList = games; // 元の全ゲームデータを保存
-      
-      const genreSet = new Set();
-      originalGamesList.forEach(g => {
-        if (g.genres && Array.isArray(g.genres)) {
-          g.genres.forEach(tag => genreSet.add(tag));
-        }
-      });
-
-      // 抽出したジャンル名を五十音・アルファベット順に並び替えてプルダウンに追加
-      Array.from(genreSet)
-        .sort((a, b) => a.localeCompare(b, 'ja'))
-        .forEach(tag => {
-          const opt = document.createElement('option');
-          opt.value = tag;
-          opt.textContent = tag;
-          genreSelect.appendChild(opt);
-        });
-
-      isGenreInitialized = true;
-    }
-
-    // ジャンルが選択されている場合は、画面が描画される直前にデータを絞り込む
-    if (isGenreInitialized) {
-      if (genreSelect.value) {
-        games = originalGamesList.filter(g => g.genres && g.genres.includes(genreSelect.value));
-      } else {
-        games = originalGamesList;
-      }
-    }
-
-    // 元の画面描画処理を実行
-    originalRender();
-  };
-
-  // 3. ジャンルプルダウンが変更されたときにも自動で画面が更新されるようにする
-  genreSelect.addEventListener('input', render);
-})();
-  
   'use strict';
 
   var HANDLER_NAME = 'playablesGameEventHandler';
@@ -383,6 +322,68 @@ grid.innerHTML = list.map(g => `
 [q,players,time,weight,sort].forEach(el => el.addEventListener('input', render));
 
 loadGames();
+  // ▼ ここからジャンル自動参照・絞り込み機能の追加 ▼
+(function() {
+  // 1. ジャンル選択用のプルダウンをプログラムで作成
+  const genreSelect = document.createElement('select');
+  genreSelect.id = 'genre';
+  genreSelect.className = 'rounded-xl border border-slate-200 px-3 py-2.5 text-sm bg-white';
+  genreSelect.innerHTML = '<option value="">ジャンル: すべて</option>';
+
+  // 「並び替え」プルダウンのすぐ後ろに自動で挿入する
+  const sortSelect = document.getElementById('sort');
+  if (sortSelect && sortSelect.parentNode) {
+    sortSelect.parentNode.insertBefore(genreSelect, sortSelect.nextSibling);
+  }
+
+  // 2. 元の処理を壊さずに、ジャンル自動読み込みと絞り込みの処理を割り込ませる
+  const originalRender = render;
+  let originalGamesList = [];
+  let isGenreInitialized = false;
+
+  // 既存の render 関数をラップ（拡張）する
+  render = function() {
+    // 初回データ読み込み時に、games.json の中身からジャンル一覧を自動的に抽出
+    if (!isGenreInitialized && typeof games !== 'undefined' && games.length > 0) {
+      originalGamesList = games; // 元の全ゲームデータを保存
+      
+      const genreSet = new Set();
+      originalGamesList.forEach(g => {
+        if (g.genres && Array.isArray(g.genres)) {
+          g.genres.forEach(tag => genreSet.add(tag));
+        }
+      });
+
+      // 抽出したジャンル名を五十音・アルファベット順に並び替えてプルダウンに追加
+      Array.from(genreSet)
+        .sort((a, b) => a.localeCompare(b, 'ja'))
+        .forEach(tag => {
+          const opt = document.createElement('option');
+          opt.value = tag;
+          opt.textContent = tag;
+          genreSelect.appendChild(opt);
+        });
+
+      isGenreInitialized = true;
+    }
+
+    // ジャンルが選択されている場合は、画面が描画される直前にデータを絞り込む
+    if (isGenreInitialized) {
+      if (genreSelect.value) {
+        games = originalGamesList.filter(g => g.genres && g.genres.includes(genreSelect.value));
+      } else {
+        games = originalGamesList;
+      }
+    }
+
+    // 元の画面描画処理を実行
+    originalRender();
+  };
+
+  // 3. ジャンルプルダウンが変更されたときにも自動で画面が更新されるようにする
+  genreSelect.addEventListener('input', render);
+})();
+// ▲ ここまで追加 ▲
 </script>
 
 </body>
