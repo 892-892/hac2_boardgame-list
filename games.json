@@ -1140,20 +1140,6 @@
     ]
   },
   {
-    "id": 181796,
-    "name": "シックスフォース",
-    "url": "https://boardgamegeek.com/boardgame/430995/6-forces",
-    "players": "3～4",
-    "time": "40分",
-    "pmin": 3,
-    "pmax": 4,
-    "weight": 1,
-    "img": "430995.jpg",
-    "genres": [
-      "トリックテイキング"
-    ]
-  },
-  {
     "id": 149910,
     "name": "シックスメイキング",
     "url": "https://boardgamegeek.com/boardgame/149910/six-making",
