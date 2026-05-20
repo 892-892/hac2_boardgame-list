@@ -788,6 +788,20 @@
     ]
   },
   {
+    "id": 181796,
+    "name": "クアシャス",
+    "url": "https://boardgamegeek.com/boardgame/446442/quashars",
+    "players": "3～4",
+    "time": "40分",
+    "pmin": 3,
+    "pmax": 4,
+    "weight": 1,
+    "img": "446442.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
     "id": 316287,
     "name": "クエスト",
     "url": "https://boardgamegeek.com/boardgame/316287/quest",
@@ -998,20 +1012,6 @@
     ]
   },
   {
-    "id": 154086,
-    "name": "ゴールドウェスト",
-    "url": "https://boardgamegeek.com/boardgame/154086/gold-west",
-    "players": "2～4",
-    "time": "45-60分",
-    "pmin": 2,
-    "pmax": 4,
-    "weight": 3,
-    "img": "154086.jpg",
-    "genres": [
-      "マンカラ"
-    ]
-  },
-  {
     "id": 424435,
     "name": "コンテキスト",
     "url": "https://boardgamegeek.com/boardgame/424435/context",
@@ -1083,6 +1083,20 @@
     ]
   },
   {
+    "id": 181796,
+    "name": "サンドバッグ",
+    "url": "https://boardgamegeek.com/boardgame/412381/sandbag",
+    "players": "3～6",
+    "time": "30分",
+    "pmin": 3,
+    "pmax": 6,
+    "weight": 1,
+    "img": "412381.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
     "id": 367220,
     "name": "シーソルト&ペーパー",
     "url": "https://boardgamegeek.com/boardgame/367220/sea-salt-and-paper",
@@ -1113,6 +1127,20 @@
   },
   {
     "id": 430995,
+    "name": "シックスフォース",
+    "url": "https://boardgamegeek.com/boardgame/430995/6-forces",
+    "players": "3～4",
+    "time": "40分",
+    "pmin": 3,
+    "pmax": 4,
+    "weight": 1,
+    "img": "430995.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
+    "id": 181796,
     "name": "シックスフォース",
     "url": "https://boardgamegeek.com/boardgame/430995/6-forces",
     "players": "3～4",
@@ -1193,6 +1221,21 @@
     "img": "354.jpg",
     "genres": [
       "トリックテイキング"
+    ]
+  },
+  {
+    "id": 181796,
+    "name": "シュナッフ",
+    "url": "https://boardgamegeek.com/boardgame/6230/snafooey",
+    "players": "2～6",
+    "time": "10分",
+    "pmin": 2,
+    "pmax": 6,
+    "weight": 1,
+    "img": "6230.jpg",
+    "genres": [
+      "デス：ノイ",
+      "ハンドマネジメント"
     ]
   },
   {
@@ -1280,21 +1323,6 @@
     ]
   },
   {
-    "id": 162286,
-    "name": "スーパーマザーロード",
-    "url": "https://boardgamegeek.com/boardgame/162286/super-motherload",
-    "players": "2～4",
-    "time": "60分",
-    "pmin": 2,
-    "pmax": 4,
-    "weight": 3,
-    "img": "162286.jpg",
-    "genres": [
-      "タイル配置",
-      "デッキ構築"
-    ]
-  },
-  {
     "id": 2354,
     "name": "スキャン",
     "url": "https://boardgamegeek.com/boardgame/2354/scan",
@@ -1338,15 +1366,15 @@
     ]
   },
   {
-    "id": 8129,
-    "name": "スラフオフ！",
-    "url": "https://boardgamegeek.com/boardgame/8129/sluff-off",
+    "id": 181796,
+    "name": "スポーツフェスタ",
+    "url": "https://boardgamegeek.com/boardgame/365314/sports-festa",
     "players": "3～5",
-    "time": "30分",
+    "time": "10分",
     "pmin": 3,
     "pmax": 5,
-    "weight": 2,
-    "img": "8129.jpg",
+    "weight": 1,
+    "img": "365314.jpg",
     "genres": [
       "トリックテイキング"
     ]
@@ -1561,20 +1589,6 @@
     "img": "234842.jpg",
     "genres": [
       "マジョリティ"
-    ]
-  },
-  {
-    "id": 213631,
-    "name": "チップイット",
-    "url": "https://boardgamegeek.com/boardgame/213631/to-unlimited-and-beyond",
-    "players": "2～6",
-    "time": "10分",
-    "pmin": 2,
-    "pmax": 6,
-    "weight": 2,
-    "img": "213631.jpg",
-    "genres": [
-      "ゴーアウト"
     ]
   },
   {
@@ -1806,6 +1820,21 @@
     ]
   },
   {
+    "id": 181796,
+    "name": "ドッペルコッフ",
+    "url": "https://boardgamegeek.com/boardgame/9364/doppelkopf",
+    "players": "3～6",
+    "time": "120分",
+    "pmin": 3,
+    "pmax": 6,
+    "weight": 3,
+    "img": "9364.jpg",
+    "genres": [
+      "トリックテイキング",
+      "トランプ"
+    ]
+  },
+  {
     "id": 415295,
     "name": "ドラゴンクエスト 銀のタロット",
     "url": "https://boardgamegeek.com/boardgame/415295/dragon-quest-the-silver-tarot",
@@ -1871,6 +1900,20 @@
     "pmax": 5,
     "weight": 2,
     "img": "81250.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
+    "id": 181796,
+    "name": "トリックレイダース",
+    "url": "https://boardgamegeek.com/boardgame/374336/trick-raiders",
+    "players": "3～4",
+    "time": "15-30分",
+    "pmin": 3,
+    "pmax": 4,
+    "weight": 1,
+    "img": "374336.jpg",
     "genres": [
       "トリックテイキング"
     ]
@@ -2213,6 +2256,20 @@
     ]
   },
   {
+    "id": 181796,
+    "name": "ビッドコイン",
+    "url": "https://boardgamegeek.com/boardgame/436178/bid-coin",
+    "players": "3～4",
+    "time": "30-40分",
+    "pmin": 3,
+    "pmax": 4,
+    "weight": 1,
+    "img": "436178.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
     "id": 320718,
     "name": "ヒドゥンリーダーズ",
     "url": "https://boardgamegeek.com/boardgame/320718/hidden-leaders",
@@ -2268,6 +2325,20 @@
     "img": "330592.jpg",
     "genres": [
       "パーティ"
+    ]
+  },
+  {
+    "id": 181796,
+    "name": "フィアーレス",
+    "url": "https://boardgamegeek.com/boardgame/448496/fearless",
+    "players": "3～5",
+    "time": "30-45分",
+    "pmin": 3,
+    "pmax": 5,
+    "weight": 1,
+    "img": "448496.jpg",
+    "genres": [
+      "トリックテイキング"
     ]
   },
   {
@@ -2584,6 +2655,48 @@
     ]
   },
   {
+    "id": 181796,
+    "name": "ボトルインプ",
+    "url": "https://boardgamegeek.com/boardgame/619/the-bottle-imp",
+    "players": "2～4",
+    "time": "30分",
+    "pmin": 2,
+    "pmax": 4,
+    "weight": 1,
+    "img": "619.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
+    "id": 181796,
+    "name": "ボトルインプ びんの悪魔",
+    "url": "https://boardgamegeek.com/boardgame/413364/bottle-imp",
+    "players": "2～6",
+    "time": "15-30分",
+    "pmin": 2,
+    "pmax": 6,
+    "weight": 1,
+    "img": "413364.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
+    "id": 181796,
+    "name": "ポンプ消化隊",
+    "url": "https://boardgamegeek.com/boardgame/279056/pompiers",
+    "players": "3～5",
+    "time": "30分",
+    "pmin": 3,
+    "pmax": 5,
+    "weight": 1,
+    "img": "279056.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
     "id": 345584,
     "name": "マインドバグ",
     "url": "https://boardgamegeek.com/boardgame/345584/mindbug-first-contact",
@@ -2609,6 +2722,20 @@
     "img": "449353.jpg",
     "genres": [
       "カードゲーム"
+    ]
+  },
+  {
+    "id": 181796,
+    "name": "マウンテンフォトグラファー",
+    "url": "https://boardgamegeek.com/boardgame/341362/reapers",
+    "players": "3～5",
+    "time": "30-60分",
+    "pmin": 3,
+    "pmax": 5,
+    "weight": 1,
+    "img": "341362.jpg",
+    "genres": [
+      "トリックテイキング"
     ]
   },
   {
@@ -2753,6 +2880,20 @@
     ]
   },
   {
+    "id": 181796,
+    "name": "ミュッケンシュティッヒ",
+    "url": "https://boardgamegeek.com/boardgame/2317/muckenstich",
+    "players": "3～6",
+    "time": "30分",
+    "pmin": 3,
+    "pmax": 6,
+    "weight": 1,
+    "img": "2317.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
     "id": 346501,
     "name": "ミルフィオリ",
     "url": "https://boardgamegeek.com/boardgame/346501/mille-fiori",
@@ -2865,20 +3006,6 @@
     "img": "31506.jpg",
     "genres": [
       "トリックテイキング"
-    ]
-  },
-  {
-    "id": 343927,
-    "name": "ユニオンストックヤード",
-    "url": "https://boardgamegeek.com/boardgame/343927/union-stockyards",
-    "players": "2～5",
-    "time": "45-90分",
-    "pmin": 2,
-    "pmax": 5,
-    "weight": 3,
-    "img": "343927.jpg",
-    "genres": [
-      "ワーカープレイスメント"
     ]
   },
   {
@@ -3548,20 +3675,6 @@
     "genres": [
       "トリックテイキング",
       "チーム戦"
-    ]
-  },
-  {
-    "id": 181796,
-    "name": "浪費家倶楽部",
-    "url": "https://boardgamegeek.com/boardgame/181796/the-prodigals-club",
-    "players": "2～5",
-    "time": "40-100分",
-    "pmin": 2,
-    "pmax": 5,
-    "weight": 3,
-    "img": "181796.jpg",
-    "genres": [
-      "ワーカープレイスメント"
     ]
   }
 ]
