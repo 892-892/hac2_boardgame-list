@@ -493,6 +493,25 @@ $('clearBtn').addEventListener('click', () => {
   $('deleteBtn').classList.add('hidden');
 });
 
+// ★追加：削除ボタンの処理
+$('deleteBtn').addEventListener('click', () => {
+  if (editingIdx >= 0) {
+    if (!confirm('このゲームを削除してもよろしいですか？')) return;
+    
+    games.splice(editingIdx, 1);
+    
+    renderList();
+    updateCount();
+    
+    $('form').reset();
+    $('genres').value = '';
+    $('players').value = '';
+    $('time').value = '';
+    editingIdx = -1;
+    $('deleteBtn').classList.add('hidden');
+  }
+});
+
 $('search').addEventListener('input', renderList);
 
 $('exportBtn').addEventListener('click', () => {
