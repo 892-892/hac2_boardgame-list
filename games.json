@@ -1722,6 +1722,21 @@
     ]
   },
   {
+    "id": 1779332576835,
+    "name": "デュプリク",
+    "url": "https://boardgamegeek.com/boardgame/22348/duplik",
+    "players": "3～10",
+    "time": "45分",
+    "pmin": 3,
+    "pmax": 10,
+    "weight": 1,
+    "img": "22348.jpg",
+    "genres": [
+      "パーティ",
+      "お絵描き"
+    ]
+  },
+  {
     "id": 364186,
     "name": "テラノヴァ",
     "url": "https://boardgamegeek.com/boardgame/364186/terra-nova",
