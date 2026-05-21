@@ -493,11 +493,9 @@ $('clearBtn').addEventListener('click', () => {
   $('deleteBtn').classList.add('hidden');
 });
 
-// ★追加：削除ボタンの処理
+// ★修正：確認ポップアップ(confirm)を除外し、直接削除する処理
 $('deleteBtn').addEventListener('click', () => {
   if (editingIdx >= 0) {
-    if (!confirm('このゲームを削除してもよろしいですか？')) return;
-    
     games.splice(editingIdx, 1);
     
     renderList();
