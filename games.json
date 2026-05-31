@@ -2443,6 +2443,20 @@
     ]
   },
   {
+    "id": 1780239118475,
+    "name": "ブラックスパイ",
+    "url": "https://boardgamegeek.com/boardgame/1982/black-spy",
+    "players": "3～6",
+    "time": "45分",
+    "pmin": 3,
+    "pmax": 6,
+    "weight": 1,
+    "img": "1982.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
     "id": 132598,
     "name": "ブラックスワン",
     "url": "https://boardgamegeek.com/boardgame/132598/black-swan",
