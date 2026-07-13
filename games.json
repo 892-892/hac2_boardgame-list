@@ -1934,6 +1934,20 @@
     ]
   },
   {
+    "id": 1783924267890,
+    "name": "ドン キホーテ",
+    "url": "https://boardgamegeek.com/boardgame/460671/don-quixote",
+    "players": "3～5",
+    "time": "20-30分",
+    "pmin": 3,
+    "pmax": 5,
+    "weight": 2,
+    "img": "460671.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
     "id": 188018,
     "name": "ナインタイル",
     "url": "https://boardgamegeek.com/boardgame/188018/nine-tiles",
@@ -3421,6 +3435,20 @@
     ]
   },
   {
+    "id": 1783923952052,
+    "name": "辛いだけでいいのか？",
+    "url": "https://boardgamegeek.com/boardgame/153480/scharfe-schoten",
+    "players": "3～4",
+    "time": "30分",
+    "pmin": 3,
+    "pmax": 4,
+    "weight": 2,
+    "img": "153480.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
     "id": 216497,
     "name": "聖杯サクセション",
     "url": "https://boardgamegeek.com/boardgame/216497/district-noir",
@@ -3547,6 +3575,20 @@
     "img": "121041.jpg",
     "genres": [
       "パーティ"
+    ]
+  },
+  {
+    "id": 1783924155251,
+    "name": "天九牌",
+    "url": "https://boardgamegeek.com/boardgame/36513/tien-gow-sky-nine",
+    "players": "4",
+    "time": "30-45分",
+    "pmin": 4,
+    "pmax": 4,
+    "weight": 3,
+    "img": "36513.jpg",
+    "genres": [
+      "トリックテイキング"
     ]
   },
   {
