@@ -42,20 +42,6 @@
     ]
   },
   {
-    "id": 433967,
-    "name": "DOGS",
-    "url": "https://boardgamegeek.com/boardgame/433967/dogs",
-    "players": "2～4",
-    "time": "30分",
-    "pmin": 2,
-    "pmax": 4,
-    "weight": 2,
-    "img": "433967.jpg",
-    "genres": [
-      "トリックテイキング"
-    ]
-  },
-  {
     "id": 386860,
     "name": "Farm Hand",
     "url": "https://boardgamegeek.com/boardgame/386860/farm-hand",
@@ -591,6 +577,22 @@
     ]
   },
   {
+    "id": 181796,
+    "name": "オクトパスオーダー",
+    "url": "https://boardgamegeek.com/boardgame/471111/octopus-order",
+    "players": "3～4",
+    "time": "20-40分",
+    "pmin": 3,
+    "pmax": 4,
+    "weight": 2,
+    "img": "471111.jpg",
+    "genres": [
+      "トリックテイキング",
+      "大富豪",
+      "チキンレース"
+    ]
+  },
+  {
     "id": 582187,
     "name": "オッドソックス",
     "url": "https://boardgamegeek.com/boardgameversion/582187/japanese-edition",
@@ -659,6 +661,20 @@
     "genres": [
       "ブラフ",
       "へんなの"
+    ]
+  },
+  {
+    "id": 181796,
+    "name": "カーネギー",
+    "url": "https://boardgamegeek.com/boardgame/310873/carnegie",
+    "players": "1～4",
+    "time": "90-120分",
+    "pmin": 1,
+    "pmax": 4,
+    "weight": 4,
+    "img": "310873.jpg",
+    "genres": [
+      "ヴァリアブルフェイズオーダー"
     ]
   },
   {
@@ -797,6 +813,20 @@
     "pmax": 5,
     "weight": 2,
     "img": "324345.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
+    "id": 181796,
+    "name": "キャントウィン！",
+    "url": "https://boardgamegeek.com/boardgame/467997/cant-win",
+    "players": "3～4",
+    "time": "30-45分",
+    "pmin": 3,
+    "pmax": 4,
+    "weight": 2,
+    "img": "467997.jpg",
     "genres": [
       "トリックテイキング"
     ]
@@ -1367,6 +1397,21 @@
   },
   {
     "id": 181796,
+    "name": "スヌーピー：タレント・ショー！",
+    "url": "https://boardgamegeek.com/boardgame/454523/peanuts-talent-show",
+    "players": "2～4",
+    "time": "30分",
+    "pmin": 2,
+    "pmax": 4,
+    "weight": 1,
+    "img": "454523.jpg",
+    "genres": [
+      "トリックテイキング",
+      "デッキ構築"
+    ]
+  },
+  {
+    "id": 181796,
     "name": "スポーツフェスタ",
     "url": "https://boardgamegeek.com/boardgame/365314/sports-festa",
     "players": "3～5",
@@ -1547,6 +1592,20 @@
     "genres": [
       "ハンドマネジメント",
       "カードゲーム"
+    ]
+  },
+  {
+    "id": 181796,
+    "name": "タックス・ザ・リッチ",
+    "url": "https://boardgamegeek.com/boardgame/446492/tax-the-rich",
+    "players": "3～6",
+    "time": "20-30分",
+    "pmin": 3,
+    "pmax": 6,
+    "weight": 2,
+    "img": "446492.jpg",
+    "genres": [
+      "トリックテイキング"
     ]
   },
   {
@@ -1906,6 +1965,20 @@
     ]
   },
   {
+    "id": 181796,
+    "name": "トリックトゥザフューチャー",
+    "url": "https://boardgamegeek.com/boardgame/456965/trick-to-the-future",
+    "players": "2～5",
+    "time": "40分",
+    "pmin": 2,
+    "pmax": 5,
+    "weight": 2,
+    "img": "456965.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
     "id": 81250,
     "name": "トリックマイスター",
     "url": "https://boardgamegeek.com/boardgame/81250/stich-meister",
@@ -1915,20 +1988,6 @@
     "pmax": 5,
     "weight": 2,
     "img": "81250.jpg",
-    "genres": [
-      "トリックテイキング"
-    ]
-  },
-  {
-    "id": 181796,
-    "name": "トリックレイダース",
-    "url": "https://boardgamegeek.com/boardgame/374336/trick-raiders",
-    "players": "3～4",
-    "time": "15-30分",
-    "pmin": 3,
-    "pmax": 4,
-    "weight": 1,
-    "img": "374336.jpg",
     "genres": [
       "トリックテイキング"
     ]
@@ -2380,6 +2439,20 @@
     "pmax": 5,
     "weight": 2,
     "img": "419195.jpg",
+    "genres": [
+      "トリックテイキング"
+    ]
+  },
+  {
+    "id": 401784,
+    "name": "フィッシェン2",
+    "url": "https://boardgamegeek.com/boardgame/468799/fishing-2",
+    "players": "3～5",
+    "time": "40-60分",
+    "pmin": 3,
+    "pmax": 5,
+    "weight": 2,
+    "img": "468799.jpg",
     "genres": [
       "トリックテイキング"
     ]
@@ -3207,6 +3280,20 @@
     "img": "2149.jpg",
     "genres": [
       "トリックテイキング"
+    ]
+  },
+  {
+    "id": 181796,
+    "name": "ローン＆ビッド",
+    "url": "https://boardgamegeek.com/boardgame/458337/loan-and-bid",
+    "players": "4～6",
+    "time": "40-60分",
+    "pmin": 4,
+    "pmax": 6,
+    "weight": 2,
+    "img": "458337.jpg",
+    "genres": [
+      "競り"
     ]
   },
   {
