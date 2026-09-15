@@ -678,20 +678,6 @@
     ]
   },
   {
-    "id": 1789473055203,
-    "name": "カーネギー",
-    "url": "https://boardgamegeek.com/boardgame/310873/carnegie",
-    "players": "1～4",
-    "time": "90-120分",
-    "pmin": 1,
-    "pmax": 4,
-    "weight": 4,
-    "img": "310873.jpg",
-    "genres": [
-      "ヴァリアブルフェイズオーダー"
-    ]
-  },
-  {
     "id": 132,
     "name": "カエサル&クレオパトラ",
     "url": "https://boardgamegeek.com/boardgame/132/caesar-and-cleopatra",
