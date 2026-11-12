@@ -196,6 +196,20 @@
     ]
   },
   {
+    "id": 1794461094090,
+    "name": "アビス",
+    "url": "https://boardgamegeek.com/boardgame/155987/abyss",
+    "players": "2～4",
+    "time": "30-60分",
+    "pmin": 2,
+    "pmax": 4,
+    "weight": 2,
+    "img": "155987.jpg",
+    "genres": [
+      "デッキ構築"
+    ]
+  },
+  {
     "id": 205045,
     "name": "アベニュー",
     "url": "https://boardgamegeek.com/boardgame/205045/avenue",
@@ -846,6 +860,21 @@
     ]
   },
   {
+    "id": 1794461153482,
+    "name": "クイーンアリス",
+    "url": "https://boardgamegeek.com/boardgame/456236/queen-alice",
+    "players": "1～4",
+    "time": "30-120分",
+    "pmin": 1,
+    "pmax": 4,
+    "weight": 3,
+    "img": "456236.jpg",
+    "genres": [
+      "デッキ構築",
+      "チェス"
+    ]
+  },
+  {
     "id": 316287,
     "name": "クエスト",
     "url": "https://boardgamegeek.com/boardgame/316287/quest",
@@ -941,6 +970,20 @@
     "img": "170430.jpg",
     "genres": [
       "ゴーアウト"
+    ]
+  },
+  {
+    "id": 1794461223892,
+    "name": "グリニヴィル",
+    "url": "https://boardgamegeek.com/boardgame/369627/grinivil",
+    "players": "2～5",
+    "time": "90-150分",
+    "pmin": 2,
+    "pmax": 5,
+    "weight": 4,
+    "img": "369627.jpg",
+    "genres": [
+      "ロンデル"
     ]
   },
   {
